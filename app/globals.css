@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
 }
@@ -21,4 +22,40 @@ main {
   width: 100%;
   height: 30vh;
   background-color: yellow;
+
+:root {
+  --default-background: #f9f9f9;
+  --default-font-color: #4a4a4a;
+  --default-font-shadow: #ffffff;
+  --default-border-color: #ff9494;
+  --default-border-radius: 0.5rem;
+  --accent: #ff9494;
+  --accent-fade: #ff949425;
+  --accent-shadow: #00008042;
+  --hover-shadow: #00800050;
+
+  --success: #4caf50;
+  --cancel: #f44336;
+
+  /* Button */
+  --default-button-font-color: #ffffff;
+  --default-button-bg-color: #ff9494;
+  --default-button-bg-disabled-color: #4a4a4a;
+  --default-button-bg-color-hover: #ff9494;
+  --default-button-border-radius: 0.5rem;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--default-background);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+
 }
