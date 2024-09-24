@@ -1,0 +1,34 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 2200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 38vh;
+  background-color: none;
+}
+
+.slider {
+  margin: 0 20px;
+}
+
+.slide-item {
+  padding: 0px;
+}
+
+.slick-list {
+  margin: 0 -5px;
+}
+
+.slick-slide > div {
+  padding: 0 5px;
+}
+
+.slick-dots {
+  bottom: -30px;
+}
+
+.slide-item > div {
+  margin-top: 15%;
+  width: 100%;
+}

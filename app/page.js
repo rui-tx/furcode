@@ -1,4 +1,6 @@
 import HeroImage from "./components/HeroImage/HeroeImage";
+import PetCard from "./components/PetCard/PetCard";
+import PetCarousel from "./components/PetCarousel/PetCarousel";
 
 export default function Home() {
   return (
@@ -7,9 +9,8 @@ export default function Home() {
       <div className="text">
         <h1>WANNA HELP</h1>
       </div>
-      <div className="carrossel">
-        <h1>Pets adicionados recentemente</h1>
-      </div>
+
+      <PetCarousel />
     </>
   );
 }
