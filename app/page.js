@@ -1,15 +1,13 @@
-import HeroImage from "./components/HeroImage/HeroeImage";
+import HeroCarousel from "./_components/HeroCarousel/HeroCarousel";
+import PetCarousel from "./_components/PetCarousel/PetCarousel";
+import WannaHelp from "./_components/WannaHelp/WannaHelp";
 
 export default function Home() {
   return (
     <>
-      <HeroImage></HeroImage>
-      <div className="text">
-        <h1>WANNA HELP</h1>
-      </div>
-      <div className="carrossel">
-        <h1>Pets adicionados recentemente</h1>
-      </div>
+      <HeroCarousel />
+      <WannaHelp />
+      <PetCarousel />
     </>
   );
 }
