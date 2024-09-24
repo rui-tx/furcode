@@ -3,7 +3,7 @@
   width: 25%;
   height: 35%;
   border: 1px solid var(--default-border-color);
-  box-shadow: 1px 1px 1px var( --accent-shadow);
+  box-shadow: 1px 1px 1px var(--accent-shadow);
   border-radius: var(--default-border-radius);
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
   gap: 20px;
 }
 
-.title-login{
+.title-login {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -55,9 +55,30 @@
   border: 1px solid var(--default-border-color);
 }
 
+.container-no-register {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  height: auto;
+  bottom: 28%;
+}
+
+.container-no-register p {
+  color: var(--default-font-color);
+  font-size: 0.8em;
+}
+
+.container-no-register a {
+  color: var(--default-a-font-color);
+}
+
 .container-button {
   position: absolute;
-  top: 73%;
+  top: 78%;
   width: 25%;
   height: 8%;
 }
@@ -75,4 +96,60 @@
 .container-button button:hover {
   background-color: var(--default-button-bg-color-hover);
   cursor: pointer;
+}
+
+.login-success-message {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 5%;
+  bottom: 30%;
+}
+
+.login-success-message p {
+  color: var(--success);
+  font-size: 1em;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 35%;
+  }
+  .container-button {
+    top: 85%;
+  }
+
+  .container-no-register {
+    top: 70%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 35%;
+  }
+  .container-button {
+    top: 85%;
+  }
+
+  .container-no-register {
+    top: 70%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    width: 80%;
+  }
+
+  .container-button {
+    top: 85%;
+  }
+
+  .container-no-register {
+    top: 70%;
+  }
 }

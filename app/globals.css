@@ -44,7 +44,16 @@ main {
   --default-button-bg-disabled-color: #4a4a4a;
   --default-button-bg-color-hover: #ff9494;
   --default-button-border-radius: 0.5rem;
+
+/* a from form */
+--default-a-font-color: blue;
+
+
+
 }
+
+
+
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

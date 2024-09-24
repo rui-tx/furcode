@@ -58,7 +58,7 @@
 .container-button-register{
   position: absolute;
   width: 25%;
-  height: 8%;
+  height: 5%;
   bottom: 3%;
 }
 
@@ -75,4 +75,41 @@
 .container-button-register button:hover {
   background-color: var(--default-button-bg-color-hover);
   cursor: pointer;
+}
+
+.register-success-message{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 5%;
+  bottom: 10%;
+}
+
+.register-success-message p{
+  color: var(--success);
+  font-size: 1em;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1024px) {
+  .container-r {
+    width: 45%;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .container-r {
+    width: 55%;
+  }
+
+}
+
+@media screen and (max-width: 425px) {
+  .container-r {
+    width: 80%;
+  }
+
 }
