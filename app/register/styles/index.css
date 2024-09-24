@@ -1,10 +1,115 @@
-.login {
-  background-color: rgb(86, 41, 170);
-  width: 600px;
-  height: 800px;
-  color: white;
+.container-r {
   position: absolute;
+  width: 25%;
+  height: 70%;
+  border: 1px solid var(--default-border-color);
+  box-shadow: 1px 1px 1px var( --accent-shadow);
+  border-radius: var(--default-border-radius);
+  display: flex;
+  flex-direction: column;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.container-register {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.title-register{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 12%;
+  color: var(----default-font-color);
+  text-align: center;
+  font-size: 2em;
+  top: 2%;
+}
+
+.container-register-input {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  top: 15%;
+}
+
+.container-register-input input {
+  justify-content: center;
+  width: 80%;
+  height: 35px;
+  padding-left: 15px;
+  outline: none;
+  border: 1px solid var(--default-border-color);
+}
+
+.container-button-register{
+  position: absolute;
+  width: 25%;
+  height: 5%;
+  bottom: 3%;
+}
+
+.container-button-register button {
+  width: 100%;
+  height: 100%;
+  font-size: 1.2em;
+  color: var(--default-button-font-color);
+  background-color: var(--default-button-bg-color);
+  border-radius: var(--default-button-border-radius);
+  border: none;
+}
+
+.container-button-register button:hover {
+  background-color: var(--default-button-bg-color-hover);
+  cursor: pointer;
+}
+
+.register-success-message{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 5%;
+  bottom: 10%;
+}
+
+.register-success-message p{
+  color: var(--success);
+  font-size: 1em;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1024px) {
+  .container-r {
+    width: 45%;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .container-r {
+    width: 55%;
+  }
+
+}
+
+@media screen and (max-width: 425px) {
+  .container-r {
+    width: 80%;
+  }
+
 }
