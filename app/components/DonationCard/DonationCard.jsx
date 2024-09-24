@@ -1,15 +1,32 @@
 import "./styles/index.css";
 
 const DonationCard = ({ ...props }) => {
-  const { value, header, line1, line2, line3 } = props;
+  const {
+    value,
+    header,
+    line1,
+    line2,
+    line3,
+    imageUrlDonation,
+    imageAltDonation,
+    descriptionDonation,
+  } = props;
   return (
     <div className="donation-card">
-      <div class="pricing-table gprice-single">
-        <div class="head">
-          <h4 class="title">{header}</h4>
+      <div className="container-donation-image-card">
+        <img src={imageUrlDonation} alt={imageAltDonation} />
+
+        <div className="container-description-donation">
+          <p>{descriptionDonation}</p>
         </div>
-        <div class="content">
-          <div class="price">
+      </div>
+      <div className="pricing-table gprice-single">
+        <div className="head">
+          <h4 className="title">{header}</h4>
+        </div>
+
+        <div className="content">
+          <div className="price">
             <h1>{value}€</h1>
           </div>
           <ul>
@@ -17,8 +34,8 @@ const DonationCard = ({ ...props }) => {
             {line2 && <li>{line2}</li>}
             {line3 && <li>{line3}</li>}
           </ul>
-          <div class="sign-up">
-            <a href="#" class="btn bordered radius">
+          <div className="sign-up">
+            <a href="#" className="btn bordered radius">
               Donate
             </a>
           </div>

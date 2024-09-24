@@ -1,22 +1,29 @@
 .Total {
   background-color: red;
   width: 100%;
-  height: 100px;
+  height: 20vh;
   color: white;
+  margin-top: 30px;
 }
 
 .container-cards {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
   margin: 1rem;
+  width: 80%;
+  height: 30vh;
+  left: 50%;
+  transform: translate(-50%);
+
 }
 
 .Testemunha {
   background-color: yellow;
   width: 100%;
-  height: 25vh;
+  height: 26vh;
   color: rgb(147, 55, 55);
 }

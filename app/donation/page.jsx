@@ -2,17 +2,58 @@ import React from "react";
 import DonationCard from "../components/DonationCard/DonationCard";
 import "./styles/index.css";
 const page = () => {
+  const donationSettings = [
+    {
+      imageUrlDonation:
+        "https://img.freepik.com/fotos-gratis/kitty-com-parede-monocromatica-atras-dela_23-2148955134.jpg?ga=GA1.1.1751672505.1727189796&semt=ais_hybrid",
+      imageAltDonation: "Imagem de donation",
+      descriptionDonation:
+        "Ajuda a comprar ração para um dia de um cão ou gato",
+      value: "5",
+      header: "Silver",
+      line1: "Line 1",
+    },
+    {
+      imageUrlDonation:
+        "https://img.freepik.com/fotos-gratis/cachorro-de-raca-pura-sendo-fofo-em-um-estudio_23-2149016897.jpg?ga=GA1.2.1751672505.1727189796&semt=ais_hybrid",
+      imageAltDonation: "Image de um cão",
+      descriptionDonation:
+        "Contribui para alimentos e cuidados de saúde básicos.",
+      value: "10",
+      header: "Gold",
+      line1: "Line 1",
+    },
+    {
+      imageUrlDonation:
+        "https://img.freepik.com/fotos-gratis/proximo-de-um-papagaio-adoravel-a-comer_23-2151182866.jpg?ga=GA1.2.1751672505.1727189796&semt=ais_hybrid",
+      imageAltDonation: "Periquito",
+      descriptionDonation: "Auxilia na vacinação e tratamento de dois animais.",
+      value: "15",
+      header: "Platinum",
+      line1: "Line 1",
+    },
+  ];
+
   return (
     <div>
       <div className="Total">VALOR TOTAL DONATION</div>
       <div className="container-cards">
-        <DonationCard value="5" header="Silver" line1="Line 1" />
-        <DonationCard value="10" header="Gold" line1="Line 1" />
-        <DonationCard value="15" header="Platinum" line1="Line 1" />
+        {donationSettings.map((donation, index) => (
+          <DonationCard
+            key={index}
+            imageUrlDonation={donation.imageUrlDonation}
+            imageAltDonation={donation.imageAltDonation}
+            descriptionDonation={donation.descriptionDonation}
+            value={donation.value}
+            header={donation.header}
+            line1={donation.line1}
+          />
+        ))}
       </div>
-      <div className="Testemunha"> SLIDE TESTEMUNHA</div>
+      <div className="Testemunha">SLIDE TESTEMUNHA</div>
     </div>
   );
 };
+
 
 export default page;
