@@ -1,14 +1,18 @@
-.carousel-container {
+.carousel-petcontainer {
   position: relative;
   width: 100%;
   max-width: 2200px;
   margin: 0 auto;
   padding: 0 20px;
-  height: 38vh;
+  height: 32vh;
   background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .slider {
+  width: 80%;
   margin: 0 20px;
 }
 
@@ -29,6 +33,6 @@
 }
 
 .slide-item > div {
-  margin-top: 15%;
+  margin-top: 0;
   width: 100%;
 }
