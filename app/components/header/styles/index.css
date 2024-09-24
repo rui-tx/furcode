@@ -62,7 +62,7 @@
 .hamburger .bar {
   width: 25px;
   height: 3px;
-  background-color: black;
+  background-color: var(--default-font-color);
   margin: 3px 0;
   transition: transform .3s, opacity .3s;
 }
