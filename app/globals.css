@@ -37,6 +37,9 @@ main {
 
   /* a from form */
   --default-a-font-color: blue;
+
+  /* footer links color */
+  --default-footer-font-color: rgb(14, 18, 155)
 }
 
 body {
