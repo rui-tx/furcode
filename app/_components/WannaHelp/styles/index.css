@@ -1,0 +1,14 @@
+.home-wannaHelp {
+  background-color: var(--default-background);
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wannahelp-text {
+  font-size: 3em;
+  color: var(--default-font-color);
+  text-align: center;
+}

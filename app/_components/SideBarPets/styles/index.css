@@ -1,0 +1,134 @@
+.sidebar {
+  width: 250px;
+  background-color: #f8f4ff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+.sidebar-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #6a4c93;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 10px 35px 10px 15px;
+  border: 2px solid #d0bdf4;
+  border-radius: 20px;
+  background-color: white;
+  font-size: 0.9em;
+  color: #6a4c93;
+  transition: var(--default--border-color) 0.3s,
+    var(--default--shadow-color) 0.3s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #8a6cbe;
+  box-shadow: 0 0 0 3px rgba(138, 108, 190, 0.25);
+}
+
+.filter-select:hover {
+  border-color: #8a6cbe;
+}
+
+.filter-select option {
+  padding: 10px;
+  background-color: white;
+  color: #6a4c93;
+}
+
+.filter-select option:hover {
+  background-color: #f0e6ff;
+}
+
+.range-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.filter-range {
+  flex-grow: 1;
+  margin-right: 15px;
+  height: 10px;
+  background: #d0bdf4;
+  outline: none;
+  border-radius: 5px;
+}
+
+.filter-range::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  background: #6a4c93;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.filter-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #6a4c93;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.range-value {
+  min-width: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: #6a4c93;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-label {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  color: #444;
+}
+
+.checkbox-label input {
+  margin-right: 10px;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d0bdf4;
+  border-radius: 5px;
+  outline: none;
+  transition: background-color 0.3s, border-color 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox-label input:checked {
+  background-color: white;
+  border-color: #6a4c93;
+}
+
+.checkbox-label input:checked::after {
+  content: "✔";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6a4c93;
+  font-size: 14px;
+}
