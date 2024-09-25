@@ -1,0 +1,52 @@
+.pet-card {
+  width: 250px;
+  border: 1px solid var(--default--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 15px;
+  box-shadow: 0 2px 5px var(--default-shadow-color);
+  transition: transform 0.3s ease;
+}
+
+.pet-card:hover {
+  transform: translateY(-5px);
+}
+
+.pet-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.pet-info {
+  padding: 15px;
+}
+
+.pet-info h3 {
+  margin: 0 0 10px 0;
+  color: var(--default--text-color);
+}
+
+.pet-info p {
+  margin: 5px 0;
+  color: var(--default--text-color);
+}
+
+.pet-description {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.adopt-button {
+  background-color: var(--default-button-bg-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.adopt-button:hover {
+  background-color: var(--default-button-bg-color-hover);
+}

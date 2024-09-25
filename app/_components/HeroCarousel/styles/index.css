@@ -1,0 +1,38 @@
+.hero-carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-slider {
+  width: 90%;
+}
+
+.hero-slide-item {
+}
+
+.hero-carousel-container .slick-dots {
+  bottom: 20px;
+}
+.hero-slide-item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 960px) {
+  .hero-slider {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .hero-slider {
+    width: 100%;
+    height: 100%;
+  }
+}

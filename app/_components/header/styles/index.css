@@ -1,0 +1,121 @@
+.navbar {
+  background-color: var(--default-background);
+  width: 100%;
+  height: 100px;
+  color: var(--default-font-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  border-bottom: 1px solid var(--default-border-color);
+}
+
+.nav-links ul {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links ul li {
+  position: relative;
+  font-size: 18px;
+  color: var(--default-font-color);
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+  margin-left: 40px;
+}
+
+.nav-image img {
+  position: absolute;
+  left: 8%;
+  top: 0;
+  width: 100px;
+  height: auto;
+}
+
+.nav-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-links li::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--default-border-color);
+  transition: 0.3s;
+}
+
+.nav-links li:hover::before {
+  width: 100%;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--default-font-color);
+  margin: 3px 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .hamburger.open .bar1 {
+    transform: rotate(45deg) translate(7.5px, 5px);
+  }
+
+  .hamburger.open .bar2 {
+    opacity: 0;
+  }
+
+  .hamburger.open .bar3 {
+    transform: rotate(-45deg) translate(7.5px, -5px);
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--default-background);
+    flex-direction: column;
+    align-items: center;
+    transition: height 0.3s ease;
+    z-index: 5;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links ul li {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 425px){
+  .nav-links ul li {
+    font-size: 10px 0;
+  }
+}
