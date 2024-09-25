@@ -1,0 +1,43 @@
+name: Update PR with Commits
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  update-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Get the pull request number
+      id: pr
+      run: echo "::set-output name=pr_number::${{ github.event.pull_request.number }}"
+
+    - name: Get commit messages
+      id: commits
+      run: |
+        commit_messages=$(git log --pretty=format:"%h - %s" ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+        echo "::set-output name=messages::${commit_messages}"
+
+    - name: Update PR description with commits
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        event-type: update-pr-description
+        client-payload: |
+          {
+            "pr_number": "${{ steps.pr.outputs.pr_number }}",
+            "description": "${{ github.event.pull_request.body }}\n\n### Commits in this PR:\n${{ steps.commits.outputs.messages }}"
+          }
+
+    - name: Update pull request description
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: ${{ github.repository }}
+        issue-number: ${{ steps.pr.outputs.pr_number }}
+        body: |
+          ### Commits in this PR:
+          ${{ steps.commits.outputs.messages }}
