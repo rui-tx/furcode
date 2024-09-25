@@ -23,11 +23,11 @@
   background-color: white;
   font-size: 0.9em;
   color: #6a4c93;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: var(--default--border-color) 0.3s,
+    var(--default--shadow-color) 0.3s;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236a4c93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 20px;
@@ -44,14 +44,12 @@
   border-color: #8a6cbe;
 }
 
-/* Estilo para as opções do select */
 .filter-select option {
   padding: 10px;
   background-color: white;
   color: #6a4c93;
 }
 
-/* Adicione isso se quiser um efeito de hover nas opções */
 .filter-select option:hover {
   background-color: #f0e6ff;
 }

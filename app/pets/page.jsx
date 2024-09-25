@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import GalleryPetCard from "../_components/GalleryPetCar/GalleryPetCard";
+import GalleryPetCard from "../_components/GalleryPetCard/GalleryPetCard";
 import GalleryUpperText from "../_components/GalleryUpperText/GalleryUpperText";
 import "./styles/index.css";
 import SideBarPets from "../_components/SideBarPets/SideBarPets";

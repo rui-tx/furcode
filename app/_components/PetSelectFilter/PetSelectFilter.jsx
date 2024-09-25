@@ -8,7 +8,7 @@ const PetSelectFilter = () => {
 
   const options = [
     { value: "", label: "Todos", icon: "🐾" },
-    { value: "dog", label: "Cachorro", icon: "🐶" },
+    { value: "dog", label: "Cão", icon: "🐶" },
     { value: "cat", label: "Gato", icon: "🐱" },
     { value: "other", label: "Outro", icon: "🦜" },
   ];
