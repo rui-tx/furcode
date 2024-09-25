@@ -3,8 +3,10 @@
   border: 1px solid var(--default-border-color);
   border-radius: 20px;
   width: 30%;
-  max-height: 100%;
+  min-height: 100%;
   display: flex;
+  box-shadow: 0px 0px 18px var(--accent-shadow);
+  background-color: white;
 }
 
 .container-donation-image-card {
@@ -35,7 +37,7 @@
 
 .container-description-donation p {
   color: var(--default-font-color);
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 .pricing-table {
@@ -45,9 +47,9 @@
   align-self: center;
   text-align: center;
   padding: 1rem;
-  border-radius: 0.5rem;
   position: relative;
   width: 30%;
+
 }
 
 .pricing-table .head {
@@ -164,4 +166,22 @@
 .pricing-table:hover .btn.bordered:after {
   opacity: 0;
   transform: scale(0);
+}
+
+@media (max-width: 1024px) {
+  .donation-card {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .donation-card {
+    width: 50%;
+  }
+}
+
+@media (max-width: 425px) {
+  .donation-card {
+    width: 80%;
+  }
 }

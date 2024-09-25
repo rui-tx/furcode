@@ -1,6 +1,13 @@
+"use client";
+
 import React from "react";
 import DonationCard from "../components/DonationCard/DonationCard";
+import TotalDonations from "../components/TotalDonations/TotalDonations";
 import "./styles/index.css";
+import DonationsCarousel from "../components/DonationsCarousel/DonationsCarousel";
+
+
+
 const page = () => {
   const donationSettings = [
     {
@@ -36,24 +43,40 @@ const page = () => {
 
   return (
     <div>
-      <div className="Total">VALOR TOTAL DONATION</div>
-      <div className="container-cards">
-        {donationSettings.map((donation, index) => (
-          <DonationCard
-            key={index}
-            imageUrlDonation={donation.imageUrlDonation}
-            imageAltDonation={donation.imageAltDonation}
-            descriptionDonation={donation.descriptionDonation}
-            value={donation.value}
-            header={donation.header}
-            line1={donation.line1}
-          />
-        ))}
+      <div className="donation-container-total">
+        <div className="Total">
+          <div className="total-value">
+            <h1>Transforme vidas com sua generosidade</h1>
+            <p>
+              Cada doação é um ato de amor que faz a diferença para nossos
+              amigos de quatro patas
+            </p>
+          </div>
+        </div>
+        <div className="container-cards">
+          {donationSettings.map((donation, index) => (
+            <DonationCard
+              key={index}
+              imageUrlDonation={donation.imageUrlDonation}
+              imageAltDonation={donation.imageAltDonation}
+              descriptionDonation={donation.descriptionDonation}
+              value={donation.value}
+              header={donation.header}
+              line1={donation.line1}
+            />
+          ))}
+        </div>
+
+        <div className="container-donation-after-values">
+          <TotalDonations />
+        </div>
       </div>
-      <div className="Testemunha">SLIDE TESTEMUNHA</div>
+      <div className="container-testimonial">
+        <h2>Depoimentos</h2>
+        <DonationsCarousel />
+      </div>
     </div>
   );
 };
-
 
 export default page;
