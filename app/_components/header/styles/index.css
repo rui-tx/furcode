@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: space-around;
   position: relative;
+  border-bottom: 1px solid var(--default-border-color);
 }
 
 .nav-buttons ul {
@@ -64,7 +65,7 @@
   height: 3px;
   background-color: var(--default-font-color);
   margin: 3px 0;
-  transition: transform .3s, opacity .3s;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 @media (max-width: 768px) {
@@ -114,12 +115,10 @@
     margin: 10px 0;
     text-align: center;
   }
-
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
   nav ul li {
     font-size: 10px 0;
   }
-
 }
