@@ -41,7 +41,7 @@ const Header = () => {
               <Link href="/pets">ANIMAIS</Link>
             </li>
             <li>
-              <Link href="/shelter">ABRIGOS</Link>
+              <Link href="/shelter">ASSOCIAÇÕES</Link>
             </li>
             <li>
               <Link href="/donation">DOAÇÕES</Link>
