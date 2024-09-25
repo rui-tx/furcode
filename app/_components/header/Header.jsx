@@ -32,7 +32,7 @@ const Header = () => {
         </div>
 
         {/* Navigation */}
-        <div className={`nav-buttons ${menuOpen ? 'open' : ''}`}>
+        <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
           <ul>
             <li>
               <Link href="/">HOME</Link>
