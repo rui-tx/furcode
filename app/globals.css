@@ -1,18 +1,25 @@
 * {
   margin: 0;
-
 }
 
-main {
-  flex: 1;
-}
 .layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
+.footer {
+  background-color: red;
+  width: 100%;
+  height: 10vh;
+  color: white;
+}
 
 :root {
   --default-background: #f9f9f9;
@@ -32,18 +39,12 @@ main {
   --default-button-font-color: #ffffff;
   --default-button-bg-color: #ff9494;
   --default-button-bg-disabled-color: #4a4a4a;
-  --default-button-bg-color-hover: #ff9494;
+  --default-button-bg-color-hover: #fd5252;
   --default-button-border-radius: 0.5rem;
 
-/* a from form */
---default-a-font-color: blue;
-
-
-
+  /* a from form */
+  --default-a-font-color: blue;
 }
-
-
-
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
