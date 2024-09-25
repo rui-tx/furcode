@@ -124,8 +124,8 @@ const Table = ({ headers, data, enableEdit, enableDelete }) => {
           </ul>
           <ul className="more-content">
             <li>
-              This is a row with more content. It's hidden until hovered. Maybe
-              put here more info about the row.
+              This is a row with more content. It`&apos;`s hidden until hovered.
+              Maybe put here more info about the row.
             </li>
           </ul>
         </div>
