@@ -76,7 +76,7 @@ const Footer = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <Link href="/about">Sobre Nós</Link>
+              <Link href="/about">Sobre Furcode</Link>
             </li>
             <li>
               <Link href="/contact">Contatos</Link>
