@@ -38,11 +38,9 @@ main {
   /* a from form */
   --default-a-font-color: blue;
 
-  /*  Privacy Policy */
-  --default-privacy-policy-h2-color: #6a0dad;
-  --default-privacy-policy-shadow-color: rgba(0, 0, 0, 0.1);
-  --default-privacy-font-color: 090909;
-  --default-privacy-background-color: #f9f9f9;
+
+  /* footer links color */
+  --default-footer-font-color: rgb(14, 18, 155)
 }
 
 body {
