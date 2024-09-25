@@ -82,7 +82,7 @@ const Footer = () => {
               <Link href="/contact">Contatos</Link>
             </li>
             <li>
-              <Link href="/shelterRegister">Registe o seu Abrigo</Link>
+              <Link href="/shelterRegister">Registe a sua Associação</Link>
             </li>
             <li>
               <Link href="/wannaHelp">Ajude a Ajudar</Link>
