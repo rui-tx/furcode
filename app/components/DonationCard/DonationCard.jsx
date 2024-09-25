@@ -1,13 +1,30 @@
 import "./styles/index.css";
 
 const DonationCard = ({ ...props }) => {
-  const { value, header, line1, line2, line3 } = props;
+  const {
+    value,
+    header,
+    line1,
+    line2,
+    line3,
+    imageUrlDonation,
+    imageAltDonation,
+    descriptionDonation,
+  } = props;
   return (
     <div className="donation-card">
+      <div className="container-donation-image-card">
+        <img src={imageUrlDonation} alt={imageAltDonation} />
+
+        <div className="container-description-donation">
+          <p>{descriptionDonation}</p>
+        </div>
+      </div>
       <div className="pricing-table gprice-single">
         <div className="head">
           <h4 className="title">{header}</h4>
         </div>
+
         <div className="content">
           <div className="price">
             <h1>{value}€</h1>

@@ -1,9 +1,55 @@
+.donation-card {
+  position: relative;
+  border: 1px solid var(--default-border-color);
+  border-radius: 20px;
+  width: 30%;
+  min-height: 100%;
+  display: flex;
+  box-shadow: 0px 0px 18px var(--accent-shadow);
+  background-color: white;
+}
+
+.container-donation-image-card {
+  width: 50%;
+  margin: 2%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container-donation-image-card img {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  height: 80%;
+  border-radius: 20px;
+}
+
+.container-description-donation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-wrap: wrap;
+  width: 100%;
+  height: 20%;
+}
+
+.container-description-donation p {
+  color: var(--default-font-color);
+  font-size: 1em;
+}
+
 .pricing-table {
-  box-shadow: 0px 0px 18px #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
   text-align: center;
   padding: 1rem;
-  border-radius: 0.5rem;
   position: relative;
+  width: 30%;
+
 }
 
 .pricing-table .head {
@@ -120,4 +166,22 @@
 .pricing-table:hover .btn.bordered:after {
   opacity: 0;
   transform: scale(0);
+}
+
+@media (max-width: 1024px) {
+  .donation-card {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .donation-card {
+    width: 50%;
+  }
+}
+
+@media (max-width: 425px) {
+  .donation-card {
+    width: 80%;
+  }
 }
