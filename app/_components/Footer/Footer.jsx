@@ -20,6 +20,11 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer-social-icons">
+            <p>
+              Contacte-nos através:
+              <br />
+              furcode@minderacodeacademy.com
+            </p>
             <ul>
               <li>
                 <Link href="https://www.facebook.com/Meta">
@@ -77,9 +82,6 @@ const Footer = () => {
           <ul>
             <li>
               <Link href="/about">Sobre Furcode</Link>
-            </li>
-            <li>
-              <Link href="/contact">Contatos</Link>
             </li>
             <li>
               <Link href="/shelterRegister">Registe a sua Associação</Link>
