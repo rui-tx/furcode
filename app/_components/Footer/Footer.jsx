@@ -76,7 +76,7 @@ const Footer = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <Link href="/about">Sobre</Link>
+              <Link href="/about">Sobre Nós</Link>
             </li>
             <li>
               <Link href="/contact">Contatos</Link>
