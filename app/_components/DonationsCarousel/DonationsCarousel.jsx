@@ -52,7 +52,6 @@ const DonationsCarousel = () => {
   return (
     <div className="donations-carousel">
       <Slider {...sliderSettings} className="donations-slider custom-slider">
-        
         {testimonialDonationsCards.map((testimonialDonationsCard, index) => (
           <div key={index} className="slide-wrapper">
             <TestimonialDonationsCards
