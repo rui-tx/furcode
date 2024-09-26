@@ -9,11 +9,14 @@
 }
 
 main {
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
 }
 
+.footer {
+  flex-shrink: 0;
+}
 :root {
   --default-background: #f9f9f9;
   --default-font-color: #4a4a4a;
@@ -38,9 +41,8 @@ main {
   /* a from form */
   --default-a-font-color: blue;
 
-
   /* footer links color */
-  --default-footer-font-color: rgb(14, 18, 155)
+  --default-footer-font-color: rgb(14, 18, 155);
 }
 
 body {

@@ -42,7 +42,7 @@ const Page = () => {
   };
 
   return (
-    <div className="container">
+    <div className="login-container">
       <div className="container-login">
         <div className="title-login">Login</div>
         <div className="container-input">

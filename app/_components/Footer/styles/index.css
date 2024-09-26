@@ -104,7 +104,7 @@
   width: 0;
   height: 2px;
   background: var(--default-border-color);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .footer-links li:hover::before {
@@ -148,7 +148,7 @@
     width: 100%;
   }
 
-  .footer-logo-and-icons{
+  .footer-logo-and-icons {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -175,7 +175,7 @@
   }
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
   .footer-image img {
     width: 60px;
   }
