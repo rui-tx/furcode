@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Table from "../components/Table/Table";
 
-const page = () => {
+const Page = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -55,4 +55,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

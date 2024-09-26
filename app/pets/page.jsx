@@ -5,7 +5,7 @@ import GalleryUpperText from "../_components/GalleryUpperText/GalleryUpperText";
 import "./styles/index.css";
 import SideBarPets from "../_components/SideBarPets/SideBarPets";
 
-const page = () => {
+const Page = () => {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
@@ -48,4 +48,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
