@@ -25,7 +25,7 @@ const page = () => {
   ];
 
   return (
-    <>
+    <div className="one-shelter-container-all">
       {shelterInformations.map((shelterInformation, index) => (
         <ShelterImgTop
           key={index}
@@ -52,14 +52,14 @@ const page = () => {
       <div className="container-shelter-map">
         <div className="one-shelter-map">
           <div className="one-shelter-map-map">
-            <Map position={position}/>
+            <Map position={position} />
           </div>
           <div className="container-one-shelter-social-media">
             <ShelterSocialMedia />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

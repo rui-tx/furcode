@@ -30,3 +30,24 @@
 .slick-next:before {
   display: none;
 }
+
+@media (max-width: 1024px) {
+  .one-shelter-images-carousel {
+    width: 400px;
+    height: 45vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .one-shelter-images-carousel {
+    width: 300px;
+    height: 45vh;
+  }
+}
+
+@media (max-width: 425px) {
+  .one-shelter-images-carousel {
+    width: 200px;
+    height: 45vh;
+  }
+}

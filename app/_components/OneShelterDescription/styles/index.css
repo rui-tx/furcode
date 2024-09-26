@@ -23,6 +23,7 @@
     max-height: 60%;
     text-align: center;
     color: var(--default-font-color);
+    overflow: scroll;
 }
 
 .one-shelter-social-media{
