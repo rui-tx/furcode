@@ -1,17 +1,18 @@
 .shelterGallery-container {
-  width: 85%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1 ;
+  align-items: center;
+  flex: 1;
 }
-.banner {
-  background-color: rgb(108, 100, 218);
-  width: 85%;
+.ShelterGallery-banner {
+  width: 80%;
   height: 200px;
 }
 .shelterGallery-cards {
-  width: 100%;
+  width: 80%;
   display: flex;
+  margin-top: 4%;
   flex-wrap: wrap;
   justify-content: space-evenly;
   flex: 1 0 auto;

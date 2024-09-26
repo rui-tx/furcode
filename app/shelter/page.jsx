@@ -5,8 +5,6 @@ import ShelterGallery from "../_components/ShelterGalleryComponents/ShelterGalle
 const page = () => {
   return (
     <div className="shelter-container">
-      <div className="shelter-sidebar">FILTROS</div>
-
       <div className="shelter-content">
         <ShelterGallery />
       </div>

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import "./styles/index.css";
 import ShelterGalleryCard from "../ShelterGalleryCard/ShelterGalleryCard";
+import ShelterBanner from "../ShelterBanner/ShelterBanner";
 
 const ShelterGallery = () => {
   const [shelters, setShelters] = useState([]);
@@ -18,7 +19,9 @@ const ShelterGallery = () => {
 
   return (
     <div className="shelterGallery-container">
-      <div className="banner">TEXT DOS SHELTER BONITO</div>
+      <div className="ShelterGallery-banner">
+        <ShelterBanner></ShelterBanner>
+      </div>
       <div className="shelterGallery-cards">
         {shelters.map((shelter) => (
           <ShelterGalleryCard key={shelter.id} shelter={shelter} />
