@@ -1,12 +1,10 @@
 "use client";
 
 import React from "react";
-import DonationCard from "../components/DonationCard/DonationCard";
-import TotalDonations from "../components/TotalDonations/TotalDonations";
+import DonationCard from "../../components/DonationCard/DonationCard";
+import TotalDonations from "../../components/TotalDonations/TotalDonations";
 import "./styles/index.css";
-import DonationsCarousel from "../components/DonationsCarousel/DonationsCarousel";
-
-
+import DonationsCarousel from "../../components/DonationsCarousel/DonationsCarousel";
 
 const page = () => {
   const donationSettings = [
