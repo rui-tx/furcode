@@ -20,11 +20,16 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer-social-icons">
+            <p>
+              Contacte-nos através:
+              <br />
+              furcode@minderacodeacademy.com
+            </p>
             <ul>
               <li>
                 <Link href="https://www.facebook.com/Meta">
                   <img
-                    src="https://scontent.fopo6-2.fna.fbcdn.net/v/t39.8562-6/275949698_3248957128655833_369430323747988984_n.png?_nc_cat=1&ccb=1-7&_nc_sid=f537c7&_nc_ohc=IvATGsLjSfUQ7kNvgHg-AVg&_nc_ht=scontent.fopo6-2.fna&_nc_gid=Atf94PCUYRpexH5Ny8teqcc&oh=00_AYB2A-olnby4ogDj1UnMUa_ZKCGYI9mBNkYZf7AY1M0bww&oe=66F9122E"
+                    src="https://banner2.cleanpng.com/20200525/hor/transparent-facebook-round-logo-1713861749674.webp"
                     alt="facebook icon"
                   />
                 </Link>
@@ -32,7 +37,7 @@ const Footer = () => {
               <li>
                 <Link href="https://www.instagram.com/meta/">
                   <img
-                    src="https://scontent.fopo6-2.fna.fbcdn.net/v/t39.8562-6/276079790_239645664974434_7595452976573962628_n.png?_nc_cat=1&ccb=1-7&_nc_sid=f537c7&_nc_ohc=nNfKEAWEUEIQ7kNvgHKBxUc&_nc_ht=scontent.fopo6-2.fna&_nc_gid=Atf94PCUYRpexH5Ny8teqcc&oh=00_AYDyNnzAKunHLuaJuCls1tqusCYxhIt6bxYXG6WL3RLQAA&oe=66F8ECB1"
+                    src="https://img.freepik.com/premium-photo/round-instagram-logo-isolated-white-background_469489-1037.jpg"
                     alt="instagram icon"
                   />
                 </Link>
@@ -40,7 +45,7 @@ const Footer = () => {
               <li>
                 <Link href="https://www.whatsapp.com">
                   <img
-                    src="https://w7.pngwing.com/pngs/507/666/png-transparent-computer-icons-whatsapp-whatsapp-text-logo-silhouette-thumbnail.png"
+                    src="https://i.pinimg.com/736x/55/aa/49/55aa499fe77aa4cdfaa56fc4cee4ba8b.jpg"
                     alt="whatsapp icon"
                   />
                 </Link>
@@ -48,7 +53,7 @@ const Footer = () => {
               <li>
                 <Link href="https://x.com/Meta">
                   <img
-                    src="https://scontent.fopo6-2.fna.fbcdn.net/v/t39.8562-6/434686573_965393648261200_4295680538668886162_n.png?_nc_cat=105&ccb=1-7&_nc_sid=f537c7&_nc_ohc=5nHpcEyhWSMQ7kNvgE-jKDG&_nc_ht=scontent.fopo6-2.fna&_nc_gid=Atf94PCUYRpexH5Ny8teqcc&oh=00_AYBn7GAFe2Pppi0nBQrhH_WuRgZciaJUOSRAHW38hlENcQ&oe=66F902A1"
+                    src="https://img.freepik.com/premium-psd/black-brand-new-twitter-x-logo-icon-round_1129635-4.jpg"
                     alt="x icon"
                   />
                 </Link>
@@ -56,7 +61,7 @@ const Footer = () => {
               <li>
                 <Link href="https://mindera.com">
                   <img
-                    src="https://storage.googleapis.com/mindera-cms-media-uploads/black_minder_4eb8db624b/black_minder_4eb8db624b.png"
+                    src="https://static.siliconmilkroundabout.com/prod/logos/5798/3cfd3551cb-copy-of-mindera-symbol3x-1.png"
                     alt="mindera icon"
                   />
                 </Link>
@@ -64,7 +69,7 @@ const Footer = () => {
               <li>
                 <Link href="https://github.com/rui-tx/furcode">
                   <img
-                    src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                    src="https://e7.pngegg.com/pngimages/1009/39/png-clipart-github-computer-icons-repository-github-white-cat-like-mammal-thumbnail.png"
                     alt="github icon"
                   />
                 </Link>
@@ -76,10 +81,7 @@ const Footer = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <Link href="/about">Sobre Nós</Link>
-            </li>
-            <li>
-              <Link href="/contact">Contatos</Link>
+              <Link href="/about">Sobre Furcode</Link>
             </li>
             <li>
               <Link href="/shelterRegister">Registe a sua Associação</Link>
