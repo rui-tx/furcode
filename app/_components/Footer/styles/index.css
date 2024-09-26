@@ -165,10 +165,6 @@
     margin-right: 25px;
   }
 
-  .footer-social-icons img {
-    width: 20px;
-    height: 20px;
-  }
 
   .footer-links {
     display: none;
@@ -177,11 +173,6 @@
 
 @media (max-width: 425px){
   .footer-image img {
-    width: 60px;
-  }
-
-  .footer-social-icons img {
-    width: 16px;
-    height: 16px;
+    width: 70px;
   }
 }
