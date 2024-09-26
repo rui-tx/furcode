@@ -1,0 +1,76 @@
+.modalOverlay {
+  align-items: center;
+  animation: fadeIn 0.25s forwards;
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 1rem;
+  max-width: 50%;
+  padding: 1rem;
+  width: 100%;
+  z-index: 1001;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.modalText {
+  margin-bottom: 1rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.modalOverlay.fade-out {
+  animation: fadeOut 0.25s forwards;
+}
+
+.modalCloseButton {
+  display: flex;
+  cursor: pointer;
+  justify-content: flex-end;
+  font-size: 2rem;
+}
+
+.modalCloseButton:hover {
+  color: var(--cancel);
+  transition: color 0.2s ease-in-out;
+}
+
+.modalCloseButton:active {
+  color: var(--accent);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
