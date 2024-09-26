@@ -51,7 +51,7 @@ const Footer = () => {
               <li>
                 <Link href="https://mindera.com">
                   <img
-                    src="https://static.siliconmilkroundabout.com/prod/logos/5798/3cfd3551cb-copy-of-mindera-symbol3x-1.png"
+                    src="https://storage.googleapis.com/mindera-cms-media-uploads/black_minder_4eb8db624b/black_minder_4eb8db624b.png"
                     alt="mindera icon"
                   />
                 </Link>
@@ -78,6 +78,9 @@ const Footer = () => {
             </li>
             <li>
               <Link href="/privacy">Política de Privacidade</Link>
+            </li>
+            <li>
+              <Link href="/terms">Termos e Condições</Link>
             </li>
             <li>
               <Link href="/cookie">Política de Cookies</Link>
