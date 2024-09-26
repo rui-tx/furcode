@@ -1,6 +1,8 @@
 import React from "react";
 import "./styles/index.css";
 import Link from "next/link";
+import { FaFacebook, FaGithub, FaXTwitter, FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -28,34 +30,22 @@ const Footer = () => {
             <ul>
               <li>
                 <Link href="https://www.facebook.com/Meta">
-                  <img
-                    src="https://banner2.cleanpng.com/20200525/hor/transparent-facebook-round-logo-1713861749674.webp"
-                    alt="facebook icon"
-                  />
+                  <h2><FaFacebook /></h2>
                 </Link>
               </li>
               <li>
                 <Link href="https://www.instagram.com/meta/">
-                  <img
-                    src="https://img.freepik.com/premium-photo/round-instagram-logo-isolated-white-background_469489-1037.jpg"
-                    alt="instagram icon"
-                  />
+                <h2><FaInstagram /></h2>
                 </Link>
               </li>
               <li>
                 <Link href="https://www.whatsapp.com">
-                  <img
-                    src="https://i.pinimg.com/736x/55/aa/49/55aa499fe77aa4cdfaa56fc4cee4ba8b.jpg"
-                    alt="whatsapp icon"
-                  />
+                <h2><FaWhatsapp /></h2>
                 </Link>
               </li>
               <li>
                 <Link href="https://x.com/Meta">
-                  <img
-                    src="https://img.freepik.com/premium-psd/black-brand-new-twitter-x-logo-icon-round_1129635-4.jpg"
-                    alt="x icon"
-                  />
+                <h2><FaSquareXTwitter /></h2>
                 </Link>
               </li>
               <li>
@@ -68,10 +58,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="https://github.com/rui-tx/furcode">
-                  <img
-                    src="https://e7.pngegg.com/pngimages/1009/39/png-clipart-github-computer-icons-repository-github-white-cat-like-mammal-thumbnail.png"
-                    alt="github icon"
-                  />
+                <h2><FaGithub /></h2>
                 </Link>
               </li>
             </ul>
