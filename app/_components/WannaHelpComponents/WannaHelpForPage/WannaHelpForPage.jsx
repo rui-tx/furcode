@@ -39,14 +39,6 @@ const WannaHelp = () => {
           image={sponsorpic.src}
         />
       </div>
-      <div className="wannahelp-contact">
-        <h2>Inscreva-se para Ajudar</h2>
-        <p>
-          Deixe-nos seus dados e entraremos em contato com mais informações
-          sobre como você pode ajudar!
-        </p>
-        <WannaHelpForm></WannaHelpForm>
-      </div>
     </div>
   );
 };
