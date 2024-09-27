@@ -38,7 +38,7 @@ const page = () => {
 
   const handleSize = (event) => {
     setSize(event.target.value);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -54,24 +54,21 @@ const page = () => {
     );
   };
   const handleRegister = async () => {
-    const response = await fetch(
-      "",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          nif: nif,
-          email: email,
-          address: address,
-          postalCode: postalCode,
-          cellNumber: cellNumber,
-          size: size,
-        }),
-      }
-    );
+    const response = await fetch("", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        nif: nif,
+        email: email,
+        address: address,
+        postalCode: postalCode,
+        cellNumber: cellNumber,
+        size: size,
+      }),
+    });
 
     console.log(response);
     if (response.ok) {
@@ -81,10 +78,10 @@ const page = () => {
 
   return (
     <div className="shelter-register-container">
+      <h2 className="shelter-register-title">Registe a Sua Associação</h2>
+      <div className="shelter-register-text"></div>
       <div className="shelter-register-container-register">
-        <div className="shelter-register-title-register">Registe a Sua Assosiação</div>
-
-        <div className="shelter-register-container-register-input">
+        <div className="shelter-register-container-input">
           <input
             type="text"
             placeholder="Nome"
@@ -125,16 +122,18 @@ const page = () => {
             placeholder="Telefone"
             onChange={handleCellNumber}
             value={cellNumber}
+            required
           />
           <input
             type="number"
             placeholder="Tamanho (m²)"
-            onChange={handleCellNumber}
-            value={cellNumber}
+            onChange={handleSize}
+            value={size}
+            required
           />
         </div>
 
-        <div className="shelter-register-container-button-register">
+        <div className="shelter-register-container-button">
           <button
             type="submit"
             onSubmit={handleSubmit}
@@ -151,6 +150,6 @@ const page = () => {
       </div>
     </div>
   );
-}
+};
 
-export default page
+export default page;
