@@ -1,9 +1,9 @@
 .table-container {
   width: 100%;
-  margin: 1rem auto 1rem auto;
   background: var(--default-background);
   color: var(--default-font-color);
-  overflow: hidden;
+  overflow-y: scroll;
+  max-height: 100%;
   position: relative;
 }
 
@@ -49,11 +49,11 @@
   position: relative;
   overflow: hidden;
   transition: all 0.2s ease-out;
-  border-top: 1px solid rgba(0, 0, 0, 1); /* darken($light-bg, 100%) equivalent */
+  border-top: 1px solid rgba(0, 0, 0, 1);
 }
 
 .row:hover {
-  background-color: #ff949425; /* lighten($dark-bg, 10%) equivalent */
+  background-color: #ff949425;
   height: auto;
 }
 
