@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./styles/index.css";
 
-const page = () => {
+const Page = () => {
   const [firstName, setFirstName] = useState("firstName 1");
   const [lastName, setLastName] = useState("lastName 1");
   const [nif, setNif] = useState("38");
@@ -117,7 +117,12 @@ const page = () => {
             value={lastName}
             required
           />
-          <input type="number" placeholder="NIF" onChange={handleNif} value={nif} />
+          <input
+            type="number"
+            placeholder="NIF"
+            onChange={handleNif}
+            value={nif}
+          />
           <input
             type="text"
             placeholder="Email"
@@ -186,4 +191,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -14,7 +14,7 @@
   flex-direction: row;
   align-items: center;
   background-color: var(--default-background);
-  width: 50%;
+  width: 30%;
   height: 10vh;
   color: var(--default-font-color);
 }
@@ -22,6 +22,9 @@
 .footer-logo-and-icons {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
 }
 
 .footer-logo {
@@ -34,13 +37,24 @@
   height: auto;
 }
 
+.footer-social-icons p {
+  font-size: 14px;
+  color: var(--default-footer-font-color);
+  text-align: left;
+  margin: 0;
+  align-self: flex-start;
+  margin-left: 20px;
+}
+
 .footer-social-icons ul {
   display: flex;
   list-style: none;
+  margin-top: 0;
+  margin-left: -25px;
 }
 
 .footer-social-icons li {
-  margin: 0 0.5rem;
+  margin: 0.5rem;
 }
 
 .footer-social-icons img {
@@ -51,9 +65,9 @@
 
 .footer-links {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 70%;
 }
 
 .footer-links ul {
@@ -90,7 +104,7 @@
   width: 0;
   height: 2px;
   background: var(--default-border-color);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .footer-links li:hover::before {
@@ -105,6 +119,26 @@
   border-top: 1px solid var(--default-border-color);
 }
 
+@media (max-width: 1160px) {
+  .footer-main{
+    width: 40%;
+  }
+
+  .footer-links {
+    width: 60%;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer-main{
+    width: 50%;
+  }
+
+  .footer-links {
+    width: 50%;
+  }
+}
+
 @media (max-width: 768px) {
   .footer-main {
     height: auto;
@@ -114,7 +148,7 @@
     width: 100%;
   }
 
-  .footer-logo-and-icons{
+  .footer-logo-and-icons {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -127,26 +161,18 @@
   }
 
   .footer-social-icons {
-    margin-left: auto;
+    align-items: flex-end;
+    margin-right: 25px;
   }
 
-  .footer-social-icons img {
-    width: 20px;
-    height: 20px;
-  }
 
   .footer-links {
     display: none;
   }
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
   .footer-image img {
-    width: 60px;
-  }
-
-  .footer-social-icons img {
-    width: 16px;
-    height: 16px;
+    width: 70px;
   }
 }

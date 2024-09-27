@@ -1,9 +1,7 @@
-import React from 'react'
-
+import React from "react";
+import WannaHelpForPage from "../_components/WannaHelpComponents/WannaHelpForPage/WannaHelpForPage";
 const page = () => {
-  return (
-    <div>page</div>
-  )
-}
+  return <WannaHelpForPage />;
+};
 
-export default page
+export default page;

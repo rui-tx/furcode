@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import "./styles/index.css";
 
-const page = () => {
+const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState(false);
@@ -20,26 +20,29 @@ const page = () => {
     event.preventDefault();
   };
 
-  const handleLogin = async() => {
-    const response = await fetch("https://66f1d528415379191552511e.mockapi.io/api/v1/auth", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
+  const handleLogin = async () => {
+    const response = await fetch(
+      "https://66f1d528415379191552511e.mockapi.io/api/v1/auth",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      }
+    );
 
     console.log(response);
     if (response.ok) {
       setSuccessMessage(true);
     }
-  }
+  };
 
   return (
-    <div className="container">
+    <div className="login-container">
       <div className="container-login">
         <div className="title-login">Login</div>
         <div className="container-input">
@@ -56,9 +59,9 @@ const page = () => {
             required
           />
         </div>
-       
+
         <div className="container-button">
-          <button type="submit" onSubmit={handleSubmit}onClick={handleLogin}>
+          <button type="submit" onSubmit={handleSubmit} onClick={handleLogin}>
             Login
           </button>
         </div>
@@ -66,15 +69,19 @@ const page = () => {
           <div className="login-success-message">
             <p>Login realizado com sucesso!</p>
           </div>
-        ): ( <div className="container-no-register">
-          <p>Não possui conta? <a href="/register">Registar aqui</a></p>
-          <p>Esqueceu sua senha? <a href="/recovery">Recuperar aqui</a></p>
-        </div>
-
+        ) : (
+          <div className="container-no-register">
+            <p>
+              Não possui conta? <a href="/register">Registar aqui</a>
+            </p>
+            <p>
+              Esqueceu sua senha? <a href="/recovery">Recuperar aqui</a>
+            </p>
+          </div>
         )}
       </div>
     </div>
   );
 };
 
-export default page;
+export default Page;
