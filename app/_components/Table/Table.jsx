@@ -2,7 +2,14 @@
 import { useState } from "react";
 import "./styles/index.css";
 
-const Table = ({ headers, data, enableEdit, enableDelete }) => {
+const Table = ({
+  headers,
+  data,
+  enableEdit,
+  enableDelete,
+  currentId,
+  deleteEndpoint,
+}) => {
   const [editingRow, setEditingRow] = useState(null);
   const [editedData, setEditedData] = useState({});
   const [updatedRow, setUpdatedRow] = useState(null);
@@ -44,8 +51,22 @@ const Table = ({ headers, data, enableEdit, enableDelete }) => {
     setEditingRow(null);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     console.log("Deleting row: ", id);
+    const fileName = id.split("/").pop();
+    const response = await fetch(
+      `${deleteEndpoint}?id=${currentId}&fileName=${fileName}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (response.ok) {
+      alert("Deleted successfully");
+      console.log("Deleted successfully");
+      // Optionally, trigger a state update or reload to reflect the deletion
+    } else {
+      console.error("Failed to delete");
+    }
   };
 
   const handleCancel = () => {
@@ -91,6 +112,11 @@ const Table = ({ headers, data, enableEdit, enableDelete }) => {
                       value={editedData[header.columnName]}
                       rows={4}
                       onChange={(e) => handleInputChange(e, header.columnName)}
+                    />
+                  ) : header.type === "image" ? (
+                    <img
+                      style={{ maxWidth: "100px", maxHeight: "100px" }}
+                      src={editedData[header.columnName]}
                     />
                   ) : (
                     <input
