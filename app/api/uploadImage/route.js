@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import crypto from "crypto";
 
 export const config = {
   api: {
@@ -6,58 +7,72 @@ export const config = {
   },
 };
 
-export async function POST(req) {
-  const { searchParams } = new URL(req.url);
-  const to = searchParams.get("to");
-  const id = searchParams.get("id");
+const API_BASE_URL = "http://localhost:8080/api/v1";
 
-  // Use the built-in FormData parser
-  const formData = await req.formData();
-  const file = formData.get("file"); // This matches the name in formData.append("file", selectedFile);
+function calculateMD5(data) {
+  return crypto.createHash("md5").update(data).digest("hex");
+}
 
-  // If you need the file name
-  const fileName = file.name;
-
-  // Read the file data as ArrayBuffer
-  const fileData = await file.arrayBuffer();
-  const base64Data = Buffer.from(fileData).toString("base64"); // Convert to base64
-  const md5 = require("crypto")
-    .createHash("md5")
-    .update(base64Data)
-    .digest("hex"); // Calculate MD5 checksum
-
-  // Prepare the payload to send to Spring Boot
-  const payload = {
-    fileName: fileName,
-    fileData: base64Data,
-    md5: md5,
-  };
-
-  const url = `http://localhost:8080/api/v1/upload/${to}/${id}/image/`;
-
-  const myHeaders = new Headers({
-    "Content-Type": "application/json",
-  });
-
-  // Send the request to your Spring Boot backend
+async function uploadImage(url, payload) {
   const response = await fetch(url, {
     method: "POST",
-    headers: myHeaders,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
-    // Handle error response
     const errorMessage = await response.text();
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: response.status }
-    );
+    throw new Error(errorMessage);
   }
 
-  // If response is 201, you can simply return a success message
-  return NextResponse.json(
-    { message: "Image uploaded successfully" },
-    { status: 201 }
-  );
+  return response;
+}
+
+export async function POST(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const to = searchParams.get("to");
+    const id = searchParams.get("id");
+
+    if (!to || !id) {
+      return NextResponse.json(
+        { error: "Missing required parameters 'to' and/or 'id'" },
+        { status: 400 }
+      );
+    }
+
+    const formData = await req.formData();
+    const file = formData.get("file");
+
+    if (!file) {
+      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+    }
+
+    const fileName = file.name;
+    const fileData = await file.arrayBuffer();
+    const base64Data = Buffer.from(fileData).toString("base64");
+    const md5 = calculateMD5(base64Data);
+
+    const payload = {
+      fileName,
+      fileData: base64Data,
+      md5,
+    };
+
+    const url = `${API_BASE_URL}/upload/${to}/${id}/image/`;
+    await uploadImage(url, payload);
+
+    return NextResponse.json(
+      { message: "Image uploaded successfully" },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    return NextResponse.json(
+      { error: error.message || "Failed to upload image" },
+      { status: 500 }
+    );
+  }
 }

@@ -98,10 +98,9 @@ const Page = ({ params }) => {
     <div>
       <Table
         headers={tableHeaders}
-        data={pet?.imageList}
-        enableEdit={true}
+        initialData={pet?.imageList}
         enableDelete={true}
-        deleteEndpoint={`/api/deletePet`}
+        deleteEndpoint={`/api/deletePetImage`}
         currentId={pet?.id}
       />
     </div>
