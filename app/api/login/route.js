@@ -17,6 +17,15 @@ async function loginUser(url, email, password) {
 export async function POST(req) {
   const { email, password } = await req.json();
 
+  /****    APENAS PARA TESTE DEPOIS APAGAR    ****/
+  if (email === "teste@teste.com" && password === "teste") {
+    return NextResponse.json(
+      { message: "Login de teste bem-sucedido", token: "fake-token" },
+      { status: 200 }
+    );
+  }
+  /****    FIM DO TESTE    ****/
+
   if (!email || !password) {
     return NextResponse.json(
       { error: "Missing required fields 'email' and/or 'password'" },
