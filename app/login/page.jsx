@@ -1,12 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
+
 import "./styles/index.css";
 
 const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [successMessage, setSuccessMessage] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const { login } = useAuth();
+  const router = useRouter();
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -16,28 +21,18 @@ const Page = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
   };
 
   const handleLogin = async () => {
-    const response = await fetch(
-      "https://66f1d528415379191552511e.mockapi.io/api/v1/auth",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      }
-    );
-
-    console.log(response);
-    if (response.ok) {
+    try {
+      await login(email, password);
       setSuccessMessage(true);
+      router.push("/");
+    } catch (error) {
+      alert("Login errado");
+      setSuccessMessage(false);
     }
   };
 
