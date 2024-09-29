@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/navigation";
 
-import "./styles/index.css";
-
 const Page = () => {
   const { isLoggedIn, logout } = useAuth();
   const router = useRouter();

@@ -49,12 +49,15 @@
 .footer-social-icons ul {
   display: flex;
   list-style: none;
+  justify-content: center;
+  align-items: center;
   margin-top: 0;
   margin-left: -25px;
 }
 
 .footer-social-icons li {
   margin: 0.5rem;
+  font-size: 20px;
 }
 
 .footer-social-icons img {
@@ -119,8 +122,21 @@
   border-top: 1px solid var(--default-border-color);
 }
 
+.instagram-icon {
+  color: #e1306c;
+}
+.twitter-icon {
+  color: #1b2125;
+}
+.whatsapp-icon {
+  color: #25d366;
+}
+.github-icon {
+  color: #333;
+}
+
 @media (max-width: 1160px) {
-  .footer-main{
+  .footer-main {
     width: 40%;
   }
 
@@ -130,7 +146,7 @@
 }
 
 @media (max-width: 900px) {
-  .footer-main{
+  .footer-main {
     width: 50%;
   }
 
@@ -164,7 +180,6 @@
     align-items: flex-end;
     margin-right: 25px;
   }
-
 
   .footer-links {
     display: none;

@@ -40,25 +40,27 @@ const Page = () => {
     <div className="login-container">
       <div className="container-login">
         <div className="title-login">Login</div>
-        <div className="container-input">
-          <input
-            type="text"
-            placeholder="Email"
-            onChange={handleEmail}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            onChange={handlePassword}
-            required
-          />
-        </div>
+        <div className="container-form-buttom-input">
+          <div className="container-input">
+            <input
+              type="text"
+              placeholder="Email"
+              onChange={handleEmail}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={handlePassword}
+              required
+            />
+          </div>
 
-        <div className="container-button">
-          <button type="submit" onSubmit={handleSubmit} onClick={handleLogin}>
-            Login
-          </button>
+          <div className="container-button">
+            <button type="submit" onSubmit={handleSubmit} onClick={handleLogin}>
+              Login
+            </button>
+          </div>
         </div>
         {successMessage ? (
           <div className="login-success-message">

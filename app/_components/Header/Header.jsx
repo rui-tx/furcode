@@ -53,9 +53,15 @@ const Header = () => {
               <Link href="/donation">DOAÇÕES</Link>
             </li>
             {isLoggedIn ? (
-              <li>
-                <Link href="/logout">SAIR</Link>
-              </li>
+              <>
+                <li>
+                  <Link href="/editProfile">EDITAR PERFIL</Link>
+                </li>
+
+                <li>
+                  <Link href="/logout">SAIR</Link>
+                </li>
+              </>
             ) : (
               <li>
                 <Link href="/login">LOGIN</Link>
