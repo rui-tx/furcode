@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { IoColorPaletteOutline, IoScaleOutline } from "react-icons/io5";
 import { TbVaccine, TbCalendar, TbRuler3 } from "react-icons/tb";
-import ImageUpload from "../../_components/ImageUpload/ImageUpload"; // test image upload
+import ImageUpload from "../../../_components/ImageUpload/ImageUpload"; // test image upload
 import Modal from "@/app/_components/Modal/Modal";
 import Table from "@/app/_components/Table/Table";
 

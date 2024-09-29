@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import "./styles/index.css";
-import ShelterImgTop from "../../_components/ShelterImgTop/ShelterImgTop";
+import ShelterImgTop from "../../../_components/ShelterImgTop/ShelterImgTop";
 import ShelterCarousel from "@/app/_components/ShelterCarousel/ShelterCarousel";
 import OneShelterDescription from "@/app/_components/OneShelterDescription/OneShelterDescription";
 import Map from "@/app/_components/Map/Map";
