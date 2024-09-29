@@ -77,14 +77,14 @@
 
 .full-width-container::before {
   content: "";
-  background-image: url("https://cloud.ducknexus.com/s/iXxXQaYXimaCWwt/download/furcode-bg.png");
+  background-image: url("https://st2.depositphotos.com/1106005/7729/i/450/depositphotos_77293322-stock-photo-gray-and-white-dog-paw.jpg");
   background-size: repeat;
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
-  opacity: 0.25;
+  opacity: 0.1;
   z-index: -10;
 }
 

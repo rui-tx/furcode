@@ -30,22 +30,24 @@ const ShelterCarousel = ({ ...props }) => {
     return <div>Loading...</div>;
   }
   return (
-    <div className="one-shelter-images-carousel">
-      <Slider
-        {...sliderShelterSettings}
-        className="shelter-images-slider custom-slider"
-      >
-        {shelterImages.map((imageUrl, index) => (
-          <div key={index} className="one-shelter-image-slide">
-            <img
-              src={imageUrl}
-              alt={`Imagem da associação ${index + 1}`}
-              className="image-shelter-wrapper"
-            />
-          </div>
-        ))}
-      </Slider>
-    </div>
+    <div className="container-one-shelter-total">
+      <div className="one-shelter-images-carousel">
+        <Slider
+          {...sliderShelterSettings}
+          className="shelter-images-slider custom-slider"
+        >
+          {shelterImages.map((imageUrl, index) => (
+            <div key={index} className="one-shelter-image-slide">
+              <img
+                src={imageUrl}
+                alt={`Imagem da associação ${index + 1}`}
+                className="image-shelter-wrapper"
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
+      </div>
   );
 };
 

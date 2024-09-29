@@ -1,13 +1,28 @@
 .one-shelter-social-media-buttons {
 
   width: 80%;
-  height: 50%;
+  height: 90%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
+
 }
 
 .one-shelter-social-media-buttons p {
   font-weight: bold;
   text-align: center;
   text-align: center;
+}
+
+.form-control-shelter{
+  width: 80%;
+  height: 100%;
+  border: 0.5px solid black;
+  background-color: white;
+  color: var(--default-font-color);
+  cursor: pointer;
+  font-size: 1.2em;
+  margin: 10px;
 }
