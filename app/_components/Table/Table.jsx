@@ -1,8 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/index.css";
 
-const Table = ({ headers, data, enableEdit, enableDelete }) => {
+const Table = ({
+  headers,
+  initialData,
+  enableEdit,
+  enableDelete,
+  currentId,
+  deleteEndpoint,
+  onDataChange,
+}) => {
+  const [data, setData] = useState(initialData);
   const [editingRow, setEditingRow] = useState(null);
   const [editedData, setEditedData] = useState({});
   const [updatedRow, setUpdatedRow] = useState(null);
@@ -17,13 +26,25 @@ const Table = ({ headers, data, enableEdit, enableDelete }) => {
         return value ? value.toString() : "";
       case "bool":
         return value ? "Yes" : "No";
+      case "image":
+        return (
+          <img
+            src={value}
+            alt="Mini thumbnail for image"
+            style={{
+              maxWidth: "100px",
+              maxHeight: "100px",
+              borderRadius: "0.5rem",
+            }}
+          />
+        );
       default:
         return value;
     }
   };
 
   const handleEdit = (id, item) => {
-    setUpdatedRow(null); // reset animation when input changes
+    setUpdatedRow(null);
     setEditingRow(id);
     setEditedData(item);
   };
@@ -39,93 +60,138 @@ const Table = ({ headers, data, enableEdit, enableDelete }) => {
   };
 
   const handleSave = () => {
-    console.log("Saving data for row: ", editingRow, editedData);
-    setUpdatedRow(editingRow); // to show animation when row is updated
+    const newData = data.map((item) =>
+      item.id === editingRow ? editedData : item
+    );
+    setData(newData);
+    setUpdatedRow(editingRow);
     setEditingRow(null);
+    if (onDataChange) onDataChange(newData);
   };
 
-  const handleDelete = (id) => {
-    console.log("Deleting row: ", id);
+  const handleDelete = async (id) => {
+    try {
+      const fileName = id.split("/").pop();
+      const response = await fetch(
+        `${deleteEndpoint}?id=${currentId}&fileName=${fileName}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        const newData = data.filter((item) => item.id !== id);
+        setData(newData);
+        if (onDataChange) onDataChange(newData);
+      } else {
+        throw new Error("Failed to delete");
+      }
+    } catch (error) {
+      console.error("Error deleting item:", error);
+      alert("Failed to delete the item. Please try again.");
+    }
   };
 
   const handleCancel = () => {
     setEditingRow(null);
   };
 
+  const renderInputField = (header, value) => {
+    switch (header.type) {
+      case "bool":
+        return (
+          <input
+            type="checkbox"
+            checked={value}
+            onChange={(e) => handleInputChange(e, header.columnName)}
+          />
+        );
+      case "number":
+        return (
+          <input
+            type="number"
+            value={value}
+            onChange={(e) => handleInputChange(e, header.columnName)}
+          />
+        );
+      case "text":
+        return (
+          <textarea
+            value={value}
+            rows={4}
+            onChange={(e) => handleInputChange(e, header.columnName)}
+          />
+        );
+      case "image":
+        return (
+          <img
+            style={{ maxWidth: "100px", maxHeight: "100px" }}
+            src={value}
+            alt="Editable"
+          />
+        );
+      default:
+        return (
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => handleInputChange(e, header.columnName)}
+          />
+        );
+    }
+  };
+
   return (
     <div className="table-container">
-      {/* Header */}
       <div className="row title">
         <ul>
           {headers.map((header, index) => (
             <li key={index}>{header.prettyLabel}</li>
           ))}
-          {enableEdit || enableDelete ? <li>Quick Actions</li> : null}
+          {(enableEdit || enableDelete) && <li>Quick Actions</li>}
         </ul>
       </div>
 
-      {/* Data Rows */}
       {data.map((item, index) => (
         <div
           className={`row ${updatedRow === item.id ? "update-row" : ""}`}
-          key={index}
+          key={item.id}
         >
           <ul>
             {headers.map((header, idx) => (
               <li key={idx}>
-                {editingRow === item.id ? (
-                  header.type === "bool" ? (
-                    <input
-                      type="checkbox"
-                      checked={editedData[header.columnName]}
-                      onChange={(e) => handleInputChange(e, header.columnName)}
-                    />
-                  ) : header.type === "number" ? (
-                    <input
-                      type="number"
-                      value={editedData[header.columnName]}
-                      onChange={(e) => handleInputChange(e, header.columnName)}
-                    />
-                  ) : header.type === "text" ? (
-                    <textarea
-                      value={editedData[header.columnName]}
-                      rows={4}
-                      onChange={(e) => handleInputChange(e, header.columnName)}
-                    />
-                  ) : (
-                    <input
-                      type="text"
-                      value={editedData[header.columnName]}
-                      onChange={(e) => handleInputChange(e, header.columnName)}
-                    />
-                  )
-                ) : (
-                  renderValue(item, header)
-                )}
+                {editingRow === item.id
+                  ? renderInputField(header, editedData[header.columnName])
+                  : renderValue(item, header)}
               </li>
             ))}
-            {enableEdit && (
+            {(enableEdit || enableDelete) && (
               <li>
                 {editingRow === item.id ? (
-                  <span>
+                  <>
                     <button onClick={handleSave}>Save</button>
                     <button onClick={handleCancel}>Cancel</button>
-                  </span>
+                  </>
                 ) : (
-                  <button onClick={() => handleEdit(item.id, item)}>
-                    Edit
-                  </button>
-                )}
-                {enableDelete && (
-                  <button onClick={() => handleDelete(item.id)}>Delete</button>
+                  <>
+                    {enableEdit && (
+                      <button onClick={() => handleEdit(item.id, item)}>
+                        Edit
+                      </button>
+                    )}
+                    {enableDelete && (
+                      <button onClick={() => handleDelete(item.id)}>
+                        Delete
+                      </button>
+                    )}
+                  </>
                 )}
               </li>
             )}
           </ul>
           <ul className="more-content">
             <li>
-              This is a row with more content. It`&apos;`s hidden until hovered.
-              Maybe put here more info about the row.
+              This is a row with more content. It's hidden until hovered. Maybe
+              put here more info about the row.
             </li>
           </ul>
         </div>

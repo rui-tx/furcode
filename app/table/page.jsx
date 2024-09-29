@@ -31,6 +31,7 @@ const Page = () => {
 
   const showModal = (show) => {
     setIsModalOpen(show);
+    console.log("Modal is open: ", data);
   };
 
   const showModal2 = (show) => {
@@ -160,12 +161,11 @@ const Page = () => {
         title="Image Test"
         content={testContent2}
       />
-      <Table
-        headers={headers}
-        data={data}
-        enableEdit={true}
-        enableDelete={false}
-      />
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <Table headers={headers} initialData={data} enableEdit={true} />
+      )}
     </div>
   );
 };
