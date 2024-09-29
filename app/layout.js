@@ -1,5 +1,5 @@
 import "./globals.css";
-import Header from "./_components/header/Header";
+import Header from "./_components/Header/Header";
 import Footer from "./_components/Footer/Footer";
 import { AuthProvider } from "./context/AuthContext";
 
