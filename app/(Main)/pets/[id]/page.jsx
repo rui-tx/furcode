@@ -195,7 +195,7 @@ const Page = ({ params }) => {
       <div className="detailed-description">
         <h2>Fotos</h2>
         <div className="image-list">
-          {pet.imageList.map((image, index) => (
+          {pet.imageList?.map((image, index) => (
             <p key={index}>
               <img
                 src={image.data}
