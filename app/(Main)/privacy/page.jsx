@@ -1,5 +1,5 @@
 import React from "react";
-import PrivacyPolicyPage from "../_components/PrivacyPolicyPage/PrivacyPolicyPage";
+import PrivacyPolicyPage from "../../_components/PrivacyPolicyPage/PrivacyPolicyPage";
 
 const page = () => {
   return <PrivacyPolicyPage />;

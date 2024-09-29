@@ -1,11 +1,13 @@
 "use client";
 
+import { useAuth } from "../../context/AuthContext";
 import "./styles/index.css";
 import Link from "next/link";
 import React, { useState } from "react";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isLoggedIn, logout } = useAuth();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -17,22 +19,26 @@ const Header = () => {
         <div className="nav-logo">
           <div className="nav-image">
             <Link href="/">
-              <img 
-              src="https://media.istockphoto.com/id/1179573533/vector/vector-group-of-pets-dog-cat-humming-bird-parrot-chameleon-butterfly-rabbit-isolated-on.jpg?s=612x612&w=0&k=20&c=SFDqjevwsQ00ZoZWFQRhscVxnrrkVDns0KjDH-hUynA="
-              alt="logo" />
-            </Link>          
-          </div>          
+              <img
+                src="https://media.istockphoto.com/id/1179573533/vector/vector-group-of-pets-dog-cat-humming-bird-parrot-chameleon-butterfly-rabbit-isolated-on.jpg?s=612x612&w=0&k=20&c=SFDqjevwsQ00ZoZWFQRhscVxnrrkVDns0KjDH-hUynA="
+                alt="logo"
+              />
+            </Link>
+          </div>
         </div>
 
         {/* Hamburguer Icon */}
-        <div className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
-          <span className={`bar ${menuOpen ? 'bar1' : ''}`}></span>
-          <span className={`bar ${menuOpen ? 'bar2' : ''}`}></span>
-          <span className={`bar ${menuOpen ? 'bar3' : ''}`}></span>
+        <div
+          className={`hamburger ${menuOpen ? "open" : ""}`}
+          onClick={toggleMenu}
+        >
+          <span className={`bar ${menuOpen ? "bar1" : ""}`}></span>
+          <span className={`bar ${menuOpen ? "bar2" : ""}`}></span>
+          <span className={`bar ${menuOpen ? "bar3" : ""}`}></span>
         </div>
 
         {/* Navigation */}
-        <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
+        <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <ul>
             <li>
               <Link href="/">HOME</Link>
@@ -46,9 +52,15 @@ const Header = () => {
             <li>
               <Link href="/donation">DOAÇÕES</Link>
             </li>
-            <li>
-              <Link href="/login">LOGIN</Link>
-            </li>
+            {isLoggedIn ? (
+              <li>
+                <Link href="/logout">SAIR</Link>
+              </li>
+            ) : (
+              <li>
+                <Link href="/login">LOGIN</Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>
