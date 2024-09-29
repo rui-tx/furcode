@@ -11,12 +11,12 @@
     align-items: center;
   }
   
-  .slider {
+  .shelter-animal-slider {
     width: 80%;
     margin: 0 20px;
   }
   
-  .slide-item {
+  .slide-shelter-animal-item {
     padding: 0px;
   }
   
@@ -32,7 +32,7 @@
     bottom: -30px;
   }
   
-  .slide-item > div {
+  .slide-shelter-animal-item > div {
     margin-top: 0;
     width: 100%;
   }

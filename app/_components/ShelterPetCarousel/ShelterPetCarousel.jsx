@@ -9,7 +9,7 @@ const Slider = dynamic(() => import("react-slick"), { ssr: false });
 const PetCarousel = () => {
   const [sliderSettings, setSliderSettings] = useState(null);
 
-  const [petsData, setPetsData] = useState([]);
+  const [petsInShelter, setPetsInShelter] = useState([]);
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -78,10 +78,10 @@ const PetCarousel = () => {
   }
 
   return (
-    <div className="carousel-petcontainer">
-      <Slider {...sliderSettings} className="slider">
-        {petsData.map((pet, index) => (
-          <div key={index} className="slide-item">
+    <div className="carousel-pet-shelter-container">
+      <Slider {...sliderSettings} className="shelter-animal-slider">
+        {petsInShelter.map((pet, index) => (
+          <div key={index} className="slide-shelter-animal-item">
             <PetCard image={pet.image} name={pet.name} breed={pet.breed} />
           </div>
         ))}
