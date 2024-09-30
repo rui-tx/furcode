@@ -3,15 +3,35 @@
 import { useAuth } from "../../context/AuthContext";
 import "./styles/index.css";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
+  const [location, setLocation] = useState(null);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.ongitude,
+          });
+          console.log("Location acquired:", position);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+        }
+      );
+    } else {
+      console.error("Grolocation is not supported by this browser.");
+    }
+  }, []);
 
   return (
     <>
