@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import GalleryPetCard from "../../_components/GalleryPetCard/GalleryPetCard";
 import GalleryUpperText from "../../_components/GalleryUpperText/GalleryUpperText";
 import "./styles/index.css";
@@ -7,23 +7,44 @@ import SideBarPets from "../../_components/SideBarPets/SideBarPets";
 
 const Page = () => {
   const [pets, setPets] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const petsPerPage = 10;
+
+  const fetchPets = useCallback(async () => {
+    try {
+      const ENDPOINT = "api/petsGallery";
+      const URL_CONFIGURED = `${ENDPOINT}?limit=${petsPerPage}&page=${currentPage}&order=DESC`;
+      const response = await fetch(URL_CONFIGURED);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setPets((prevPets) => [...prevPets, ...data]);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching pets:", error);
+    }
+  }, [currentPage]);
 
   useEffect(() => {
-    const fetchPets = async () => {
-      try {
-        const response = await fetch("/api/petsGallery");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setPets(data);
-        console.log(data);
-      } catch (e) {
-        console.error("Falha ao buscar pets:", e);
-      }
-    };
-
     fetchPets();
+  }, [fetchPets]);
+
+  useEffect(() => {
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        setCurrentPage((prevPage) => prevPage + 1);
+      }
+    });
+
+    const sentinel = document.querySelector('.sentinel');
+    if (sentinel) {
+      intersectionObserver.observe(sentinel);
+    }
+
+    return () => {
+      intersectionObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -43,6 +64,7 @@ const Page = () => {
             />
           ))}
         </div>
+        <div className="sentinel"></div>
       </div>
     </div>
   );
