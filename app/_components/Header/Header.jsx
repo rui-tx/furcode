@@ -8,30 +8,32 @@ import React, { useState, useEffect } from "react";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState(() => {
+    const storedLocation = localStorage.getItem("userLocation");
+    return storedLocation ? JSON.parse(storedLocation) : null;
+  });
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   useEffect(() => {
-    if (navigator.geolocation) {
+    if (!location && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setLocation({
+          const newLocation = {
             latitude: position.coords.latitude,
-            longitude: position.coords.ongitude,
-          });
-          console.log("Location acquired:", position);
+            longitude: position.coords.longitude,
+          };
+          setLocation(newLocation);
+          localStorage.setItem("userLocation", JSON.stringify(newLocation));
         },
         (error) => {
           console.error("Error getting location:", error);
         }
       );
-    } else {
-      console.error("Grolocation is not supported by this browser.");
     }
-  }, []);
+  }, [location]);
 
   return (
     <>
