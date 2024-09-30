@@ -1,0 +1,141 @@
+.table-container {
+  width: 100%;
+  margin: 1rem auto 1rem auto;
+  background: var(--default-background);
+  color: var(--default-font-color);
+  overflow: hidden;
+  position: relative;
+}
+
+/* lists */
+.row ul {
+  margin: 0;
+  padding: 0;
+}
+
+.row ul li {
+  margin: 0;
+  font-size: 16px;
+  font-weight: normal;
+  list-style: none;
+  display: inline-block;
+  width: 20%;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 480px),
+  only screen and (max-width: 479px) {
+  .row ul li {
+    font-size: 13px;
+  }
+}
+
+.title ul li {
+  font-weight: bold;
+  padding: 15px 13px;
+}
+
+.row ul li {
+  padding: 5px 10px;
+}
+
+/* rows */
+.row {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+  border-top: 1px solid rgba(0, 0, 0, 1); /* darken($light-bg, 100%) equivalent */
+}
+
+.row:hover {
+  background-color: #ff949425; /* lighten($dark-bg, 10%) equivalent */
+  height: auto;
+}
+
+.row ul li:hover {
+  white-space: wrap;
+}
+
+@media only screen and (max-width: 767px) {
+  .row:hover {
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 359px) {
+  .row:hover {
+    height: auto;
+  }
+}
+
+.title {
+  padding: 25px 0 5px 0;
+  height: 45px;
+  font-size: 0;
+  background-color: var(--accent);
+}
+
+.title:hover {
+  height: 45px;
+  background-color: var(--accent);
+}
+
+.title-hide {
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+/* update content */
+.update-row {
+  animation: update 1s ease;
+}
+
+/* more content */
+ul.more-content li {
+  position: relative;
+  top: 22px;
+  font-size: 13px;
+  margin: 0;
+  padding: 10px 13px;
+  display: block;
+  height: 50px;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.45); /* darken($text, 50%) equivalent */
+}
+
+@media only screen and (max-width: 767px) {
+  ul.more-content li {
+    font-size: 11px;
+  }
+}
+
+/* small content */
+.small {
+  color: rgba(0, 0, 0, 0.54); /* darken($text, 60%) equivalent */
+  font-size: 10px;
+  padding: 0 10px;
+  margin: 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .small {
+    display: none;
+  }
+}
+
+/* keyframe animations */
+@keyframes update {
+  0% {
+    background: var(--default-background);
+  }
+  50% {
+    background: var(--success);
+  }
+  100% {
+    background: var(--default-background);
+  }
+}

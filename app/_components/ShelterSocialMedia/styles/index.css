@@ -1,0 +1,47 @@
+.one-shelter-social-media-buttons {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+.shelter-send-a-messsage-container {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.shelter-send-a-messsage-container p {
+  font-weight: bold;
+  text-align: center;
+  text-align: center;
+}
+
+.form-control-shelter{
+  width: 80%;
+  height: 100%;
+  border: 0.5px solid black;
+  background-color: white;
+  color: var(--default-font-color);
+  cursor: pointer;
+  font-size: 1.2em;
+  margin: 10px;
+}
+
+.social-media-shelter{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}

@@ -1,0 +1,37 @@
+
+  .leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1;
+  }
+
+  .container-map {
+    width: 100%;
+    height: 100%;
+  }
+  
+
+  .leaflet-pane,
+  .leaflet-tile,
+  .leaflet-marker-icon,
+  .leaflet-marker-shadow,
+  .leaflet-tile-container,
+  .leaflet-pane > svg,
+  .leaflet-pane > canvas,
+  .leaflet-zoom-box,
+  .leaflet-image-layer,
+  .leaflet-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .marker-shelter {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

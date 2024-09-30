@@ -1,0 +1,58 @@
+.sidebar-pets {
+  background-color: rgb(49, 243, 110);
+  width: 15%;
+  min-height: 100%;
+  color: white;
+}
+
+.gallery-text-container {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-pets {
+  background-color: rgb(108, 100, 218);
+  width: 100%;
+  height: 200px;
+}
+
+.container-pets {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 10vh);
+  background-color: rgb(255, 255, 255);
+}
+
+.pets-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.sentinel{
+  height: 20px;
+  background-color: transparent;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-pets {
+    width: 20%;
+  }
+
+  .pet-card {
+    scale: 95%;
+    width: 246px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-pets {
+    width: 30%;
+  }
+
+  .pet-card {
+    scale: 95%;
+    width: 246px;
+  }
+}

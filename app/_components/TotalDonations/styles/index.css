@@ -1,0 +1,51 @@
+.total-donations-h1 {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%);
+  color: var(--default-font-color);
+  font-size: 3.5em;
+}
+
+.total-donations-p {
+  position: absolute;
+  top: 50%;
+  font-size: 2em;
+  left: 50%;
+  transform: translate(-50%);
+  color: var(--default-font-color);
+}
+
+@media (max-width: 1024px) {
+  .total-donations-h1 {
+    font-size: 3em;
+  }
+
+  .total-donations-p {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .total-donations-h1 {
+    font-size: 2.5em;
+  }
+
+  .total-donations-p {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 425px) {
+  .total-donations-h1 {
+    font-size: 2em;
+    text-align: center;
+    top: 25%;
+  }
+
+  .total-donations-p {
+    text-align: center;
+    font-size: 1em;
+    top: 65%;
+  }
+}

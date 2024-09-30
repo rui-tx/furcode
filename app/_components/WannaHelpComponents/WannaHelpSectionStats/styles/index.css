@@ -1,0 +1,79 @@
+.impact-section {
+  background-color: #f0e6ff;
+  border-radius: 20px;
+  padding: 20px 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(106, 13, 173, 0.1);
+}
+
+.impact-section h2 {
+  color: #6a0dad;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.impact-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  width: 200px;
+  margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(106, 13, 173, 0.15);
+}
+
+.stat h3 {
+  color: #6a0dad;
+  font-size: 36px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.stat p {
+  color: #666;
+  font-size: 16px;
+}
+
+.stat::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.stat:nth-child(1)::before {
+  background-image: url("../../../../_images/petDonationIcon.png");
+}
+
+.stat:nth-child(2)::before {
+  background-image: url("https://cdn4.iconfinder.com/data/icons/pet-lover-society-flat/64/pet-caring-lover-charity-volunteer-help-512.png");
+}
+
+@media (max-width: 600px) {
+  .impact-stats {
+    flex-direction: column;
+  }
+
+  .stat {
+    width: 80%;
+    margin: 10px auto;
+  }
+}

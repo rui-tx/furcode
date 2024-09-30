@@ -1,0 +1,133 @@
+.pet-container {
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  border-radius: 1rem;
+  box-shadow: 1px 5px 10px silver;
+
+  justify-content: space-evenly;
+
+  align-items: center;
+  width: 70%;
+  background-color: white;
+}
+
+.pet-image-section {
+  margin-right: 0rem;
+}
+
+.animal-image {
+  width: 700px;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.pet-description-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pet-description-section h1 {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+}
+
+.pet-description-section span {
+  display: flex;
+  justify-items: baseline;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.adopt-button {
+  font-size: 1.5rem;
+  padding: 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 3rem;
+  width: 250px;
+}
+
+.like-button {
+  font-size: 1.2rem;
+  padding: 1rem;
+  background-color: var(--accent);
+  color: var(--default-background);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 250px;
+}
+
+.full-width-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.full-width-container::before {
+  content: "";
+  background-image: url("https://st2.depositphotos.com/1106005/7729/i/450/depositphotos_77293322-stock-photo-gray-and-white-dog-paw.jpg");
+  background-size: repeat;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.1;
+  z-index: -10;
+}
+
+.detailed-description {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 70%;
+  text-align: left;
+
+  background-color: white;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-radius: 1rem;
+  box-shadow: 1px 5px 10px silver;
+}
+
+.detailed-description h2 {
+  padding: 0rem 4rem;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.detailed-description p {
+  padding: 0rem 4rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--default-font-color);
+}
+
+@media (max-width: 576px) {
+  .pet-container {
+    flex-direction: column;
+  }
+  .animal-image {
+    width: 100%;
+  }
+  .pet-image-section {
+    margin-right: 0;
+  }
+  .pet-description-section h1 {
+    margin-top: 1rem;
+  }
+  .detailed-description {
+    margin-top: 0rem;
+  }
+}

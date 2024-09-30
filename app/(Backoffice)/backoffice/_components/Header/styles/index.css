@@ -1,0 +1,90 @@
+.backoffice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #ff9999;
+  color: white;
+  height: 15vh;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.backoffice-header-logo h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.backoffice-header-logo p {
+  font-size: 1rem;
+  margin: 0.5rem 0 0;
+  opacity: 0.8;
+}
+
+.backoffice-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.backoffice-header-user {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.backoffice-header-notification {
+  position: relative;
+  cursor: pointer;
+}
+
+.backoffice-header-notification-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff6666;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+}
+
+.backoffice-header-user-icon,
+.backoffice-header-logout {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.backoffice-header-logout:hover {
+  color: #ff6666;
+}
+
+.backoffice-sidebar {
+  background-color: #99ccff;
+  width: 250px;
+  padding: 2rem 1rem;
+  height: calc(100vh - 20vh);
+}
+
+.backoffice-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.backoffice-sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.backoffice-sidebar li:hover {
+  background-color: #77aadd;
+}
