@@ -189,10 +189,7 @@ const Table = ({
             )}
           </ul>
           <ul className="more-content">
-            <li>
-              This is a row with more content. It's hidden until hovered. Maybe
-              put here more info about the row.
-            </li>
+            <li></li>
           </ul>
         </div>
       ))}
