@@ -9,6 +9,18 @@ const Slider = dynamic(() => import("react-slick"), { ssr: false });
 const PetCarousel = () => {
   const [sliderSettings, setSliderSettings] = useState(null);
 
+  const [petsData, setPetsData] = useState([]);
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      const result = await fetch("api/petsGallery");
+      const data = await result.json();
+      setPetsData(data);
+      console.log(data);
+    };
+    fetchPets();
+  }, []);
+
   useEffect(() => {
     const loadStyles = async () => {
       await import("slick-carousel/slick/slick.css");
@@ -68,9 +80,9 @@ const PetCarousel = () => {
   return (
     <div className="carousel-petcontainer">
       <Slider {...sliderSettings} className="slider">
-        {pets.map((_, index) => (
+        {petsData.map((pet, index) => (
           <div key={index} className="slide-item">
-            <PetCard />
+            <PetCard image={pet.image} name={pet.name} breed={pet.breed} />
           </div>
         ))}
       </Slider>

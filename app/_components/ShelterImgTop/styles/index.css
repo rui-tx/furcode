@@ -1,0 +1,20 @@
+
+.container-img-top-shelter{
+    width: 100%;
+    height: 25vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-top-shelter{
+    width: 40%;
+    height: 15vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 30px;
+    box-shadow: 0px 0px 10px var(--accent-shadow);
+}

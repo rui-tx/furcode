@@ -1,0 +1,54 @@
+.backoffice-sidebar {
+  width: 250px;
+  height: 75vh;
+  background-color: #f8f8f8;
+  padding: 20px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.backoffice-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.backoffice-sidebar li {
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.backoffice-sidebar li:hover,
+.backoffice-sidebar li:hover .sidebar-item {
+  background-color: #e6e6e6;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.sidebar-item.active,
+.backoffice-sidebar li:hover .sidebar-item {
+  border-left-color: #ff9999;
+}
+
+.sidebar-item svg {
+  margin-right: 15px;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.sidebar-item:hover svg,
+.sidebar-item.active svg,
+.backoffice-sidebar li:hover .sidebar-item svg {
+  color: #ff7777;
+}
+
+.sidebar-item span {
+  font-size: 16px;
+}

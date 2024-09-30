@@ -1,0 +1,13 @@
+.upload-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.preview-image {
+  border-radius: 0.5rem;
+  max-width: 200px;
+  max-height: 200px;
+}
