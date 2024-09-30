@@ -1,11 +1,6 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-
-export const config = {
-  api: {
-    bodyParser: false, // Disable Next.js body parsing
-  },
-};
+import { unstable_noStore as noStore } from "next/cache";
 
 const API_BASE_URL = "http://localhost:8080/api/v1";
 
@@ -31,6 +26,8 @@ async function uploadImage(url, payload) {
 }
 
 export async function POST(req) {
+  noStore();
+
   try {
     const { searchParams } = new URL(req.url);
     const to = searchParams.get("to");
