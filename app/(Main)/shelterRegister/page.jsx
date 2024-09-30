@@ -1,8 +1,9 @@
 "use client";
+
 import React, { useState } from "react";
 import "./styles/index.css";
 
-const page = () => {
+const Page = () => {
   const [formData, setFormData] = useState({
     name: "",
     nif: "",
@@ -12,9 +13,10 @@ const page = () => {
     cellPhone: "",
     size: "",
   });
-  const [successMessage, setSuccessMessage] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleChange = async (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -24,17 +26,25 @@ const page = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setSuccessMessage("");
+    setErrorMessage("");
+    
     try {
-      const response = await fetch("", {
+      
+      const response = await fetch("/api/shelterRegister", {
         method: "POST",
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
+      const result = await response.json();
+
+      console.log("Received response:", JSON.stringify(result, null, 2));
+
       if (response.ok) {
-        setSuccessMessage(true);
+        setSuccessMessage("Registo efetuado com sucesso!");
         setFormData({
           name: "",
           nif: "",
@@ -45,10 +55,11 @@ const page = () => {
           size: "",
         });
       } else {
-        console.error("Registration Failed");
+        setErrorMessage(`Erro no registo: ${result.error || 'Erro desconhecido'}`);
       }
     } catch (error) {
-      console.error("Error submiting form:", error);
+      console.error("Error submitting form:", error);
+      setErrorMessage(`Erro ao enviar o formulário: ${error.message}`);
     }
   };
 
@@ -63,19 +74,16 @@ const page = () => {
                 Junte-se à Furcode e faça parte de uma comunidade dedicada a
                 encontrar lares para os animais que mais precisam.
               </p>
-              <br />
               <p>
                 Ao registar a sua associação, estará a dar uma nova oportunidade
                 aos nossos amigos de quatro patas, ampliando o alcance das suas
                 ações e tornando o processo de adoção ainda mais simples e
                 acessível.
               </p>
-              <br />
               <p>
                 Queremos caminhar ao seu lado na missão de proporcionar novas
                 famílias a estes animais.
               </p>
-              <br />
               <p>Registe a sua associação e ajude-nos a fazer a diferença!</p>
             </div>
             <div className="shelter-register-form-wrapper">
@@ -93,7 +101,7 @@ const page = () => {
                     required
                   />
                   <input
-                    type="number"
+                    type="text"
                     name="nif"
                     placeholder="NIF"
                     onChange={handleChange}
@@ -101,7 +109,7 @@ const page = () => {
                     required
                   />
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email"
                     onChange={handleChange}
@@ -111,13 +119,13 @@ const page = () => {
                   <input
                     type="text"
                     name="address"
-                    placeholder="Direção"
+                    placeholder="Endereço"
                     onChange={handleChange}
                     value={formData.address}
                     required
                   />
                   <input
-                    type="number"
+                    type="text"
                     name="postalCode"
                     placeholder="Código Postal"
                     onChange={handleChange}
@@ -125,7 +133,7 @@ const page = () => {
                     required
                   />
                   <input
-                    type="number"
+                    type="tel"
                     name="cellPhone"
                     placeholder="Telefone"
                     onChange={handleChange}
@@ -133,7 +141,7 @@ const page = () => {
                     required
                   />
                   <input
-                    type="number"
+                    type="text"
                     name="size"
                     placeholder="Tamanho (m²)"
                     onChange={handleChange}
@@ -141,7 +149,6 @@ const page = () => {
                     required
                   />
                 </div>
-
                 <div className="shelter-register-container-button">
                   <button type="submit">Registar</button>
                 </div>
@@ -149,10 +156,14 @@ const page = () => {
             </div>
           </div>
         </div>
-
         {successMessage && (
           <div className="shelter-register-success-message">
-            <p>Registado com sucesso!</p>
+            <pre>{successMessage}</pre>
+          </div>
+        )}
+        {errorMessage && (
+          <div className="shelter-register-error-message">
+            <pre>{errorMessage}</pre>
           </div>
         )}
       </div>
@@ -160,4 +171,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
