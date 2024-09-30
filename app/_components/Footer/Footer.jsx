@@ -1,7 +1,13 @@
 import React from "react";
 import "./styles/index.css";
 import Link from "next/link";
-import { FaFacebook, FaGithub, FaXTwitter, FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaGithub,
+  FaXTwitter,
+  FaWhatsapp,
+  FaInstagram,
+} from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
@@ -30,22 +36,30 @@ const Footer = () => {
             <ul>
               <li>
                 <Link href="https://www.facebook.com/Meta">
-                  <h2><FaFacebook /></h2>
+                  <span className="facebook-icon">
+                    <FaFacebook />
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="https://www.instagram.com/meta/">
-                <h2><FaInstagram /></h2>
+                  <span className="instagram-icon">
+                    <FaInstagram />
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="https://www.whatsapp.com">
-                <h2><FaWhatsapp /></h2>
+                  <span className="whatsapp-icon">
+                    <FaWhatsapp />
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="https://x.com/Meta">
-                <h2><FaSquareXTwitter /></h2>
+                  <span className="twitter-icon">
+                    <FaSquareXTwitter />
+                  </span>
                 </Link>
               </li>
               <li>
@@ -58,7 +72,9 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="https://github.com/rui-tx/furcode">
-                <h2><FaGithub /></h2>
+                  <span className="github-icon">
+                    <FaGithub />
+                  </span>
                 </Link>
               </li>
             </ul>

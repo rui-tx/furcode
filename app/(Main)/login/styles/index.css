@@ -1,49 +1,51 @@
 .login-container {
-  position: absolute;
-  width: 25%;
-  height: 35%;
-  border: 1px solid var(--default-border-color);
-  box-shadow: 1px 1px 1px var(--accent-shadow);
-  border-radius: var(--default-border-radius);
-  display: flex;
-  flex-direction: column;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.container-login {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 77vh;
   align-items: center;
+}
+
+.container-login {
+  border-radius: var(--default-border-radius);
+  border: 1px solid var(--default-border-color);
+  box-shadow: 1px 1px 1px var(--accent-shadow);
+  min-width: 500px;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+}
+.container-form-buttom-input {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   gap: 20px;
 }
 
 .title-login {
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 12%;
   color: var(----default-font-color);
   text-align: center;
   font-size: 2em;
-  top: 8%;
 }
 
 .container-input {
-  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 15px;
   width: 100%;
-  top: 30%;
 }
 
 .container-input input {
@@ -56,15 +58,12 @@
 }
 
 .container-no-register {
-  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 15px;
   width: 100%;
-  height: auto;
-  bottom: 28%;
 }
 
 .container-no-register p {
@@ -77,10 +76,6 @@
 }
 
 .container-button {
-  position: absolute;
-  top: 78%;
-  width: 25%;
-  height: 8%;
 }
 
 .container-button button {
@@ -99,13 +94,11 @@
 }
 
 .login-success-message {
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 70%;
   height: 5%;
-  bottom: 30%;
 }
 
 .login-success-message p {
