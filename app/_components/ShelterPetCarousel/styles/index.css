@@ -1,0 +1,39 @@
+.carousel-pet-shelter-container {
+    position: relative;
+    width: 100%;
+    max-width: 2200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 32vh;
+    background-color: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .shelter-animal-slider {
+    width: 80%;
+    margin: 0 20px;
+  }
+  
+  .slide-shelter-animal-item {
+    padding: 0px;
+  }
+  
+  .slick-list {
+    margin: 0 -5px;
+  }
+  
+  .slick-slide > div {
+    padding: 0 5px;
+  }
+  
+  .slick-dots {
+    bottom: -30px;
+  }
+  
+  .slide-shelter-animal-item > div {
+    margin-top: 0;
+    width: 100%;
+  }
+  
