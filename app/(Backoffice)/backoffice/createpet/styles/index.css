@@ -1,0 +1,18 @@
+.pet-info {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  font-family: Arial, sans-serif;
+}
+
+.pet-info h2 {
+  text-align: center;
+}
+
+.pet-info p {
+  margin: 5px 0;
+}
+
+.label {
+  font-weight: bold;
+}
