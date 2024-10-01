@@ -1,5 +1,7 @@
 "use client";
+
 import React, { useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import GalleryPetCard from "../../_components/GalleryPetCard/GalleryPetCard";
 import GalleryUpperText from "../../_components/GalleryUpperText/GalleryUpperText";
 import "./styles/index.css";
@@ -10,6 +12,7 @@ const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const router = useRouter();
   const petsPerPage = 10;
 
   const fetchPets = useCallback(async () => {
@@ -63,6 +66,10 @@ const Page = () => {
     };
   }, [fetchPets]);
 
+  const handleClick = (id) => {
+    router.push(`/pets/${id}`);
+  };
+
   return (
     <div className="container-pets">
       <SideBarPets />
@@ -77,6 +84,7 @@ const Page = () => {
               description={pet.description}
               age={pet.age}
               breed={pet.breed}
+              onClick={() => handleClick(pet.id)}
             />
           ))}
         </div>
