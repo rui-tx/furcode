@@ -7,6 +7,7 @@ import ShelterBanner from "../ShelterBanner/ShelterBanner";
 const ShelterGallery = () => {
   const [shelters, setShelters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState("asc")
   const sheltersPerPage = 10;
 
   const fetchShelters = useCallback(async () => {
