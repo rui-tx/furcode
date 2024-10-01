@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const API_BASE_URL = "http://localhost:8080/api/v1";
+const API_BASE_URL = "https://apifurcode.ducknexus.com/api/v1";
 
 async function loginUser(url, email, password) {
   const response = await fetch(url, {
