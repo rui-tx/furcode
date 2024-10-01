@@ -1,16 +1,25 @@
 .container-r{
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
 }
 
+.container-form-total{
+  width: 30%;
+  height: 70vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .container-register{
-  width: 40%;
-  height: 85%;
-  border: 1px solid red;
+  width: 100%;
+  height: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -51,6 +60,7 @@
   padding-left: 15px;
   outline: none;
   border: 1px solid var(--default-border-color);
+  padding: 0.7em;
 }
 
 .container-button-or-message{
@@ -62,7 +72,7 @@
   height: 15%;
 }
 
-.register-error-message p{
+.register-error-message {
   color: var(--error);
   font-size: 1em;
   font-weight: bold;
