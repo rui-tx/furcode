@@ -16,16 +16,16 @@ const EditProfileForm = () => {
     "https://preview.redd.it/mfyjb5he21761.jpg?width=1080&crop=smart&auto=webp&s=ee9f946f20d0ad96ac134393f0e65265ded42174"
   );
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -35,9 +35,26 @@ const EditProfileForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("/api/update-profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      console.log("Profile updated successfully:", result);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   return (
@@ -58,27 +75,82 @@ const EditProfileForm = () => {
         </div>
         <div className="form-content">
           <h1>Edit Your Profile</h1>
-          {Object.entries(formData).map(([key, value]) => (
-            <div key={key} className="form-group">
-              <label htmlFor={key}>
-                {key.replace(/([A-Z])/g, " $1").trim()}
-              </label>
-              <input
-                type={
-                  key === "email"
-                    ? "email"
-                    : key === "cellPhone"
-                    ? "tel"
-                    : "text"
-                }
-                id={key}
-                name={key}
-                value={value}
-                onChange={handleInputChange}
-                required={key !== "address2"}
-              />
-            </div>
-          ))}
+          <div className="form-group">
+            <label htmlFor="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address1">Address 1</label>
+            <input
+              type="text"
+              id="address1"
+              name="address1"
+              value={formData.address1}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address2">Address 2</label>
+            <input
+              type="text"
+              id="address2"
+              name="address2"
+              value={formData.address2}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="postalCode">Postal Code</label>
+            <input
+              type="text"
+              id="postalCode"
+              name="postalCode"
+              value={formData.postalCode}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="cellPhone">Cell Phone</label>
+            <input
+              type="tel"
+              id="cellPhone"
+              name="cellPhone"
+              value={formData.cellPhone}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
           <button type="submit" className="submit-btn">
             Save Changes
           </button>

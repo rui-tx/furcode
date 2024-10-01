@@ -12,8 +12,36 @@
 .shelterGallery-cards {
   width: 80%;
   display: flex;
-  margin-top: 4%;
+  margin-top: 8%;
   flex-wrap: wrap;
   justify-content: space-evenly;
   flex: 1 0 auto;
 }
+
+.shelterGallery-search-bar{
+  position: absolute;
+  display: flex;
+  width: 80%;
+  height: 30px;
+  margin-top: 2%;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.input-search-shelter{
+  width: 80%;
+  height: 30%;
+  border: 0.5px solid black;
+  background-color: white;
+  color: var(--default-font-color);
+  cursor: pointer;
+  font-size: 1.2em;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.input-search-shelter::placeholder{
+  padding: 0.09em;
+}
+

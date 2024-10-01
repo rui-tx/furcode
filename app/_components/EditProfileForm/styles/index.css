@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
   padding: 20px;
 }
 
@@ -10,9 +9,7 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 100%;
-  max-width: 800px;
+
   display: flex;
 }
 
@@ -48,7 +45,7 @@
 }
 
 .form-content {
-  padding: 20px;
+  padding: 10px 50px;
   width: 60%;
 }
 

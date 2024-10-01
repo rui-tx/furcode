@@ -44,8 +44,6 @@
 
 /* rows */
 .row {
-  padding: 20px 0;
-  height: 30px;
   position: relative;
   overflow: hidden;
   transition: all 0.2s ease-out;

@@ -30,6 +30,11 @@
   justify-content: space-evenly;
 }
 
+.sentinel{
+  height: 20px;
+  background-color: transparent;
+}
+
 @media (max-width: 1024px) {
   .sidebar-pets {
     width: 20%;

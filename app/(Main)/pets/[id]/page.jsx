@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react";
 import { IoColorPaletteOutline, IoScaleOutline } from "react-icons/io5";
 import { TbVaccine, TbCalendar, TbRuler3 } from "react-icons/tb";
-import ImageUpload from "../../../_components/ImageUpload/ImageUpload"; // test image upload
-import Modal from "@/app/_components/Modal/Modal";
-import Table from "@/app/_components/Table/Table";
 
 import "./styles/index.css";
 
@@ -13,8 +10,6 @@ const Page = ({ params }) => {
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null); // State to handle errors
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [reload, setReload] = useState(0);
 
   useEffect(() => {
@@ -22,27 +17,28 @@ const Page = ({ params }) => {
 
     setLoading(true);
     const fetchPet = async () => {
+      const dummyPet = {
+        id: 2,
+        name: "Roofie (Mock)",
+        petTypeId: 2,
+        shelterId: 3,
+        isAdopted: true,
+        isVaccinated: true,
+        size: "Pequeno",
+        weight: 7,
+        color: "Castanho",
+        age: 5,
+        observations:
+          "This is a mock pet. If you are seeing this, it means that the pet id is non existent or the BE is down.",
+        coverImage:
+          "https://cloud.ducknexus.com/s/SQbyMzH5EtNCpn6/download/IMG_9245.JPG",
+      };
       try {
         const response = await fetch("/api/getPet?id=" + params.id);
         if (!response.ok) {
           if (response.status === 404) {
             //setError("Pet not found");
-            const test = {
-              id: 2,
-              name: "Roofie",
-              petTypeId: 2,
-              shelterId: 3,
-              isAdopted: true,
-              isVaccinated: true,
-              size: "Grande",
-              weight: 5.5,
-              color: "White",
-              age: 3,
-              observations: "I love my pet",
-              coverImage:
-                "https://cloud.ducknexus.com/s/SQbyMzH5EtNCpn6/download/IMG_9245.JPG",
-            };
-            setPet(test);
+            setPet(dummyPet);
             return;
           }
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -52,7 +48,9 @@ const Page = ({ params }) => {
         setPet(data);
       } catch (e) {
         console.error("Failed to fetch pet data:", e);
-        setError("Failed to fetch pet data");
+        dummyPet.observations = dummyPet.observations + " Error: " + e;
+        setPet(dummyPet);
+        //setError("Failed to fetch pet data");
       } finally {
         setLoading(false);
       }
@@ -60,51 +58,6 @@ const Page = ({ params }) => {
 
     fetchPet();
   }, [reload]);
-
-  const showModal = (show) => {
-    setIsModalOpen(show);
-  };
-
-  const showDeleteModal = (show) => {
-    setDeleteModalOpen(show);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setDeleteModalOpen(false);
-    const newReload = reload + 1;
-    setReload(newReload);
-  };
-
-  const modalContent = (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <ImageUpload to="pet" id={pet?.id} />
-    </div>
-  );
-
-  const tableHeaders = [
-    {
-      columnName: "id",
-      prettyLabel: "ID",
-      type: "string",
-    },
-    {
-      columnName: "data",
-      prettyLabel: "Image",
-      type: "image",
-    },
-  ];
-  const modalContentDelete = (
-    <div>
-      <Table
-        headers={tableHeaders}
-        initialData={pet?.imageList}
-        enableDelete={true}
-        deleteEndpoint={`/api/deletePetImage`}
-        currentId={pet?.id}
-      />
-    </div>
-  );
 
   if (loading) {
     return <div>Loading...</div>; // Show loading screen
@@ -125,22 +78,6 @@ const Page = ({ params }) => {
 
   return (
     <div className="full-width-container">
-      <Modal
-        open={isModalOpen}
-        onCancel={() => {
-          closeModal(false);
-        }}
-        title="Upload Image"
-        content={modalContent}
-      />
-      <Modal
-        open={deleteModalOpen}
-        onCancel={() => {
-          closeModal(false);
-        }}
-        title="Delete Image"
-        content={modalContentDelete}
-      />
       <div className="pet-container">
         <div className="pet-image-section">
           <img
@@ -183,29 +120,25 @@ const Page = ({ params }) => {
 
           <button className="adopt-button">Adota-me!</button>
           <button className="like-button">❤️</button>
-          <button className="like-button" onClick={() => showModal(true)}>
-            Upload Image
-          </button>
-          <button className="like-button" onClick={() => showDeleteModal(true)}>
-            Delete Image
-          </button>
         </div>
       </div>
 
-      <div className="detailed-description">
-        <h2>Fotos</h2>
-        <div className="image-list">
-          {pet.imageList?.map((image, index) => (
-            <p key={index}>
-              <img
-                src={image.data}
-                alt="Animal Image"
-                className="animal-image"
-              />
-            </p>
-          ))}
+      {pet.imageList?.length > 0 && (
+        <div className="detailed-description">
+          <h2>Fotos</h2>
+          <div className="image-list">
+            {pet.imageList?.map((image, index) => (
+              <p key={index}>
+                <img
+                  src={image.data}
+                  alt="Animal Image"
+                  className="animal-image"
+                />
+              </p>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="detailed-description">
         <h2>Sobre {pet.name}</h2>
