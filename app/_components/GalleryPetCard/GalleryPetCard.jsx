@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/index.css";
-const GalleryPetCard = ({ name, image, description, age, breed }) => {
+const GalleryPetCard = ({ name, image, description, age, breed, onClick }) => {
   return (
     <div className="pet-card">
       <img src={image} alt={name} className="pet-image" />
@@ -10,7 +10,9 @@ const GalleryPetCard = ({ name, image, description, age, breed }) => {
           {breed} • {age} anos
         </p>
         <p className="pet-description">{description}</p>
-        <button className="adopt-button">Adotar</button>
+        <button className="adopt-button" onClick={onClick}>
+          Adotar
+        </button>
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import GalleryPetCard from "../../_components/GalleryPetCard/GalleryPetCard";
 import GalleryUpperText from "../../_components/GalleryUpperText/GalleryUpperText";
 import "./styles/index.css";
@@ -7,6 +9,7 @@ import SideBarPets from "../../_components/SideBarPets/SideBarPets";
 
 const Page = () => {
   const [pets, setPets] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -26,6 +29,10 @@ const Page = () => {
     fetchPets();
   }, []);
 
+  const handleClick = (id) => {
+    router.push(`/pets/${id}`);
+  };
+
   return (
     <div className="container-pets">
       <SideBarPets />
@@ -40,6 +47,7 @@ const Page = () => {
               description={pet.description}
               age={pet.age}
               breed={pet.breed}
+              onClick={() => handleClick(pet.id)}
             />
           ))}
         </div>
