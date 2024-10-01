@@ -6,16 +6,16 @@ import "./styles/index.css";
 
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
-const PetCarousel = () => {
+const ShelterPetCarousel = () => {
   const [sliderSettings, setSliderSettings] = useState(null);
 
   const [petsInShelter, setPetsInShelter] = useState([]);
 
   useEffect(() => {
     const fetchPets = async () => {
-      const result = await fetch("api/petsGallery");
+      const result = await fetch("/api/petsGallery");
       const data = await result.json();
-      setPetsData(data);
+      setPetsInShelter(data);
       console.log(data);
     };
     fetchPets();
@@ -90,4 +90,4 @@ const PetCarousel = () => {
   );
 };
 
-export default PetCarousel;
+export default ShelterPetCarousel;
