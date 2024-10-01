@@ -8,12 +8,13 @@ const Page = () => {
   const [nif, setNif] = useState("38");
   const [email, setEmail] = useState("Email 1");
   const [password, setPassword] = useState("Password 1");
-  const [confirmPassword, setConfirmPassword] = useState("ConfirmPassword 1");
+  const [confirmPassword, setConfirmPassword] = useState("Password 1");
   const [address1, setAddress1] = useState("Address1 1");
   const [address2, setAddress2] = useState("Address2 1");
   const [postalCode, setPostalCode] = useState("11");
   const [cellNumber, setCellNumber] = useState("18");
   const [successMessage, setSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const handleFirstName = (event) => {
     setFirstName(event.target.value);
@@ -33,10 +34,17 @@ const Page = () => {
 
   const handlePassword = (event) => {
     setPassword(event.target.value);
+    setErrorMessage(false);
   };
 
   const handleConfirmPassword = (event) => {
-    setConfirmPassword(event.target.value);
+    const newConfirmPassword = event.target.value;
+    setConfirmPassword(newConfirmPassword);
+    if (password !== newConfirmPassword) {
+      setErrorMessage(true);
+    } else {
+      setErrorMessage(false);
+    }
   };
 
   const handleAddress1 = (event) => {
@@ -171,16 +179,25 @@ const Page = () => {
             value={cellNumber}
           />
         </div>
-
-        <div className="container-button-register">
-          <button
-            type="submit"
-            onSubmit={handleSubmit}
-            onClick={handleRegister}
-          >
-            Registar
-          </button>
+        <div className="container-button-or-message">
+          {errorMessage ? (
+            <div className="register-error-message">
+              <p>As senhas não coincidem. Por favor, verifique e tente novamente.</p>
+            </div>
+          ) : (
+            <div className="container-button-register">
+              <button
+                type="submit"
+                onSubmit={handleSubmit}
+                onClick={handleRegister}
+                className="btn-register"
+              >
+                Registar
+              </button>
+            </div>
+          )}
         </div>
+
         {successMessage && (
           <div className="register-success-message">
             <p>Registado com sucesso!</p>
