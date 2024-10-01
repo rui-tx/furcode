@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const url = `https://api.thedogapi.com/v1/breeds`;
+  const url = `http://localhost:8080/api/dogs/all-breeds-names`;
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
