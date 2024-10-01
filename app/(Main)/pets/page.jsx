@@ -8,9 +8,13 @@ import SideBarPets from "../../_components/SideBarPets/SideBarPets";
 const Page = () => {
   const [pets, setPets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const petsPerPage = 10;
 
   const fetchPets = useCallback(async () => {
+    if (loading || !hasMore) return;
+    setLoading(true);
     try {
       const ENDPOINT = "api/petsGallery";
       const URL_CONFIGURED = `${ENDPOINT}?limit=${petsPerPage}&page=${currentPage}&order=DESC`;
@@ -19,33 +23,45 @@ const Page = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      setPets((prevPets) => [...prevPets, ...data]);
-      console.log(data);
+      if (data.length === 0) {
+        setHasMore(false);
+        console.log("Não há mais pets para carregar. Fim dos dados alcançado.");
+      } else {
+        setPets((prevPets) => {
+          const newPets = data.filter(
+            (newPet) => !prevPets.some((pet) => pet.id === newPet.id)
+          );
+          if (newPets.length === 0) {
+            console.log("Todos os pets desta página já foram carregados. Não há novos dados.");
+            setHasMore(false);
+            return prevPets;
+          }
+          return [...prevPets, ...newPets];
+        });
+        setCurrentPage((prevPage) => prevPage + 1);
+      }
     } catch (error) {
-      console.error("Error fetching pets:", error);
+      console.error("Erro ao buscar pets:", error);
+      setHasMore(false);
+    } finally {
+      setLoading(false);
     }
-  }, [currentPage]);
-
-  useEffect(() => {
-    fetchPets();
-  }, [fetchPets]);
+  }, [currentPage, loading, hasMore]);
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
-        setCurrentPage((prevPage) => prevPage + 1);
+        fetchPets();
       }
     });
-
     const sentinel = document.querySelector('.sentinel');
     if (sentinel) {
       intersectionObserver.observe(sentinel);
     }
-
     return () => {
       intersectionObserver.disconnect();
     };
-  }, []);
+  }, [fetchPets]);
 
   return (
     <div className="container-pets">
@@ -64,7 +80,8 @@ const Page = () => {
             />
           ))}
         </div>
-        <div className="sentinel"></div>
+        {hasMore && <div className="sentinel"></div>}
+        {!hasMore && <p>Não há mais pets para carregar.</p>}
       </div>
     </div>
   );
