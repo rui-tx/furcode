@@ -6,7 +6,7 @@ import ShelterCarousel from "@/app/_components/ShelterCarousel/ShelterCarousel";
 import OneShelterDescription from "@/app/_components/OneShelterDescription/OneShelterDescription";
 import Map from "@/app/_components/Map/Map";
 import ShelterSocialMedia from "@/app/_components/ShelterSocialMedia/ShelterSocialMedia";
-import ShelterPetCarousel from "@/app/_components/ShelterPetCarousel/ShelterPetCarousel";
+import ShelterPetCarousel from "../../../_components/ShelterPetCarousel/ShelterPetCarousel";
 
 const page = () => {
   const position = [41.1517, -8.6099];

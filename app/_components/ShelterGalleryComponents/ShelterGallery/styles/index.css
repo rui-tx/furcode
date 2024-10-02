@@ -18,6 +18,12 @@
   flex: 1 0 auto;
 }
 
+.container-gallery-cards-shelter{
+  width: auto;
+  height: auto;
+  margin: 20px;
+}
+
 .shelterGallery-search-bar{
   position: absolute;
   display: flex;

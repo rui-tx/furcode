@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./styles/index.css";
 import ShelterGalleryCard from "../ShelterGalleryCard/ShelterGalleryCard";
 import ShelterBanner from "../ShelterBanner/ShelterBanner";
+import { useRouter } from "next/navigation";
 
 const ShelterGallery = () => {
   const [shelters, setShelters] = useState([]);
@@ -10,6 +11,7 @@ const ShelterGallery = () => {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [search, setSearch] = useState("");
+  const router = useRouter();
 
   const fetchShelters = useCallback(async () => {
     if (loading || !hasMore) return;
@@ -24,14 +26,19 @@ const ShelterGallery = () => {
       const data = await response.json();
       if (data.length === 0) {
         setHasMore(false);
-        console.log("Não há mais abrigos para carregar. Fim dos dados alcançado.");
+        console.log(
+          "Não há mais abrigos para carregar. Fim dos dados alcançado."
+        );
       } else {
         setShelters((prevShelters) => {
           const newShelters = data.filter(
-            (newShelter) => !prevShelters.some((shelter) => shelter.id === newShelter.id)
+            (newShelter) =>
+              !prevShelters.some((shelter) => shelter.id === newShelter.id)
           );
           if (newShelters.length === 0) {
-            console.log("Todos os abrigos desta página já foram carregados. Não há novos dados.");
+            console.log(
+              "Todos os abrigos desta página já foram carregados. Não há novos dados."
+            );
             setHasMore(false);
             return prevShelters;
           }
@@ -66,10 +73,15 @@ const ShelterGallery = () => {
     setSearch(event.target.value);
   };
 
+  const handleClick = (shelterId) => {
+    router.push(`/shelter/${shelterId}`);
+    console.log("oi");
+  };
+
   return (
     <div className="shelterGallery-container">
       <div className="ShelterGallery-banner">
-        <ShelterBanner/>
+        <ShelterBanner />
 
         <div className="shelterGallery-search-bar">
           <input
@@ -89,7 +101,13 @@ const ShelterGallery = () => {
               : shelter.name.toLowerCase().includes(search);
           })
           .map((shelter) => (
-            <ShelterGalleryCard key={shelter.id} shelter={shelter} />
+            <div className="container-gallery-cards-shelter" onClick={() => handleClick(shelter.id)}>
+              <ShelterGalleryCard
+                key={shelter.id}
+                shelter={shelter}
+                
+              />
+            </div>
           ))}
       </div>
       <div className="sentinel"></div>
