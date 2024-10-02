@@ -12,18 +12,28 @@ const ShelterGallery = () => {
   const [hasMore, setHasMore] = useState(true);
   const [search, setSearch] = useState("");
   const router = useRouter();
+  const shelterPerPage = 10;
 
   const fetchShelters = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
+
     try {
-      const ENDPOINT = `api/shelter?page=${currentPage}&limit=10`;
-      // const URL_CONFIGURED = `${ENDPOINT}?limit=${sheltersPerPage}&page=${currentPage}&order=DESC`;
-      const response = await fetch(ENDPOINT);
+      const response =  await fetch(`/api/shelterGallery?page=${currentPage}&limit=${shelterPerPage}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
       const data = await response.json();
+      console.log(data);
       if (data.length === 0) {
         setHasMore(false);
         console.log(
@@ -60,6 +70,7 @@ const ShelterGallery = () => {
         fetchShelters();
       }
     });
+
     const sentinel = document.querySelector(".sentinel");
     if (sentinel) {
       intersectionObserver.observe(sentinel);

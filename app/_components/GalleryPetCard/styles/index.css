@@ -1,21 +1,37 @@
 .pet-card {
   width: 250px;
-  border: 1px solid var(--default--border-color);
+  border: 1px solid grey;
   border-radius: 8px;
   overflow: hidden;
   margin: 15px;
-  box-shadow: 0 2px 5px var(--default-shadow-color);
+  box-shadow: 0 2px 5px grey;
   transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
 }
 
 .pet-card:hover {
   transform: translateY(-5px);
 }
 
+.pet-card-container-photo{
+  width: 95%;
+  height: 15vh;
+  border: 1px solid blue;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
 .pet-image {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
+  position: relative;
 }
 
 .pet-info {
@@ -37,7 +53,7 @@
   margin-bottom: 15px;
 }
 
-.adopt-button {
+.pet-card-adopt-button {
   background-color: var(--default-button-bg-color);
   color: white;
   border: none;
