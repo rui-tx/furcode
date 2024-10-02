@@ -68,7 +68,7 @@ const Page = () => {
     <div className="profile-page">
       <div className="profile-header">
         <h1>Your Pawsome Profile</h1>
-        <p> Welcome ,{user?.name}</p>
+        <p> Welcome , {user?.firstName}</p>
         <p>Update your information and view your adoption journey</p>
       </div>
       <div className="profile-content">

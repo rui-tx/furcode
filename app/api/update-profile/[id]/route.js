@@ -1,12 +1,13 @@
-// pages/api/update-profile/[id].js
+// app/api/update-profile/[id]/route.js
 import { NextResponse } from "next/server";
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 
-export async function PATCH(req, { params }) {
+export async function PATCH(request, { params }) {
   try {
     const { id } = params;
-    const body = await req.json();
-    const token = req.headers.get("Authorization")?.split(" ")[1];
+    const body = await request.json();
+    const token = request.headers.get("Authorization")?.split(" ")[1];
 
     if (!token) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });

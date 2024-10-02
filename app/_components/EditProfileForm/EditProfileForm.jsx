@@ -2,10 +2,9 @@
 import React, { useEffect, useState } from "react";
 import "./styles/index.css";
 import { useAuth } from "../../context/AuthContext";
-import jwtDecode from "jwt-decode";
 
 const EditProfileForm = () => {
-  const { user, token } = useAuth();
+  const { user, token, logout } = useAuth();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,19 +19,7 @@ const EditProfileForm = () => {
   );
 
   useEffect(() => {
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        console.log("Decoded token:", decodedToken);
-      } catch (error) {
-        console.error("Error decoding token:", error);
-      }
-    }
-  }, [token]);
-
-  useEffect(() => {
     if (user) {
-      console.log("User:", user);
       setFormData({
         firstName: user.firstName || "",
         lastName: user.lastName || "",
@@ -67,10 +54,11 @@ const EditProfileForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/update-profile", {
-        method: "POST",
+      const response = await fetch(`/api/update-profile/${user.id}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
@@ -81,6 +69,12 @@ const EditProfileForm = () => {
 
       const result = await response.json();
       console.log("Profile updated successfully:", result);
+
+      const updatedUser = { ...user, ...formData };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+
+      logout();
+      window.location.reload();
     } catch (error) {
       console.error("Error updating profile:", error);
     }
