@@ -48,7 +48,7 @@ export async function POST(req) {
 
     if (response.ok) {
       const data = await response.json();
-      console.log("Login response data:", data); // This will log the entire response
+      console.log("Login response data:", data);
 
       return NextResponse.json(data, { status: 200 });
     }

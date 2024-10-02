@@ -1,20 +1,49 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/index.css";
+import { useAuth } from "../../context/AuthContext";
+import jwtDecode from "jwt-decode";
 
 const EditProfileForm = () => {
+  const { user, token } = useAuth();
   const [formData, setFormData] = useState({
-    firstName: "Teste",
-    lastName: "teste",
-    email: "teste@example.com",
-    address1: "rua da mindera",
+    firstName: "",
+    lastName: "",
+    email: "",
+    address1: "",
     address2: "",
-    postalCode: "4435",
-    cellPhone: "9122345235",
+    postalCode: "",
+    cellPhone: "",
   });
   const [profilePicture, setProfilePicture] = useState(
     "https://preview.redd.it/mfyjb5he21761.jpg?width=1080&crop=smart&auto=webp&s=ee9f946f20d0ad96ac134393f0e65265ded42174"
   );
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded token:", decodedToken);
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (user) {
+      console.log("User:", user);
+      setFormData({
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        email: user.email || "",
+        address1: user.address1 || "",
+        address2: user.address2 || "",
+        postalCode: user.postalCode || "",
+        cellPhone: user.cellPhone || "",
+      });
+    }
+  }, [user]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

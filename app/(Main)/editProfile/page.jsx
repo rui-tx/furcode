@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react";
 import EditProfileForm from "../../_components/EditProfileForm/EditProfileForm";
 import Table from "../../_components/Table/Table";
 import "./styles/index.css";
+import { useAuth } from "../../context/AuthContext";
 
 const Page = () => {
+  const { user } = useAuth();
   const [activeTable, setActiveTable] = useState(null);
   const [key, setKey] = useState(0);
   const [data, setData] = useState([]);
@@ -66,6 +68,7 @@ const Page = () => {
     <div className="profile-page">
       <div className="profile-header">
         <h1>Your Pawsome Profile</h1>
+        <p> Welcome ,{user?.name}</p>
         <p>Update your information and view your adoption journey</p>
       </div>
       <div className="profile-content">

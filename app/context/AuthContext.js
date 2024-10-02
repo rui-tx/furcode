@@ -13,17 +13,11 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decodedToken = jwtDecode.jwtDecode(token);
-        setUser(decodedToken);
-        setIsLoggedIn(true);
-        setToken(token);
-      } catch (error) {
-        console.error("Invalid token:", error);
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("token");
-      }
+    const storedUser = localStorage.getItem("user");
+    if (token && storedUser) {
+      setIsLoggedIn(true);
+      setToken(token);
+      setUser(JSON.parse(storedUser));
     }
     setLoading(false);
   }, []);
@@ -38,7 +32,6 @@ export const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify({ email, password }),
       });
-
       console.log("Response status:", response.status);
       const data = await response.json();
       console.log("Response data:", data);
@@ -46,11 +39,13 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("token", data.token);
-        const decodedToken = jwtDecode.jwtDecode(data.token);
-        console.log("Decoded token:", decodedToken);
+        localStorage.setItem("user", JSON.stringify(data.person));
+
+        console.log("Full user data:", JSON.stringify(data.person, null, 2));
+
         setIsLoggedIn(true);
         setToken(data.token);
-        setUser(decodedToken);
+        setUser(data.person);
         return { success: true };
       } else {
         console.error("Login failed:", data.error);
@@ -65,6 +60,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setIsLoggedIn(false);
     setToken(null);
     setUser(null);
