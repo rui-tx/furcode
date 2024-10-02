@@ -1,9 +1,13 @@
 import "./styles/index.css";
 import Modal from "../Modal/Modal";
 import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useRouter } from "next/navigation";
 
 function OneShelterDescription({ shelterHistory }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isLoggedIn, logout } = useAuth();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -82,6 +86,25 @@ function OneShelterDescription({ shelterHistory }) {
     </div>
   );
 
+  const handleClickToLogin = () => {
+    router.push("/login");
+  };
+
+  const modalContent2 = (
+    <div className="container-volunteer-not-logged">
+      <h2 className="container-volunteer-not-logged-title">
+        Para se voluntariar, é necessário estar logado. Clique no botão abaixo
+        para continuar.
+      </h2>
+      <button
+        className="container-volunteer-not-logged-button"
+        onClick={handleClickToLogin}
+      >
+        Login
+      </button>
+    </div>
+  );
+
   return (
     <div className="one-shelter-container-description">
       <h2 className="one-shelter-description-title">História</h2>
@@ -100,8 +123,7 @@ function OneShelterDescription({ shelterHistory }) {
         open={isModalOpen}
         onCancel={() => showModal(false)}
         title="Formulário de Voluntariado"
-        content={modalContent}
-
+        content={isLoggedIn ? modalContent : modalContent2}
       />
     </div>
   );

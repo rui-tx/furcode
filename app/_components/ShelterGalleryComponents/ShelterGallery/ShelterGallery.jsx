@@ -75,7 +75,6 @@ const ShelterGallery = () => {
 
   const handleClick = (shelterId) => {
     router.push(`/shelter/${shelterId}`);
-    console.log("oi");
   };
 
   return (
