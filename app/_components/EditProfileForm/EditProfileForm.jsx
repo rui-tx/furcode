@@ -4,7 +4,7 @@ import "./styles/index.css";
 import { useAuth } from "../../context/AuthContext";
 
 const EditProfileForm = () => {
-  const { user, token, logout } = useAuth();
+  const { user, token, setUser } = useAuth();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,6 +17,7 @@ const EditProfileForm = () => {
   const [profilePicture, setProfilePicture] = useState(
     "https://preview.redd.it/mfyjb5he21761.jpg?width=1080&crop=smart&auto=webp&s=ee9f946f20d0ad96ac134393f0e65265ded42174"
   );
+  const [updateMessage, setUpdateMessage] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -73,10 +74,19 @@ const EditProfileForm = () => {
       const updatedUser = { ...user, ...formData };
       localStorage.setItem("user", JSON.stringify(updatedUser));
 
-      logout();
-      window.location.reload();
+      setUser(updatedUser);
+
+      setFormData(updatedUser);
+
+      setUpdateMessage("Profile updated successfully!");
+
+      setTimeout(() => setUpdateMessage(""), 2000);
     } catch (error) {
       console.error("Error updating profile:", error);
+      setUpdateMessage("Error updating profile. Please try again.");
+
+      // Clear error  after 3 seconds
+      setTimeout(() => setUpdateMessage(""), 3000);
     }
   };
 
