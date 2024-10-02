@@ -1,13 +1,16 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+import { FaSortUp, FaSortDown } from "react-icons/fa";
 import "./styles/index.css";
 import ShelterGalleryCard from "../ShelterGalleryCard/ShelterGalleryCard";
 import ShelterBanner from "../ShelterBanner/ShelterBanner";
 
 const ShelterGallery = () => {
   const [shelters, setShelters] = useState([]);
+  const [displayedShelter, setDisplayedShelters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState("asc")
+  const [sortOrder, setSortOrder] = useState("ascending");
+  const [sortBy, setSortBy] = useState("name");
   const sheltersPerPage = 10;
 
   const fetchShelters = useCallback(async () => {
@@ -37,7 +40,7 @@ const ShelterGallery = () => {
       }
     });
 
-    const sentinel = document.querySelector('.sentinel');
+    const sentinel = document.querySelector(".sentinel");
     if (sentinel) {
       intersectionObserver.observe(sentinel);
     }
@@ -47,17 +50,58 @@ const ShelterGallery = () => {
     };
   }, []);
 
+  const handleSort = () => {
+    const sortedShelters = [...shelters].sort((a, b) => {
+      if (sortOrder === "ascending") {
+        return a.name.localeCompare(b.name);
+      }
+      return b.name.localeCompare(a.name);
+    });
+    setShelters(sortedShelters);
+  };
+
+  const toggleSortOrder = () => {
+    setSortOrder((prevOrder) =>
+      prevOrder === "ascending" ? "descending" : "ascending"
+    );
+  };
+
+  const handleSortByChange = (event) => {
+    setSortBy(event.target.value);
+  };
+
+  useEffect(() => {
+    handleSort();
+  }, [sortOrder, sortBy]);
+
   return (
     <div className="shelterGallery-container">
       <div className="ShelterGallery-banner">
-        <ShelterBanner></ShelterBanner>
+        <ShelterBanner />
       </div>
-      <div className="shelterGallery-cards">
-        {shelters.map((shelter) => (
-          <ShelterGalleryCard key={shelter.id} shelter={shelter} />
-        ))}
+
+      <div className="shelterGallery-content">
+        <div className="shelterGallery-sort">
+          <select onChange={handleSortByChange} value={sortBy}>
+            <option value="name">Nome</option>
+          </select>
+          <button onClick={toggleSortOrder}>
+            {sortOrder === "ascending" ? (
+              <FaSortDown />
+            ) : (
+              <FaSortUp />
+            )}
+          </button>
+        </div>
+
+        <div className="shelterGallery-cards">
+          {shelters.map((shelter) => (
+            <ShelterGalleryCard key={shelter.id} shelter={shelter} />
+          ))}
+        </div>
+
+        <div className="sentinel"></div>
       </div>
-      <div className="sentinel"></div>
     </div>
   );
 };

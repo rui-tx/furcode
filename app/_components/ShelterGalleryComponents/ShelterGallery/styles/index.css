@@ -3,17 +3,48 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
+  position: relative;
 }
 .ShelterGallery-banner {
   width: 80%;
   height: 200px;
 }
-.shelterGallery-cards {
+
+.shelterGallery-content {
   width: 80%;
+  position: relative;
+  margin-top: 20px;
+}
+
+.shelterGallery-cards {
   display: flex;
-  margin-top: 4%;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  flex: 1 0 auto;
+  margin-top: 20px;
+}
+
+.shelterGallery-sort {
+  position: absolute;
+  top: 7px;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.shelterGallery-sort button {
+  border-radius: 5px;
+  height: 20px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.shelterGallery-sort select,
+.shelterGallery-sort button {
+  padding: 5px;
+  font-size: 16px;
 }
