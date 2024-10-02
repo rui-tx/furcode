@@ -1,15 +1,13 @@
 "use client";
-
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/navigation";
-
 import "./styles/index.css";
 
 const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
   const { login } = useAuth();
   const router = useRouter();
 
@@ -23,16 +21,15 @@ const Page = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  };
-
-  const handleLogin = async () => {
     try {
-      await login(email, password);
-      setSuccessMessage(true);
-      router.push("/");
+      const result = await login(email, password);
+      if (result.success) {
+        router.push("/");
+      } else {
+        setErrorMessage(result.error || "Login failed");
+      }
     } catch (error) {
-      alert("Login errado");
-      setSuccessMessage(false);
+      setErrorMessage("An unexpected error occurred");
     }
   };
 
@@ -40,7 +37,7 @@ const Page = () => {
     <div className="login-container">
       <div className="container-login">
         <div className="title-login">Login</div>
-        <div className="container-form-buttom-input">
+        <form onSubmit={handleSubmit} className="container-form-buttom-input">
           <div className="container-input">
             <input
               type="text"
@@ -55,27 +52,23 @@ const Page = () => {
               required
             />
           </div>
-
           <div className="container-button">
-            <button type="submit" onSubmit={handleSubmit} onClick={handleLogin}>
-              Login
-            </button>
+            <button type="submit">Login</button>
           </div>
-        </div>
-        {successMessage ? (
-          <div className="login-success-message">
-            <p>Login realizado com sucesso!</p>
-          </div>
-        ) : (
-          <div className="container-no-register">
-            <p>
-              Não possui conta? <a href="/register">Registar aqui</a>
-            </p>
-            <p>
-              Esqueceu sua senha? <a href="/recovery">Recuperar aqui</a>
-            </p>
+        </form>
+        {errorMessage && (
+          <div className="login-error-message">
+            <p>{errorMessage}</p>
           </div>
         )}
+        <div className="container-no-register">
+          <p>
+            Não possui conta? <a href="/register">Registar aqui</a>
+          </p>
+          <p>
+            Esqueceu sua senha? <a href="/recovery">Recuperar aqui</a>
+          </p>
+        </div>
       </div>
     </div>
   );

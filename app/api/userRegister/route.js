@@ -5,7 +5,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 export async function POST(req) {
   try {
     const body = await req.json();
-    const response = await fetch(`${API_BASE_URL}/v1/person`, {
+    const response = await fetch(`${API_BASE_URL}/person`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
