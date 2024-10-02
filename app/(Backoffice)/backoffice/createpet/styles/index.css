@@ -1,18 +1,114 @@
 .pet-info {
-  border: 1px solid #ccc;
-  padding: 20px;
-  width: 300px;
+  border: 1px solid var(--default-border-color);
+  border-radius: var(--default-border-radius);
+  padding: 2rem;
+  width: 80%;
+  margin: 2rem;
+  background-color: var(--default-background);
+  color: var(--default-font-color);
   font-family: Arial, sans-serif;
+  box-shadow: 0 2px 4px var(--accent-shadow);
 }
 
 .pet-info h2 {
   text-align: center;
+  color: var(--accent);
+  margin-bottom: 20px;
 }
 
-.pet-info p {
-  margin: 5px 0;
+.form-group {
+  margin-bottom: 15px;
 }
 
 .label {
+  display: block;
   font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--default-border-color);
+  border-radius: var(--default-border-radius);
+  background-color: var(--default-font-shadow);
+  color: var(--default-font-color);
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.checkbox {
+  margin-right: 5px;
+}
+
+.button {
+  background-color: var(--default-button-bg-color);
+  color: var(--default-button-font-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--default-button-border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--default-button-bg-color-hover);
+}
+
+.button:disabled {
+  background-color: var(--default-button-bg-disabled-color);
+  cursor: not-allowed;
+}
+
+/* New styles for image upload */
+.upload-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px dashed var(--default-border-color);
+  border-radius: var(--default-border-radius);
+}
+
+.file-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--default-border-color);
+  border-radius: var(--default-border-radius);
+  background-color: var(--default-font-shadow);
+}
+
+.upload-button {
+  margin-top: 10px;
+}
+
+.preview-image {
+  border-radius: 0.5rem;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: var(--cancel);
+  font-weight: bold;
+}
+
+.success-message {
+  color: var(--success);
+  font-weight: bold;
+}
+
+.submit-button {
+  margin-top: 20px;
+  width: 100%;
 }

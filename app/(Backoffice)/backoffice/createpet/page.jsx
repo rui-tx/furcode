@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/app/context/AuthContext";
 import Table from "@/app/_components/Table/Table";
+import ImageUpload from "@/app/_components/ImageUpload/ImageUpload";
 
 import "./styles/index.css";
 
@@ -25,6 +26,8 @@ const Page = ({ params }) => {
     observations: "Rufa Lufa",
     breedName: "Hokkaido",
   });
+  const [petImage, setPetImage] = useState(null);
+  const [petImageExtension, setPetImageExtension] = useState(null);
   const [breeds, setBreeds] = useState([]);
   const { token } = useAuth();
 
@@ -96,24 +99,46 @@ const Page = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!petImage) {
+      alert("Por favor, selecione uma imagem para o pet.");
+      return;
+    }
     setSent(true);
     try {
+      const petDataWithImage = {
+        ...petData,
+        coverImage: petImage,
+      };
       const response = await fetch("/api/createPet", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(petData),
+        body: JSON.stringify(petDataWithImage),
       });
+
+      const responseData = await response.json();
       if (response.ok) {
-        //console.log("Pet created successfully!");
-        alert("Pet created successfully!");
-        // Handle success response
+        //upload image
+        const formData = new FormData();
+        formData.append("file", petImage);
+
+        const response = await fetch(
+          `/api/uploadImage?to=pet&id=${responseData.id}&cover=true&extension=${petImageExtension}`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+          }
+        );
+
+        alert("Animal criado com sucesso! ID: " + responseData.id);
       } else {
         console.error("Failed to create pet.");
         alert("Failed to create pet.");
-        // Handle error response
       }
     } catch (error) {
       console.error("Error:", error);
@@ -138,12 +163,16 @@ const Page = ({ params }) => {
     <div className="pet-info">
       <h2>Criar novo Animal - Cão</h2>
       <form onSubmit={handleSubmit}>
-        <p>
-          <label className="label">Raça:</label>
+        <div className="form-group">
+          <label className="label" htmlFor="breedName">
+            Raça:
+          </label>
           <select
+            id="breedName"
             name="breedName"
             value={petData.breedName}
             onChange={handleChange}
+            className="select"
           >
             {breeds?.breeds?.map((breed, index) => (
               <option key={index} value={breed}>
@@ -151,75 +180,137 @@ const Page = ({ params }) => {
               </option>
             ))}
           </select>
-        </p>
+        </div>
 
-        <p>
-          <label className="label">Nome:</label>
+        <div className="form-group">
+          <label className="label" htmlFor="name">
+            Nome:
+          </label>
           <input
             type="text"
+            id="name"
             name="name"
             value={petData.name}
             onChange={handleChange}
+            className="input"
           />
-        </p>
-        <p>
-          <label className="label">Vacinado/a:</label>
-          <input
-            type="checkbox"
-            name="isVaccinated"
-            checked={petData.isVaccinated}
+        </div>
+
+        <div className="form-group">
+          <label className="label" htmlFor="isVaccinated">
+            <input
+              type="checkbox"
+              id="isVaccinated"
+              name="isVaccinated"
+              checked={petData.isVaccinated}
+              onChange={handleChange}
+              className="checkbox"
+            />
+            Vacinado/a
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label className="label" htmlFor="size">
+            Porte:
+          </label>
+          <select
+            id="size"
+            name="size"
+            value={petData.size}
             onChange={handleChange}
-          />
-        </p>
-        <p>
-          <label className="label">Porte:</label>
-          <select name="size" value={petData.size} onChange={handleChange}>
+            className="select"
+          >
             <option value="SMALL">Pequeno</option>
             <option value="MEDIUM">Médio</option>
             <option value="LARGE">Grande</option>
           </select>
-        </p>
-        <p>
-          <label className="label">Peso:</label>
+        </div>
+
+        <div className="form-group">
+          <label className="label" htmlFor="weight">
+            Peso:
+          </label>
           <input
             type="number"
+            id="weight"
             name="weight"
             value={petData.weight}
             onChange={handleChange}
+            className="input"
           />
-        </p>
-        <p>
-          <label className="label">Cor:</label>
-          <select name="color" value={petData.color} onChange={handleChange}>
-            <option value="Castanho">Castanho</option>
-            <option value="Branco">Branco</option>
-            <option value="Verde">Verde</option>
-            <option value="Amarelo">Amarelo</option>
-            <option value="Azul">Azul</option>
-            <option value="Marrom">Marrom</option>
-            <option value="Preto">Preto</option>
+        </div>
+
+        <div className="form-group">
+          <label className="label" htmlFor="color">
+            Cor:
+          </label>
+          <select
+            id="color"
+            name="color"
+            value={petData.color}
+            onChange={handleChange}
+            className="select"
+          >
+            {[
+              "Castanho",
+              "Branco",
+              "Verde",
+              "Amarelo",
+              "Azul",
+              "Marrom",
+              "Preto",
+            ].map((color) => (
+              <option key={color} value={color}>
+                {color}
+              </option>
+            ))}
           </select>
-        </p>
-        <p>
-          <label className="label">Idade:</label>
+        </div>
+
+        <div className="form-group">
+          <label className="label" htmlFor="age">
+            Idade:
+          </label>
           <input
             type="number"
+            id="age"
             name="age"
             value={petData.age}
             onChange={handleChange}
+            className="input"
           />
-        </p>
-        <p>
-          <label className="label">Observações:</label>
+        </div>
+
+        <div className="form-group">
+          <label className="label" htmlFor="observations">
+            Observações:
+          </label>
           <textarea
+            id="observations"
             name="observations"
             value={petData.observations}
             onChange={handleChange}
+            className="textarea"
           ></textarea>
-        </p>
-        {!sent && <button type="submit">Criar</button>}
+        </div>
+
+        <div className="upload-image-container">
+          <ImageUpload
+            to="pet"
+            id={0}
+            noUpload={true}
+            setPetImage={setPetImage}
+            setPetImageExtension={setPetImageExtension}
+          />
+        </div>
+
+        {!sent && (
+          <button type="submit" className="button">
+            Criar
+          </button>
+        )}
       </form>
-      {/* <Table headers={tableHeaders} initialData={petList} /> */}
     </div>
   );
 };

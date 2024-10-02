@@ -13,11 +13,12 @@ function calculateMD5(data) {
   return crypto.createHash("md5").update(data).digest("hex");
 }
 
-async function uploadImage(url, payload) {
+async function uploadImage(url, payload, token) {
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(payload),
   });
@@ -33,8 +34,11 @@ async function uploadImage(url, payload) {
 export async function POST(req) {
   try {
     const { searchParams } = new URL(req.url);
+    const token = req.headers.get("Authorization")?.split("Bearer ")[1];
     const to = searchParams.get("to");
     const id = searchParams.get("id");
+    const isCover = searchParams.get("cover");
+    const extension = searchParams.get("extension");
 
     if (!to || !id) {
       return NextResponse.json(
@@ -42,7 +46,7 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-
+    const fileName = isCover ? "cover" + "." + extension : file.name;
     const formData = await req.formData();
     const file = formData.get("file");
 
@@ -50,7 +54,6 @@ export async function POST(req) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
-    const fileName = file.name;
     const fileData = await file.arrayBuffer();
     const base64Data = Buffer.from(fileData).toString("base64");
     const md5 = calculateMD5(base64Data);
@@ -62,7 +65,7 @@ export async function POST(req) {
     };
 
     const url = `${API_BASE_URL}/upload/${to}/${id}/image/`;
-    await uploadImage(url, payload);
+    await uploadImage(url, payload, token);
 
     return NextResponse.json(
       { message: "Image uploaded successfully" },

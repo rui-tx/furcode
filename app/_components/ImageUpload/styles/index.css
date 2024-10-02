@@ -11,3 +11,25 @@
   max-width: 200px;
   max-height: 200px;
 }
+
+.file-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--default-border-color);
+  border-radius: var(--default-border-radius);
+  background-color: var(--default-font-shadow);
+}
+
+.error-message {
+  color: var(--cancel);
+  font-weight: bold;
+}
+
+.success-message {
+  color: var(--success);
+  font-weight: bold;
+}
+
+.upload-button {
+  margin-top: 10px;
+}
