@@ -13,6 +13,7 @@ const ShelterGallery = () => {
   const [search, setSearch] = useState("");
   const router = useRouter();
   const shelterPerPage = 10;
+  const token = localStorage.getItem("token");
 
   const fetchShelters = useCallback(async () => {
     if (loading || !hasMore) return;
@@ -24,6 +25,7 @@ const ShelterGallery = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
           },
         }
       );
