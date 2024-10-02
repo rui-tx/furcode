@@ -9,58 +9,39 @@ import "./styles/index.css";
 const Page = ({ params }) => {
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null); // State to handle errors
+  const [error, setError] = useState(null); 
   const [reload, setReload] = useState(0);
 
   useEffect(() => {
     if (!params.id) return;
-
+  
     setLoading(true);
     const fetchPet = async () => {
-      const dummyPet = {
-        id: 2,
-        name: "Roofie (Mock)",
-        petTypeId: 2,
-        shelterId: 3,
-        isAdopted: true,
-        isVaccinated: true,
-        size: "Pequeno",
-        weight: 7,
-        color: "Castanho",
-        age: 5,
-        observations:
-          "This is a mock pet. If you are seeing this, it means that the pet id is non existent or the BE is down.",
-        coverImage:
-          "https://cloud.ducknexus.com/s/SQbyMzH5EtNCpn6/download/IMG_9245.JPG",
-      };
       try {
-        const response = await fetch("/api/getPet?id=" + params.id);
+        const response = await fetch(`/api/onePet/onePet/${params.id}`);
         if (!response.ok) {
           if (response.status === 404) {
-            //setError("Pet not found");
-            setPet(dummyPet);
+            setError("Pet not found");
             return;
           }
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
         setPet(data);
       } catch (e) {
         console.error("Failed to fetch pet data:", e);
-        dummyPet.observations = dummyPet.observations + " Error: " + e;
-        setPet(dummyPet);
-        //setError("Failed to fetch pet data");
+        setError("Failed to fetch pet data: " + e.message);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchPet();
-  }, [reload]);
+  }, [params.id, reload]);
+
 
   if (loading) {
-    return <div>Loading...</div>; // Show loading screen
+    return <div>Loading...</div>;
   }
 
   if (error) {
