@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-const API_BASE_URL = "http://localhost:8080/api/v1";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 
 async function fetchWithErrorHandling(url, options = {}) {
   const response = await fetch(url, {
@@ -83,6 +83,28 @@ export async function POST(req) {
     });
 
     const createdPet = await response.json();
+
+    //Upload cover image
+    // const imageUploadResponse = await fetch(
+    //   `http://localhost:3000/api/uploadImage?to=pet&id=${createdPet.id}&cover=true&base64=true`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     body: JSON.stringify(petData.coverImage),
+    //   }
+    // );
+
+    // const imageUploadData = await imageUploadResponse.json();
+    // if (!imageUploadResponse.ok) {
+    //   return NextResponse.json(
+    //     { error: "Failed to upload cover image" },
+    //     { status: 500 }
+    //   );
+    // }
+
     return NextResponse.json(createdPet, { status: 201 });
   } catch (error) {
     console.error("Error creating pet:", error);

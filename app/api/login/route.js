@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const API_BASE_URL = "http://localhost:8080/api/v1";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 
 async function loginUser(url, email, password) {
   const response = await fetch(url, {
@@ -15,6 +15,7 @@ async function loginUser(url, email, password) {
 }
 
 export async function POST(req) {
+  console.log(API_BASE_URL);
   const { email, password } = await req.json();
 
   /****    APENAS PARA TESTE DEPOIS APAGAR    ****/
