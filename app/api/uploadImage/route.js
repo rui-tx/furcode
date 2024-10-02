@@ -7,7 +7,7 @@ export const config = {
   },
 };
 
-const API_BASE_URL = "http://localhost:8080/api/v1";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 
 function calculateMD5(data) {
   return crypto.createHash("md5").update(data).digest("hex");

@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-const API_BASE_URL = "http://localhost:8080/api/v1";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 
 async function fetchWithErrorHandling(url, options = {}) {
   const response = await fetch(url, {
