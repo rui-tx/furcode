@@ -1,47 +1,60 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Table from "@/app/_components/Table/Table";
 import "./styles/index.css";
 import Link from "next/link";
 import { Plus } from "lucide-react";
 
 const Page = () => {
+  const [pets, setPets] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const petsHeaders = [
-    { prettyLabel: "Pet ID", columnName: "petId", type: "string" },
-    { prettyLabel: "Pet Name", columnName: "petName", type: "string" },
-    { prettyLabel: "Pet Type", columnName: "petType", type: "string" },
-    { prettyLabel: "Pet Breed", columnName: "petBreed", type: "string" },
-    { prettyLabel: "Report Date", columnName: "reportDate", type: "string" },
-    { prettyLabel: "Reported By", columnName: "reportedBy", type: "string" },
-    { prettyLabel: "Reported To", columnName: "reportedTo", type: "string" },
-    {
-      prettyLabel: "Reported Details",
-      columnName: "reportedDetails",
-      type: "string",
-    },
+    { prettyLabel: "Pet ID", columnName: "id", type: "number" },
+    { prettyLabel: "Pet Name", columnName: "name", type: "string" },
+    { prettyLabel: "Age", columnName: "age", type: "number" },
+    { prettyLabel: "Color", columnName: "color", type: "string" },
+    { prettyLabel: "Adopted", columnName: "isAdopted", type: "string" },
+    { prettyLabel: "Vaccinated", columnName: "isVaccinated", type: "string" },
+    { prettyLabel: "Size", columnName: "size", type: "string" },
+    { prettyLabel: "Weight", columnName: "weight", type: "number" },
+    { prettyLabel: "Observations", columnName: "observations", type: "string" },
   ];
 
-  const petsData = [
-    {
-      petId: "P1",
-      petName: "Dog",
-      petType: "Dog",
-      petBreed: "Labrador",
-      reportDate: "2023-05-01",
-      reportedBy: "John Doe",
-      reportedTo: "Jane Doe",
-      reportedDetails: "Reported details",
-    },
-    {
-      petId: "P2",
-      petName: "Cat",
-      petType: "Cat",
-      petBreed: "Persian",
-      reportDate: "2023-05-02",
-      reportedBy: "John Doe",
-      reportedTo: "Jane Doe",
-      reportedDetails: "Reported details",
-    },
-  ];
+  useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        const response = await fetch("/api/petGallery?page=1&limit=10", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        const transformedData = data.map((pet) => ({
+          ...pet,
+          isAdopted: pet.isAdopted ? "Yes" : "No",
+          isVaccinated: pet.isVaccinated ? "Yes" : "No",
+        }));
+        setPets(transformedData);
+        console.log("Pets data:", transformedData);
+      } catch (error) {
+        console.error("Error fetching pets:", error);
+        setError("Failed to load pets. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPets();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="backoffice-pets-page-container">
@@ -52,7 +65,13 @@ const Page = () => {
           </button>
         </Link>
       </div>
-      <Table key="pets" headers={petsHeaders} initialData={petsData} />
+      <Table
+        key="pets"
+        headers={petsHeaders}
+        initialData={pets}
+        enableEdit={true}
+        enableDelete={true}
+      />
     </div>
   );
 };
