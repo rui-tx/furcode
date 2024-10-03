@@ -14,14 +14,6 @@ const page = ({ params }) => {
   const [error, setError] = useState(false);
   const [reload, setReload] = useState(0);
   const [shelter, setShelter] = useState([]);
-    // address1,
-    // address2,
-    // creationDate,
-    // email,
-    // name, 
-    // phone,
-    // postalCode,
-    // vat
 
   useEffect(() => {
     if (!params.id) {
@@ -75,50 +67,54 @@ const page = ({ params }) => {
     return <div>{error}</div>;
   }
 
-  // return (
-    // <div className="one-shelter-container-all">
-    //   <div className="container-name-shelter">
-    //     <p>Mindera</p>
-    //   </div>
-    //   <div className="container-shelter-description">
-    //     <div className="container-shelter-description-carousel">
-    //       {shelterInformation.map((shelterInformation, index) => (
-    //         <ShelterCarousel
-    //           key={index}
-    //           shelterImages={shelterInformation.shelterImages}
-    //         />
-    //       ))}
-    //     </div>
-    //     <div className="container-one-shelter-full-container">
-    //       <div className="container-one-shelter-container-description">
-    //         {shelterInformation.map((shelterInformation, index) => (
-    //           <OneShelterDescription
-    //             key={index}
-    //             shelterHistory={shelterInformation.shelterHistory}
-    //             shelterSocialMedia={shelterInformation.shelterSocialMedia}
-    //           />
-    //         ))}
-    //       </div>
-    //     </div>
-    //   </div>
+  return (
+    <div className="one-shelter-container-all">
+      <div className="container-name-shelter">
+        <p>{shelter.name}</p>
+      </div>
+      <div className="container-shelter-description">
+        <div className="container-shelter-description-carousel">
 
-    //   <div className="container-carousel-pet-container">
-    //     <ShelterPetCarousel />
-    //   </div>
+            {/* <ShelterCarousel
+            /> */}
+        </div>
+        <div className="container-one-shelter-full-container">
+          <div className="container-one-shelter-container-description">
+            <OneShelterDescription
+              key={shelter.id}
+              shelterHistory={[
+                shelter.address1,
+                shelter.address2,
+                shelter.creationDate,
+                shelter.email,
+                shelter.name,
+                shelter.phone,
+                shelter.postalCode,
+                shelter.vat,
+              ].join(", ")}
 
-    //   <div className="container-shelter-map">
-    //     <div className="one-shelter-map">
-    //       <div className="one-shelter-map-map">
-    //         <Map position={position} />
-    //       </div>
+            />
+          </div>
+        </div>
+      </div>
 
-    //       <div className="container-one-shelter-social-media">
-    //         <ShelterSocialMedia />
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-  // );
+      <div className="container-carousel-pet-container">
+        <ShelterPetCarousel />
+      </div>
+
+      <div className="container-shelter-map">
+        <div className="one-shelter-map">
+          <div className="one-shelter-map-map">
+            <Map position={position} />
+          </div>
+
+          <div className="container-one-shelter-social-media">
+            <ShelterSocialMedia shelterSocialMedia = {shelter.email} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default page;
