@@ -17,38 +17,30 @@ const ShelterGallery = () => {
   const fetchShelters = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
-
     try {
-      const response =  await fetch(`/api/shelterGallery?page=${currentPage}&limit=${shelterPerPage}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
+      const token = localStorage.getItem("token");
+      const response = await fetch(`/api/shelterGallery?page=${currentPage}&limit=${shelterPerPage}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
       const data = await response.json();
       console.log(data);
       if (data.length === 0) {
         setHasMore(false);
-        console.log(
-          "Não há mais abrigos para carregar. Fim dos dados alcançado."
-        );
+        console.log("Não há mais abrigos para carregar. Fim dos dados alcançado.");
       } else {
         setShelters((prevShelters) => {
           const newShelters = data.filter(
-            (newShelter) =>
-              !prevShelters.some((shelter) => shelter.id === newShelter.id)
+            (newShelter) => !prevShelters.some((shelter) => shelter.id === newShelter.id)
           );
           if (newShelters.length === 0) {
-            console.log(
-              "Todos os abrigos desta página já foram carregados. Não há novos dados."
-            );
+            console.log("Todos os abrigos desta página já foram carregados. Não há novos dados.");
             setHasMore(false);
             return prevShelters;
           }
@@ -70,7 +62,6 @@ const ShelterGallery = () => {
         fetchShelters();
       }
     });
-
     const sentinel = document.querySelector(".sentinel");
     if (sentinel) {
       intersectionObserver.observe(sentinel);
@@ -84,41 +75,37 @@ const ShelterGallery = () => {
     setSearch(event.target.value);
   };
 
-  const handleClick = (shelterId) => {
-    router.push(`/shelter/${shelterId}`);
+  const handleClick = (id) => {
+    router.push(`/shelter/${id}`);
   };
+
+  const filteredShelters = shelters.filter((shelter) =>
+    search.toLowerCase() === "" || shelter.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="shelterGallery-container">
       <div className="ShelterGallery-banner">
         <ShelterBanner />
-
         <div className="shelterGallery-search-bar">
           <input
             type="text"
             placeholder="Pesquisar por nome da associação"
             className="input-search-shelter"
             onChange={handleSearchChange}
-          ></input>
+          />
         </div>
       </div>
-
       <div className="shelterGallery-cards">
-        {shelters
-          .filter((shelter) => {
-            return search.toLowerCase === ""
-              ? shelter
-              : shelter.name.toLowerCase().includes(search);
-          })
-          .map((shelter) => (
-            <div className="container-gallery-cards-shelter" onClick={() => handleClick(shelter.id)}>
-              <ShelterGalleryCard
-                key={shelter.id}
-                shelter={shelter}
-                
-              />
-            </div>
-          ))}
+        {filteredShelters.map((shelter) => (
+          <div 
+            key={shelter.id} 
+            className="container-gallery-cards-shelter" 
+            onClick={() => handleClick(shelter.id)}
+          >
+            <ShelterGalleryCard shelter={shelter} />
+          </div>
+        ))}
       </div>
       <div className="sentinel"></div>
     </div>

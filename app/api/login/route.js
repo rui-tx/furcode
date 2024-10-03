@@ -21,7 +21,6 @@ export async function POST(req) {
   /****    APENAS PARA TESTE DEPOIS APAGAR    ****/
   if (email === "teste@teste.com" && password === "teste") {
     return NextResponse.json(
-      { message: "Login de teste bem-sucedido", token: "fake-token" },
       { status: 200 }
     );
   }

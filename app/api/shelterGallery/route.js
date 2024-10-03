@@ -6,12 +6,20 @@ export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const page = searchParams.get('page') || 1;
   const limit = searchParams.get('limit') || 10;
+  const token = req.headers.get("Authorization")?.split("Bearer ")[1];
+    if (!token) {
+      return NextResponse.json(
+        { error: "No authorization token provided" },
+        { status: 401 }
+      );
+    }
 
   try {
     const response = await fetch(`${API_BASE_URL}/shelter/all?page=${page}&limit=${limit}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
 
