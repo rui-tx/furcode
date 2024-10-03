@@ -1,18 +1,22 @@
 "use client";
 import React, { useState } from "react";
 import { Home, Cat, Building, Users, Heart, FileText } from "lucide-react";
+import Link from "next/link";
 import "./styles/index.css";
 
 const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
-
   const menuItems = [
-    { name: "Dashboard", icon: Home },
-    { name: "Animais", icon: Cat },
-    { name: "Abrigo", icon: Building },
-    { name: "Staff", icon: Users },
-    { name: "Adoções", icon: Heart },
-    { name: "Relatórios animal", icon: FileText },
+    { name: "Dashboard", icon: Home, href: "/" },
+    { name: "Animais", icon: Cat, href: "/backoffice/pets" },
+    { name: "Abrigo", icon: Building, href: "/backoffice/shelter" },
+    { name: "Staff", icon: Users, href: "/backoffice/staff" },
+    { name: "Adoções", icon: Heart, href: "/backoffice/donation" },
+    {
+      name: "Relatórios animal",
+      icon: FileText,
+      href: "/backoffice/animalReports",
+    },
   ];
 
   return (
@@ -20,8 +24,8 @@ const Sidebar = () => {
       <ul>
         {menuItems.map((item, index) => (
           <li key={index}>
-            <a
-              href="#"
+            <Link
+              href={item.href}
               className={`sidebar-item ${
                 activeItem === item.name ? "active" : ""
               }`}
@@ -29,7 +33,7 @@ const Sidebar = () => {
             >
               <item.icon size={24} />
               <span>{item.name}</span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

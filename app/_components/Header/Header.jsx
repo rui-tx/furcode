@@ -77,6 +77,9 @@ const Header = () => {
             {isLoggedIn ? (
               <>
                 <li>
+                  <Link href="/backoffice">BackOffice</Link>
+                </li>
+                <li>
                   <Link href="/editProfile">EDITAR PERFIL</Link>
                 </li>
 
