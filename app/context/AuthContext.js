@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     if (token && storedUser) {
       setIsLoggedIn(true);
       setToken(token);
-      setUser(JSON.parse(storedUser));
+      setUser(JSON.storedUser);
     }
     setLoading(false);
   }, []);
