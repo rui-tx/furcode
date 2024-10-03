@@ -1,20 +1,37 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/index.css";
+import { useAuth } from "../../context/AuthContext";
 
 const EditProfileForm = () => {
+  const { user, token, setUser } = useAuth();
   const [formData, setFormData] = useState({
-    firstName: "Teste",
-    lastName: "teste",
-    email: "teste@example.com",
-    address1: "rua da mindera",
+    firstName: "",
+    lastName: "",
+    email: "",
+    address1: "",
     address2: "",
-    postalCode: "4435",
-    cellPhone: "9122345235",
+    postalCode: "",
+    cellPhone: "",
   });
   const [profilePicture, setProfilePicture] = useState(
     "https://preview.redd.it/mfyjb5he21761.jpg?width=1080&crop=smart&auto=webp&s=ee9f946f20d0ad96ac134393f0e65265ded42174"
   );
+  const [updateMessage, setUpdateMessage] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        email: user.email || "",
+        address1: user.address1 || "",
+        address2: user.address2 || "",
+        postalCode: user.postalCode || "",
+        cellPhone: user.cellPhone || "",
+      });
+    }
+  }, [user]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -38,10 +55,11 @@ const EditProfileForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/update-profile", {
-        method: "POST",
+      const response = await fetch(`/api/update-profile/${user.id}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
@@ -52,8 +70,23 @@ const EditProfileForm = () => {
 
       const result = await response.json();
       console.log("Profile updated successfully:", result);
+
+      const updatedUser = { ...user, ...formData };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+
+      setUser(updatedUser);
+
+      setFormData(updatedUser);
+
+      setUpdateMessage("Profile updated successfully!");
+
+      setTimeout(() => setUpdateMessage(""), 2000);
     } catch (error) {
       console.error("Error updating profile:", error);
+      setUpdateMessage("Error updating profile. Please try again.");
+
+      // Clear error  after 3 seconds
+      setTimeout(() => setUpdateMessage(""), 3000);
     }
   };
 
