@@ -114,8 +114,6 @@
   color: var(--default-font-color);
 }
 
-/**/
-
 .adoption-form {
   position: relative;
   display: flex;
@@ -153,7 +151,9 @@
 }
 
 .adoption-form-button:hover {
-  background-color: var(--default-button-hover-bg-color); /* Adiciona um efeito hover */
+  background-color: var(
+    --default-button-hover-bg-color
+  ); 
 }
 
 .container-adoption-modal {
@@ -191,9 +191,8 @@
 }
 
 .container-adoption-modal-button:hover {
-  background-color: var(--default-button-hover-bg-color); /* Adiciona um efeito hover */
+  background-color: var(--default-button-hover-bg-color);
 }
-
 
 @media (max-width: 576px) {
   .pet-container {

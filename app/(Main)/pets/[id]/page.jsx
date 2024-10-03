@@ -16,6 +16,7 @@ const Page = ({ params }) => {
   const router = useRouter();
   const { isLoggedIn, logout } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     fullname: "",
     age: "",
@@ -29,6 +30,24 @@ const Page = ({ params }) => {
     comments: "",
   });
 
+  useEffect(() => {
+    if (user) {
+      const firstName = user.firstName;
+      const lastName = user.lastName;
+      const address1 = user.address1;
+      const address2 = user.address2;
+
+      setFormData({
+        fullname: firstName + " " + lastName,
+        address: address1 + " " + address2,
+        phonenumber: user.cellPhone,
+        email: user.email,
+
+
+      });
+    }
+  }, [user]);
+
   const handleAdoptButton = () => {
     showModal(true);
   };
@@ -41,27 +60,27 @@ const Page = ({ params }) => {
     if (!params.id) return;
 
     setLoading(true);
-   const fetchPet = async () => {
-  try {
-    const response = await fetch(`/api/onePet/onePet/${params.id}`);
-    if (!response.ok) {
-      if (response.status === 404) {
-        setError("Pet not found");
-        return;
-      }
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    const fetchPet = async () => {
+      try {
+        const response = await fetch(`/api/onePet/onePet/${params.id}`);
+        if (!response.ok) {
+          if (response.status === 404) {
+            setError("Pet not found");
+            return;
+          }
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-    const data = await response.json();
-    console.log("Pet data:", data);  // Log para verificar o conteúdo
-    setPet(data);
-  } catch (e) {
-    console.error("Failed to fetch pet data:", e);
-    setError("Failed to fetch pet data: " + e.message);
-  } finally {
-    setLoading(false);
-  }
-};
+        const data = await response.json();
+        console.log("Pet data:", data); // Log para verificar o conteúdo
+        setPet(data);
+      } catch (e) {
+        console.error("Failed to fetch pet data:", e);
+        setError("Failed to fetch pet data: " + e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
     fetchPet();
   }, [params.id, reload]);
@@ -189,8 +208,8 @@ const Page = ({ params }) => {
   const modalContent2 = (
     <div className="container-adoption-modal">
       <h2 className="container-adoption-modal-title">
-        Para adotar, é necessário estar logado. Clique no botão abaixo
-        para continuar.
+        Para adotar, é necessário estar logado. Clique no botão abaixo para
+        continuar.
       </h2>
       <button
         className="container-adoption-modal-button"
