@@ -75,8 +75,8 @@ const ShelterGallery = () => {
     setSearch(event.target.value);
   };
 
-  const handleClick = (shelterId) => {
-    router.push(`/shelter/${shelterId}`);
+  const handleClick = (id) => {
+    router.push(`/shelter/${id}`);
   };
 
   const filteredShelters = shelters.filter((shelter) =>
