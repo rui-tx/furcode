@@ -37,12 +37,15 @@ const Page = () => {
 
       const data = await response.json();
       console.log(data);
+
+      const adoptedPets = data.filter(pet => pet.isAdopted===false);
+
       if (data.length === 0) {
         setHasMore(false);
         console.log("No more pets to load. End of data reached.");
       } else {
         setPets((prevPets) => {
-          const newPets = data.filter(
+          const newPets = adoptedPets.filter(
             (newPet) => !prevPets.some((pet) => pet.id === newPet.id)
           );
           if (newPets.length === 0) {

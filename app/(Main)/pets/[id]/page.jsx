@@ -7,8 +7,10 @@ import "./styles/index.css";
 import Modal from "../../../_components/Modal/Modal";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext";
+import AdoptionRequest from "../../../_components/AdoptionRequest/AdoptionRequest";
 
-const Page = ({ params }) => {
+
+const Page = ({ params, petId, shelterId, personId }) => {
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,7 +18,10 @@ const Page = ({ params }) => {
   const router = useRouter();
   const { isLoggedIn, logout } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [adopted, setAdopted] = useState(false);
   const { user } = useAuth();
+  const [showAdoptionRequest, setShowAdoptionRequest] = useState(false);
+  
   const [formData, setFormData] = useState({
     fullname: "",
     age: "",
@@ -32,18 +37,24 @@ const Page = ({ params }) => {
 
   useEffect(() => {
     if (user) {
-      const firstName = user.firstName;
-      const lastName = user.lastName;
-      const address1 = user.address1;
-      const address2 = user.address2;
+      const firstName = user.firstName || "";
+      const lastName = user.lastName || "";
+      const address1 = user.address1 || "";
+      const address2 = user.address2 || "";
+      const cellPhone = user.cellPhone || "";
+      const email = user.email || "";
 
       setFormData({
-        fullname: firstName + " " + lastName,
-        address: address1 + " " + address2,
-        phonenumber: user.cellPhone,
-        email: user.email,
-
-
+        fullname: `${firstName} ${lastName}`,
+        address: `${address1} ${address2}`,
+        phonenumber: cellPhone,
+        email: email,
+        age: formData.age,
+        whyAdopt: formData.whyAdopt,
+        othersPets: formData.othersPets,
+        describe: formData.describe,
+        houseType: formData.houseType,
+        comments: formData.comments,
       });
     }
   }, [user]);
@@ -72,7 +83,7 @@ const Page = ({ params }) => {
         }
 
         const data = await response.json();
-        console.log("Pet data:", data); // Log para verificar o conteúdo
+        console.log("Pet data:", data);
         setPet(data);
       } catch (e) {
         console.error("Failed to fetch pet data:", e);
@@ -118,92 +129,102 @@ const Page = ({ params }) => {
     e.preventDefault();
     console.log("Dados do formulário:", formData);
     showModal(false);
+    setShowAdoptionRequest(true);
+    console.log("Adoption submitted:", true);
   };
 
   const modalContent = (
-    <div className="total-modal-adoption">
-      <form className="adoption-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="fullname"
-          placeholder="Nome completo"
-          required
-          value={formData.fullname}
-          onChange={handleInputChange}
-        />
-        <input
-          type="number"
-          name="age"
-          placeholder="Idade"
-          required
-          value={formData.age}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="address"
-          placeholder="Morada"
-          required
-          value={formData.address}
-          onChange={handleInputChange}
-        />
-        <input
-          type="tel"
-          name="phonenumber"
-          placeholder="Número de telefone"
-          required
-          value={formData.phonenumber}
-          onChange={handleInputChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="E-mail"
-          required
-          value={formData.email}
-          onChange={handleInputChange}
-        />
-        <textarea
-          name="whyAdopt"
-          placeholder="Por que deseja adotar?"
-          required
-          value={formData.whyAdopt}
-          onChange={handleInputChange}
-        ></textarea>
-        <input
-          type="text"
-          name="othersPets"
-          placeholder="Outros animais de estimação (se houver)"
-          value={formData.othersPets}
-          onChange={handleInputChange}
-        />
-        <textarea
-          name="describe"
-          placeholder="Descreva o tipo de animal que deseja adotar"
-          required
-          value={formData.describe}
-          onChange={handleInputChange}
-        ></textarea>
-        <input
-          type="text"
-          name="houseType"
-          placeholder="Tipo de moradia (casa, apartamento, etc.)"
-          required
-          value={formData.houseType}
-          onChange={handleInputChange}
-        />
-        <textarea
-          name="comments"
-          placeholder="Comentários (opcional)"
-          value={formData.comments}
-          onChange={handleInputChange}
-        ></textarea>
-        <button type="submit" className="adoption-form-button">
-          Enviar
-        </button>
-      </form>
-    </div>
+    <form className="total-modal-adoption" onSubmit={handleSubmit}>
+      <h2>Parabéns, o seu pedido foi enviado com sucesso!</h2>
+      <p>Você será notificado quando o animal estiver pronto.</p>
+      <button type="submit" className="adoption-form-button">Confirmar Adoção</button> 
+    </form>
   );
+
+  // const modalContent = (
+  //   <div className="total-modal-adoption">
+  //     <form className="adoption-form" onSubmit={handleSubmit}>
+  //       <input
+  //         type="text"
+  //         name="fullname"
+  //         placeholder="Nome completo"
+  //         required
+  //         value={formData.fullname}
+  //         onChange={handleInputChange}
+  //       />
+  //       <input
+  //         type="number"
+  //         name="age"
+  //         placeholder="Idade"
+  //         required
+  //         value={formData.age}
+  //         onChange={handleInputChange}
+  //       />
+  //       <input
+  //         type="text"
+  //         name="address"
+  //         placeholder="Morada"
+  //         required
+  //         value={formData.address}
+  //         onChange={handleInputChange}
+  //       />
+  //       <input
+  //         type="tel"
+  //         name="phonenumber"
+  //         placeholder="Número de telefone"
+  //         required
+  //         value={formData.phonenumber}
+  //         onChange={handleInputChange}
+  //       />
+  //       <input
+  //         type="email"
+  //         name="email"
+  //         placeholder="E-mail"
+  //         required
+  //         value={formData.email}
+  //         onChange={handleInputChange}
+  //       />
+  //       <textarea
+  //         name="whyAdopt"
+  //         placeholder="Por que deseja adotar?"
+  //         required
+  //         value={formData.whyAdopt}
+  //         onChange={handleInputChange}
+  //       ></textarea>
+  //       <input
+  //         type="text"
+  //         name="othersPets"
+  //         placeholder="Outros animais de estimação (se houver)"
+  //         value={formData.othersPets}
+  //         onChange={handleInputChange}
+  //       />
+  //       <textarea
+  //         name="describe"
+  //         placeholder="Descreva o tipo de animal que deseja adotar"
+  //         required
+  //         value={formData.describe}
+  //         onChange={handleInputChange}
+  //       ></textarea>
+  //       <input
+  //         type="text"
+  //         name="houseType"
+  //         placeholder="Tipo de moradia (casa, apartamento, etc.)"
+  //         required
+  //         value={formData.houseType}
+  //         onChange={handleInputChange}
+  //       />
+  //       <textarea
+  //         name="comments"
+  //         placeholder="Comentários (opcional)"
+  //         value={formData.comments}
+  //         onChange={handleInputChange}
+  //       ></textarea>
+  //       <button type="submit" className="adoption-form-button">
+  //         Enviar
+  //       </button>
+  //     </form>
+  //   </div>
+  // );
 
   const modalContent2 = (
     <div className="container-adoption-modal">
@@ -314,6 +335,14 @@ const Page = ({ params }) => {
         title="Formulário de Adoção"
         content={isLoggedIn ? modalContent : modalContent2}
       />
+
+      {showAdoptionRequest && (
+        <AdoptionRequest
+          shelterId={pet?.shelterId}
+          personId={user?.id}
+          petId={pet.id}
+        />
+      )}
     </div>
   );
 };
