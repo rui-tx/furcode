@@ -5,6 +5,8 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1"
 export async function POST(request) {
   const token = request.headers.get("Authorization")?.replace("Bearer ", "").trim();
 
+  console.log(token);
+  
   if(!token) {
     return NextResponse.json(
       { error: "No authorization token provided" },
@@ -25,6 +27,7 @@ export async function POST(request) {
 
     const data = await response.json();
 
+    console.log(data);
     if (response.ok) {
       return NextResponse.json(data, { status: 200 });
     } else {

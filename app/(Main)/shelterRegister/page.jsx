@@ -5,13 +5,16 @@ import "./styles/index.css";
 
 const Page = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    nif: "",
-    email: "",
-    address: "",
-    postalCode: "",
-    cellPhone: "",
-    size: "",
+    name: "nome",
+    vat: "1",
+    email: "q@c.com",
+    address1: "address1",
+    address2: "address2",
+    postalCode: "2",
+    phone: "3",
+    size: "4",
+    isActive: "true",
+    creationDate: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -32,17 +35,18 @@ const Page = () => {
 
     const token = localStorage.getItem("token");
     if (!token) {
-      setErrorMessage("É necessário fazer o login para registar a sua associação.")
+      setErrorMessage(
+        "É necessário fazer o login para registar a sua associação."
+      );
       return;
     }
-    
+
     try {
-      
       const response = await fetch("/api/shelterRegister", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
@@ -55,15 +59,20 @@ const Page = () => {
         setSuccessMessage("Registo efetuado com sucesso!");
         setFormData({
           name: "",
-          nif: "",
+          vat: "",
           email: "",
-          address: "",
+          address1: "",
+          address2: "",
           postalCode: "",
-          cellPhone: "",
+          phone: "",
           size: "",
+          isActive: "",
+          creationDate: "",
         });
       } else {
-        setErrorMessage(`Erro no registo: ${result.error || 'Erro desconhecido'}`);
+        setErrorMessage(
+          `Erro no registo: ${result.error || "Erro desconhecido"}`
+        );
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -110,10 +119,10 @@ const Page = () => {
                   />
                   <input
                     type="text"
-                    name="nif"
+                    name="vat"
                     placeholder="NIF"
                     onChange={handleChange}
-                    value={formData.nif}
+                    value={formData.vat}
                     required
                   />
                   <input
@@ -126,10 +135,18 @@ const Page = () => {
                   />
                   <input
                     type="text"
-                    name="address"
+                    name="address1"
                     placeholder="Endereço"
                     onChange={handleChange}
-                    value={formData.address}
+                    value={formData.address1}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="address2"
+                    placeholder="Endereço"
+                    onChange={handleChange}
+                    value={formData.address2}
                     required
                   />
                   <input
@@ -142,10 +159,10 @@ const Page = () => {
                   />
                   <input
                     type="tel"
-                    name="cellPhone"
+                    name="phone"
                     placeholder="Telefone"
                     onChange={handleChange}
-                    value={formData.cellPhone}
+                    value={formData.phone}
                     required
                   />
                   <input
@@ -154,6 +171,23 @@ const Page = () => {
                     placeholder="Tamanho (m²)"
                     onChange={handleChange}
                     value={formData.size}
+                    required
+                  />
+                   <input
+                    type="text"
+                    name="isActive"
+                    placeholder="Ativo"
+                    onChange={handleChange}
+                    value={formData.isActive}
+                    disabled
+                    style={{display:"none"}}
+                  />
+                   <input
+                    type="date"
+                    name="creationDate"
+                    placeholder="data"
+                    onChange={handleChange}
+                    value={formData.creationDate}
                     required
                   />
                 </div>
