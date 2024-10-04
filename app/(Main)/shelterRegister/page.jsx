@@ -15,6 +15,7 @@ const Page = () => {
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [token, setToken] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,6 +29,12 @@ const Page = () => {
     event.preventDefault();
     setSuccessMessage("");
     setErrorMessage("");
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setErrorMessage("É necessário fazer o login para registar a sua associação.")
+      return;
+    }
     
     try {
       
@@ -35,6 +42,7 @@ const Page = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });

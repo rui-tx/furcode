@@ -1,28 +1,43 @@
 import { NextResponse } from "next/server";
 
-export async function POST(request) {
-  try {
-    const shetlerRegister = await request.json();
-    console.log("Received shelter registration data:", shetlerRegister);
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1"
 
+export async function POST(request) {
+  const token = request.headers.get("Authorization")?.replace("Bearer ", "").trim();
+
+  if(!token) {
     return NextResponse.json(
-      {
-        message: "Shelter registered successfully",
-        updatedProfile: shetlerRegister,
-      },
-      { status: 200 }
+      { error: "No authorization token provided" },
+      { status: 401 }
     );
+  }
+
+  try {
+    const body = await request.json();
+    const response = await fetch(`${API_BASE_URL}/shelter`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      return NextResponse.json(data, { status: 200 });
+    } else {
+      return NextResponse.json(
+        { message: data.message || "Failed to register shelter" },
+        { status: response.status }
+      );
+    }
   } catch (error) {
-    console.error("Error processing request:", error);
+    console.error("Error in shelter registration:", error);
     return NextResponse.json(
-      { error: "Error updating profile" },
+      { message: "Internal server error", error: error.message },
       { status: 500 }
     );
   }
-}
-export async function GET() {
-  return NextResponse.json(
-    { message: "This endpoint only accepts POST requests" },
-    { status: 405 }
-  );
 }
