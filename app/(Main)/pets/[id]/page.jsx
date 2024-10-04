@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext";
 import AdoptionRequest from "../../../_components/AdoptionRequest/AdoptionRequest";
 
-
 const Page = ({ params, petId, shelterId, personId }) => {
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -21,7 +20,7 @@ const Page = ({ params, petId, shelterId, personId }) => {
   const [adopted, setAdopted] = useState(false);
   const { user } = useAuth();
   const [showAdoptionRequest, setShowAdoptionRequest] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     fullname: "",
     age: "",
@@ -134,11 +133,15 @@ const Page = ({ params, petId, shelterId, personId }) => {
   };
 
   const modalContent = (
-    <form className="total-modal-adoption" onSubmit={handleSubmit}>
-      <h2>Parabéns, o seu pedido foi enviado com sucesso!</h2>
-      <p>Você será notificado quando o animal estiver pronto.</p>
-      <button type="submit" className="adoption-form-button">Confirmar Adoção</button> 
-    </form>
+    <div className="total-modal-adoption-total">
+      <form className="total-modal-adoption" onSubmit={handleSubmit}>
+        <h2>Clique no botão abaixo para confirmar sua adoção.</h2>
+        <p>Entraremos em contato consigo o mais breve possível.</p>
+        <button type="submit" className="adoption-form-button">
+          Confirmar Adoção
+        </button>
+      </form>
+    </div>
   );
 
   // const modalContent = (
@@ -332,7 +335,7 @@ const Page = ({ params, petId, shelterId, personId }) => {
       <Modal
         open={isModalOpen}
         onCancel={() => showModal(false)}
-        title="Formulário de Adoção"
+        title=" "
         content={isLoggedIn ? modalContent : modalContent2}
       />
 
