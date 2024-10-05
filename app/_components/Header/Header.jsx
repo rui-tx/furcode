@@ -1,40 +1,35 @@
 "use client";
-
 import { useAuth } from "../../context/AuthContext";
 import "./styles/index.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
-  const [location, setLocation] = useState(() => {
-    const storedLocation = localStorage.getItem("userLocation");
-    return storedLocation ? JSON.parse(storedLocation) : null;
-  });
-
+  // const [location, setLocation] = useState(() => {
+  //   const storedLocation = localStorage.getItem("userLocation");
+  //   return storedLocation ? JSON.parse(storedLocation) : null;
+  // });
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
-  useEffect(() => {
-    if (!location && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const newLocation = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          };
-          setLocation(newLocation);
-          localStorage.setItem("userLocation", JSON.stringify(newLocation));
-        },
-        (error) => {
-          console.error("Error getting location:", error);
-        }
-      );
-    }
-  }, [location]);
-
+  // useEffect(() => {
+  //   if (!location && navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const newLocation = {
+  //           latitude: position.coords.latitude,
+  //           longitude: position.coords.longitude,
+  //         };
+  //         setLocation(newLocation);
+  //         localStorage.setItem("userLocation", JSON.stringify(newLocation));
+  //       },
+  //       (error) => {
+  //         console.error("Error getting location:", error);
+  //       }
+  //     );
+  //   }
+  // }, [location]);
   return (
     <>
       <nav className="navbar">
@@ -48,7 +43,6 @@ const Header = () => {
             </Link>
           </div>
         </div>
-
         {/* Hamburguer Icon */}
         <div
           className={`hamburger ${menuOpen ? "open" : ""}`}
@@ -58,7 +52,6 @@ const Header = () => {
           <span className={`bar ${menuOpen ? "bar2" : ""}`}></span>
           <span className={`bar ${menuOpen ? "bar3" : ""}`}></span>
         </div>
-
         {/* Navigation */}
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <ul>
@@ -82,7 +75,6 @@ const Header = () => {
                 <li>
                   <Link href="/editProfile">EDITAR PERFIL</Link>
                 </li>
-
                 <li>
                   <Link href="/logout">SAIR</Link>
                 </li>
@@ -98,5 +90,4 @@ const Header = () => {
     </>
   );
 };
-
 export default Header;
