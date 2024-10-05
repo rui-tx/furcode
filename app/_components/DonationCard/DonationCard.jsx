@@ -1,6 +1,20 @@
+"use client"; 
 import "./styles/index.css";
+import Modal from "../Modal/Modal";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
 
-const DonationCard = ({ ...props }) => {
+const DonationCard = ({ params, ...props }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+  const { isLoggedIn, logout } = useAuth();
+  const { user } = useAuth();
+  const [shelterId, setShelterId] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [reload, setReload] = useState(0);
+
   const {
     value,
     header,
@@ -11,6 +25,94 @@ const DonationCard = ({ ...props }) => {
     imageAltDonation,
     descriptionDonation,
   } = props;
+
+  const handleWantToDonate = () => {
+    setIsModalOpen(true);
+    showModal(true);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    showModal(false);
+  };
+
+  const showModal = (show) => {
+    setIsModalOpen(show);
+  };
+
+  const handleClickToLogin = () => {
+    router.push("/login");
+  };
+
+  const handleShelterId = (e) => {
+    setShelterId(e.target.value);
+  };
+
+  const handleDonation = () => {
+    console.log(`Donation submitted: ${value}`);
+    console.log(user.id);
+    console.log(shelterId);
+  };
+
+  const modalContent = (
+    <div className="total-modal-donation-total">
+      <form className="total-modal-donation" onSubmit={handleSubmit}>
+        <input
+          type="number"
+          placeholder="Digite o id do shelter para doar"
+          onChange={handleShelterId}
+        />
+        <p>Clique no botão abaixo para confirmar sua doação.</p>
+        <button
+          type="submit"
+          className="donation-form-button"
+          onClick={handleDonation}
+        >
+          Confirmar Doação
+        </button>
+      </form>
+    </div>
+  );
+
+  const modalContent2 = (
+    <div className="container-adoption-modal">
+      <h2 className="container-adoption-modal-title">
+        Para doar, é necessário estar logado. Clique no botão abaixo para
+        continuar.
+      </h2>
+      <button
+        className="container-adoption-modal-button"
+        onClick={handleClickToLogin}
+      >
+        Login
+      </button>
+    </div>
+  );
+
+  useEffect(() => {
+    if (!params.id) return;
+
+    setLoading(true);
+    const fetchDonation = async () => {
+      try {
+        const response = await fetch(`/api/donations/${params.id}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Donation data:", data);
+        setDonation(data);
+      } catch (e) {
+        console.error("Failed to fetch donation data:", e);
+        setError("Failed to fetch donation data: " + e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDonation();
+  }, [params.id, reload]);
+  
+
   return (
     <div className="donation-card">
       <div className="container-donation-image-card">
@@ -35,10 +137,21 @@ const DonationCard = ({ ...props }) => {
             {line3 && <li>{line3}</li>}
           </ul>
           <div className="sign-up">
-            <a href="#" className="btn bordered radius">
+            <button
+              href="#"
+              className="btn bordered radius"
+              onClick={handleWantToDonate}
+            >
               Donate
-            </a>
+            </button>
           </div>
+
+          <Modal
+            open={isModalOpen}
+            title="Doação"
+            content={isLoggedIn ? modalContent : modalContent2}
+            onCancel={() => showModal(false)}
+          />
         </div>
       </div>
     </div>
