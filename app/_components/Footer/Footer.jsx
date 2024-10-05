@@ -105,7 +105,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-copyright">
-        &copy; {new Date().getFullYear()} Mindera Mindswap 7<sup>th</sup> Edition. All
+        &copy; {new Date().getFullYear()} Mindera Mindswap 7th Edition. All
         Rights Reserved
       </div>
     </footer>
