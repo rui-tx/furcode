@@ -3,22 +3,21 @@ import React, { useState } from "react";
 import { Home, Cat, Building, Users, Heart, FileText } from "lucide-react";
 import Link from "next/link";
 import "./styles/index.css";
-
 const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
   const menuItems = [
     { name: "Dashboard", icon: Home, href: "/" },
     { name: "Animais", icon: Cat, href: "/backoffice/pets" },
     { name: "Abrigo", icon: Building, href: "/backoffice/shelter" },
+    {name: "Adoções", icon: Heart, href: "/backoffice/adoptionrequest"},
     { name: "Staff", icon: Users, href: "/backoffice/staff" },
-    { name: "Adoções", icon: Heart, href: "/backoffice/donation" },
+    { name: "Doações", icon: Heart, href: "/backoffice/donation" },
     {
       name: "Relatórios animal",
       icon: FileText,
       href: "/backoffice/animalReports",
     },
   ];
-
   return (
     <nav className="backoffice-sidebar">
       <ul>
@@ -40,5 +39,4 @@ const Sidebar = () => {
     </nav>
   );
 };
-
 export default Sidebar;
