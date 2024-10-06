@@ -2,14 +2,16 @@ import { NextResponse } from "next/server";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 
-export async function GET(req, { params }) {
+export async function POST(req, { params }) {
   const { id } = params;
   try {
+    const body = await req.json();
     const response = await fetch(`${API_BASE_URL}/person/${id}/donate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(body),
     });
 
     const data = await response.json();

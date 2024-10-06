@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 import ShelterSelectFilter from "../ShelterSelectFilter/ShelterSelectFilter";
 
-const DonationCard = ({ params, ...props }) => {
+const DonationCard = ({ ...props }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const { isLoggedIn, logout } = useAuth();
@@ -15,6 +15,7 @@ const DonationCard = ({ params, ...props }) => {
   const [error, setError] = useState(null);
   const [reload, setReload] = useState(0);
   const [idShelterSelected, setIdShelterSelected] = useState(null);
+  const userId = localStorage.getItem("user");
 
   const {
     value,
@@ -26,6 +27,13 @@ const DonationCard = ({ params, ...props }) => {
     imageAltDonation,
     descriptionDonation,
   } = props;
+
+  const donationBody = {
+    total: value,
+    date: new Date().toISOString(),
+    shelterId: idShelterSelected,
+    personId: user?.id,
+  };
 
   const handleWantToDonate = () => {
     setIsModalOpen(true);
@@ -50,9 +58,30 @@ const DonationCard = ({ params, ...props }) => {
   };
 
   const handleDonation = () => {
-    console.log(`Donation submitted: ${value}`);
-    console.log("user id:", user.id);
-    console.log("shelter id:", idShelterSelected);
+    if (!user || !user.id) return;
+    setLoading(true);
+    const fetchDonation = async () => {
+      try {
+        const response = await fetch(`/api/donations/${user?.id}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(donationBody),
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Donation data:", data);
+      } catch (e) {
+        console.error("Failed to fetch donation data:", e);
+        setError("Failed to fetch donation data: " + e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDonation();
   };
 
   const modalContent = (
@@ -87,27 +116,6 @@ const DonationCard = ({ params, ...props }) => {
       </button>
     </div>
   );
-
-  useEffect(() => {
-    setLoading(true);
-    const fetchDonation = async () => {
-      try {
-        const response = await fetch(`/api/donations/${params.id}`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log("Donation data:", data);
-        setDonation(data);
-      } catch (e) {
-        console.error("Failed to fetch donation data:", e);
-        setError("Failed to fetch donation data: " + e.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchDonation();
-  }, [reload]);
 
   return (
     <div className="donation-card">
