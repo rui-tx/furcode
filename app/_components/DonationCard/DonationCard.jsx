@@ -1,9 +1,10 @@
-"use client"; 
+"use client";
 import "./styles/index.css";
 import Modal from "../Modal/Modal";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
+import ShelterSelectFilter from "../ShelterSelectFilter/ShelterSelectFilter";
 
 const DonationCard = ({ params, ...props }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,18 +51,17 @@ const DonationCard = ({ params, ...props }) => {
 
   const handleDonation = () => {
     console.log(`Donation submitted: ${value}`);
-    console.log(user.id);
-    console.log(shelterId);
+    console.log("user id:", user.id);
+    console.log("shelter id:", shelterId);
+
   };
 
   const modalContent = (
     <div className="total-modal-donation-total">
       <form className="total-modal-donation" onSubmit={handleSubmit}>
-        <input
-          type="number"
-          placeholder="Digite o id do shelter para doar"
-          onChange={handleShelterId}
-        />
+        <div className="container-modal-dropdown-donations">
+          <ShelterSelectFilter />
+        </div>
         <p>Clique no botão abaixo para confirmar sua doação.</p>
         <button
           type="submit"
@@ -90,8 +90,6 @@ const DonationCard = ({ params, ...props }) => {
   );
 
   useEffect(() => {
-    if (!params.id) return;
-
     setLoading(true);
     const fetchDonation = async () => {
       try {
@@ -110,8 +108,7 @@ const DonationCard = ({ params, ...props }) => {
       }
     };
     fetchDonation();
-  }, [params.id, reload]);
-  
+  }, [reload]);
 
   return (
     <div className="donation-card">
