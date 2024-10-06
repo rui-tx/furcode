@@ -89,7 +89,7 @@ const AllDonationsById = () => {
     const transformedShelter = shelters.find(
       (shelter) => shelter.id === donation.shelterId
     );
-    const shelterName = transformedShelter?.name ;
+    const shelterName = transformedShelter.name ;
 
     return {
       ...donation,
