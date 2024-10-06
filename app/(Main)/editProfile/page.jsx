@@ -4,6 +4,7 @@ import EditProfileForm from "../../_components/EditProfileForm/EditProfileForm";
 import Table from "../../_components/Table/Table";
 import "./styles/index.css";
 import { useAuth } from "../../context/AuthContext";
+import AllDonationsById from "@/app/_components/AllDonationsById/AllDonationsById";
 
 const Page = () => {
   const { user } = useAuth();
@@ -36,13 +37,11 @@ const Page = () => {
     }
   };
 
-  useEffect(() => {
-    if (activeTable === "adoptedAnimals") {
-      fetchData("/api/ProfilePets");
-    } else if (activeTable === "donations") {
-      fetchData("/api/ProfileDonation");
-    }
-  }, [activeTable]);
+  // useEffect(() => {
+  //   if (activeTable === "adoptedAnimals") {
+  //     fetchData("/api/ProfilePets");
+  //   }
+  // }, [activeTable]);
 
   const handleTableChange = (newTable) => {
     setActiveTable(newTable);
@@ -52,6 +51,10 @@ const Page = () => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
     if (!activeTable) return null;
+
+    if (activeTable === "donations") {
+      return <AllDonationsById />;
+    }
 
     return (
       <Table
@@ -64,16 +67,16 @@ const Page = () => {
       />
     );
   };
+
   return (
     <div className="profile-page">
       <div className="profile-header">
         <h1>Your Pawsome Profile</h1>
-        <p> Welcome , {user?.firstName}</p>
+        <p>Welcome, {user?.firstName}</p>
         <p>Update your information and view your adoption journey</p>
       </div>
       <div className="profile-content">
         <EditProfileForm />
-
         <div className="activity-container">
           <h2>Your Activity</h2>
           <div className="table-controls">
