@@ -1,45 +1,54 @@
 import { NextResponse } from "next/server";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1"
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 
 export async function POST(request) {
-  const token = request.headers.get("Authorization")?.replace("Bearer ", "").trim();
+  const token = request.headers
+    .get("Authorization")
+    ?.replace("Bearer ", "")
+    .trim();
 
-  console.log(token);
-  
-  if(!token) {
+  if (!token) {
     return NextResponse.json(
       { error: "No authorization token provided" },
       { status: 401 }
     );
   }
 
+  const userId = request.headers.get("X-User-Id");
+
+  if (!userId) {
+    return NextResponse.json({ error: "User ID is required" }, { status: 400 });
+  }
+
   try {
     const body = await request.json();
-    const response = await fetch(`${API_BASE_URL}/shelter`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify(body),
-    });
+    const response = await fetch(
+      `${API_BASE_URL}/person/${userId}/create-shelter`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      }
+    );
 
     const data = await response.json();
 
-    console.log(data);
     if (response.ok) {
       return NextResponse.json(data, { status: 200 });
     } else {
       return NextResponse.json(
-        { message: data.message || "Failed to register shelter" },
+        { error: data.message || "Failed to create shelter" },
         { status: response.status }
       );
     }
   } catch (error) {
-    console.error("Error in shelter registration:", error);
+    console.error("Error in shelter creation:", error);
     return NextResponse.json(
-      { message: "Internal server error", error: error.message },
+      { error: "Internal server error", details: error.message },
       { status: 500 }
     );
   }

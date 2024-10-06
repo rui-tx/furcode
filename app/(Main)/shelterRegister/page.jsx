@@ -18,7 +18,6 @@ const Page = () => {
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [token, setToken] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,18 +27,10 @@ const Page = () => {
     }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setSuccessMessage("");
-    setErrorMessage("");
-
+  async function createShelter(shelterData) {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    const userId = userData.id;
     const token = localStorage.getItem("token");
-    if (!token) {
-      setErrorMessage(
-        "É necessário fazer o login para registar a sua associação."
-      );
-      return;
-    }
 
     try {
       const response = await fetch("/api/shelterRegister", {
@@ -47,36 +38,47 @@ const Page = () => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
+          "X-User-Id": userId.toString(),
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(shelterData),
       });
 
-      const result = await response.json();
-
-      console.log("Received response:", JSON.stringify(result, null, 2));
-
-      if (response.ok) {
-        setSuccessMessage("Registo efetuado com sucesso!");
-        setFormData({
-          name: "",
-          vat: "",
-          email: "",
-          address1: "",
-          address2: "",
-          postalCode: "",
-          phone: "",
-          size: "",
-          isActive: "",
-          creationDate: "",
-        });
-      } else {
-        setErrorMessage(
-          `Erro no registo: ${result.error || "Erro desconhecido"}`
-        );
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to create shelter");
       }
+
+      return await response.json();
     } catch (error) {
-      console.error("Error submitting form:", error);
-      setErrorMessage(`Erro ao enviar o formulário: ${error.message}`);
+      console.error("Error creating shelter:", error);
+      throw error;
+    }
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    try {
+      const result = await createShelter(formData);
+      console.log("Shelter created:", result);
+      setSuccessMessage("Registo efetuado com sucesso!");
+      setFormData({
+        name: "",
+        vat: "",
+        email: "",
+        address1: "",
+        address2: "",
+        postalCode: "",
+        phone: "",
+        size: "",
+        isActive: "",
+        creationDate: "",
+      });
+    } catch (error) {
+      console.error("Failed to create shelter:", error.message);
+      setErrorMessage(`Erro no registo: ${error.message}`);
     }
   };
 
@@ -173,16 +175,16 @@ const Page = () => {
                     value={formData.size}
                     required
                   />
-                   <input
+                  <input
                     type="text"
                     name="isActive"
                     placeholder="Ativo"
                     onChange={handleChange}
                     value={formData.isActive}
                     disabled
-                    style={{display:"none"}}
+                    style={{ display: "none" }}
                   />
-                   <input
+                  <input
                     type="date"
                     name="creationDate"
                     placeholder="data"
