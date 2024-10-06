@@ -4,6 +4,7 @@ import EditProfileForm from "../../_components/EditProfileForm/EditProfileForm";
 import Table from "../../_components/Table/Table";
 import "./styles/index.css";
 import { useAuth } from "../../context/AuthContext";
+import AllDonationsById from "@/app/_components/AllDonationsById/AllDonationsById";
 
 const Page = () => {
   const { user } = useAuth();
@@ -40,12 +41,18 @@ const Page = () => {
     if (activeTable === "adoptedAnimals") {
       fetchData("/api/ProfilePets");
     } else if (activeTable === "donations") {
-      fetchData("/api/ProfileDonation");
+      <AllDonationsById />;
+      console.log("Donations:");
     }
   }, [activeTable]);
 
   const handleTableChange = (newTable) => {
     setActiveTable(newTable);
+  };
+
+  const handleDonations = () => {
+    <AllDonationsById />;
+    console.log("Donations:");
   };
 
   const renderTable = () => {
@@ -78,10 +85,8 @@ const Page = () => {
           <h2>Your Activity</h2>
           <div className="table-controls">
             <button
-              onClick={() => handleTableChange("donations")}
-              className={`table-control-btn ${
-                activeTable === "donations" ? "active" : ""
-              }`}
+              onClick={() => handleDonations()}
+              className={`table-control-btn`}
             >
               Your Donations
             </button>
