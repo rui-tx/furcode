@@ -38,7 +38,8 @@ export async function POST(request) {
     const data = await response.json();
 
     if (response.ok) {
-      return NextResponse.json(data, { status: 200 });
+      // Include the shelter ID in the response
+      return NextResponse.json({ ...data, userId }, { status: 200 });
     } else {
       return NextResponse.json(
         { error: data.message || "Failed to create shelter" },

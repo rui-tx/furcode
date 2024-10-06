@@ -48,7 +48,13 @@ const Page = () => {
         throw new Error(errorData.error || "Failed to create shelter");
       }
 
-      return await response.json();
+      const result = await response.json();
+
+      // Update user data in localStorage with the new shelter ID
+      userData.shelterId = result.id;
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      return result;
     } catch (error) {
       console.error("Error creating shelter:", error);
       throw error;
@@ -63,7 +69,9 @@ const Page = () => {
     try {
       const result = await createShelter(formData);
       console.log("Shelter created:", result);
-      setSuccessMessage("Registo efetuado com sucesso!");
+      setSuccessMessage(
+        "Registo efetuado com sucesso! ID do abrigo: " + result.id
+      );
       setFormData({
         name: "",
         vat: "",
@@ -73,7 +81,7 @@ const Page = () => {
         postalCode: "",
         phone: "",
         size: "",
-        isActive: "",
+        isActive: "true",
         creationDate: "",
       });
     } catch (error) {
