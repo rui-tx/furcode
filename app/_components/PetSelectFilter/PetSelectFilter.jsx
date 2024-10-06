@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/index.css";
-import { useState } from "react";
 
 const PetSelectFilter = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +18,7 @@ const PetSelectFilter = () => {
   const handleSelect = (value) => {
     setSelected(value);
     setIsOpen(false);
+    setSelectedBreedId(""); // Reset selected breed when changing animal type
   };
 
   useEffect(() => {
@@ -33,6 +33,8 @@ const PetSelectFilter = () => {
           url = "/api/dogBreed";
           break;
         default:
+          setBreeds([]);
+          setLoading(false);
           return;
       }
       try {
@@ -41,9 +43,20 @@ const PetSelectFilter = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setBreeds(data);
+        console.log("API response:", data); // Debug: Log the API response
+
+        // Check if data is an array or has a 'breeds' property
+        if (Array.isArray(data)) {
+          setBreeds(data);
+        } else if (data && Array.isArray(data.breeds)) {
+          setBreeds(data.breeds);
+        } else {
+          console.error("Unexpected data format:", data);
+          setBreeds([]);
+        }
       } catch (e) {
         console.error("Failed to fetch breeds:", e);
+        setBreeds([]);
       } finally {
         setLoading(false);
       }
@@ -52,7 +65,7 @@ const PetSelectFilter = () => {
     fetchBreeds();
   }, [selected]);
 
-  const handleBreedInput = async (value) => {
+  const handleBreedInput = (value) => {
     setSelectedBreedId(value);
   };
 
@@ -98,15 +111,19 @@ const PetSelectFilter = () => {
             <option className="cute-select-options" value="">
               Raça...
             </option>
-            {breeds?.map((breed) => (
-              <option
-                className="cute-select-option"
-                key={breed.id}
-                value={breed.id}
-              >
-                {breed.name}
-              </option>
-            ))}
+            {Array.isArray(breeds) && breeds.length > 0 ? (
+              breeds.map((breed) => (
+                <option
+                  className="cute-select-option"
+                  key={breed.id || breed}
+                  value={breed.id || breed}
+                >
+                  {breed.name || breed}
+                </option>
+              ))
+            ) : (
+              <option disabled>No breeds available</option>
+            )}
           </select>
         </div>
       )}
