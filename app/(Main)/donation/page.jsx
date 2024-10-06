@@ -63,7 +63,6 @@ const page = () => {
               value={donation.value}
               header={donation.header}
               line1={donation.line1}
-              // params={{id: user.id}}
             />
           ))}
         </div>

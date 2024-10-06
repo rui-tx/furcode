@@ -49,12 +49,11 @@ const AdoptionRequestsPage = () => {
   
     const handleNameFetched = useCallback((id, name) => {
       setPersonNames(prev => {
-        if (prev[id] === name) return prev; // Prevent unnecessary updates
+        if (prev[id] === name) return prev; 
         return { ...prev, [id]: name };
       });
     }, []);
   
-    // Get unique person IDs
     const uniquePersonIds = [...new Set(adoptionRequests.map(request => request.personId))];
   
     const transformedData = adoptionRequests.map(request => ({

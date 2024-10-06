@@ -37,28 +37,24 @@ const Page = () => {
     }
   };
 
-  useEffect(() => {
-    if (activeTable === "adoptedAnimals") {
-      fetchData("/api/ProfilePets");
-    } else if (activeTable === "donations") {
-      <AllDonationsById />;
-      console.log("Donations:");
-    }
-  }, [activeTable]);
+  // useEffect(() => {
+  //   if (activeTable === "adoptedAnimals") {
+  //     fetchData("/api/ProfilePets");
+  //   }
+  // }, [activeTable]);
 
   const handleTableChange = (newTable) => {
     setActiveTable(newTable);
-  };
-
-  const handleDonations = () => {
-    <AllDonationsById />;
-    console.log("Donations:");
   };
 
   const renderTable = () => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
     if (!activeTable) return null;
+
+    if (activeTable === "donations") {
+      return <AllDonationsById />;
+    }
 
     return (
       <Table
@@ -71,22 +67,24 @@ const Page = () => {
       />
     );
   };
+
   return (
     <div className="profile-page">
       <div className="profile-header">
         <h1>Your Pawsome Profile</h1>
-        <p> Welcome , {user?.firstName}</p>
+        <p>Welcome, {user?.firstName}</p>
         <p>Update your information and view your adoption journey</p>
       </div>
       <div className="profile-content">
         <EditProfileForm />
-
         <div className="activity-container">
           <h2>Your Activity</h2>
           <div className="table-controls">
             <button
-              onClick={() => handleDonations()}
-              className={`table-control-btn`}
+              onClick={() => handleTableChange("donations")}
+              className={`table-control-btn ${
+                activeTable === "donations" ? "active" : ""
+              }`}
             >
               Your Donations
             </button>
