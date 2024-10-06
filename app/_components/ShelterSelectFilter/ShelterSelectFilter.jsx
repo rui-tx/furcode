@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import "./styles/index.css";
 
-const ShelterSelectFilter = () => {
+const ShelterSelectFilter = ({ onSelectedShelterId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedShelterId, setSelectedShelterId] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,8 +31,10 @@ const ShelterSelectFilter = () => {
       }
       const data = await response.json();
       console.log("Fetched data:", data);
+
       if (data.length === 0) {
         setHasMore(false);
+        
       } else {
         setShelters((prevShelters) => {
           const newShelters = data.filter(
@@ -74,19 +76,20 @@ const ShelterSelectFilter = () => {
   }, [isOpen]);
 
   const handleSelect = (value) => {
-    console.log("Selecting shelter:", value);
+    // console.log("Selecting shelter:", value);
     setSelectedShelterId(value);
     setIsOpen(false);
+    onSelectedShelterId(value);
   };
 
   const toggleDropdown = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Toggling dropdown. Current state:", isOpen);
+    // console.log("Toggling dropdown. Current state:", isOpen);
     setIsOpen((prevState) => !prevState);
   };
 
-  console.log("Render: isOpen =", isOpen, "selectedShelterId =", selectedShelterId);
+//   console.log("Render: isOpen =", isOpen, "selectedShelterId =", selectedShelterId);
 
   return (
     <div className="shelter-select-filter">
@@ -117,18 +120,18 @@ const ShelterSelectFilter = () => {
                 {shelter.name}
               </div>
             ))}
-            {!loading && hasMore && (
+            {/* {!loading && hasMore && (
               <div onClick={(e) => { e.stopPropagation(); fetchShelters(); }}>
                 Load more
               </div>
-            )}
+            )} */}
           </div>
         )}
       </div>
       {selectedShelterId && (
         <div className="shelter-info">
           <p>
-            Abrigo selecionado:{" "}
+            Associação selecionada:{" "}
             {shelters.find((s) => s.id === selectedShelterId)?.name}
           </p>
         </div>

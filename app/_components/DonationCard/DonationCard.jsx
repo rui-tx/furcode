@@ -11,10 +11,10 @@ const DonationCard = ({ params, ...props }) => {
   const router = useRouter();
   const { isLoggedIn, logout } = useAuth();
   const { user } = useAuth();
-  const [shelterId, setShelterId] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [reload, setReload] = useState(0);
+  const [idShelterSelected, setIdShelterSelected] = useState(null);
 
   const {
     value,
@@ -45,22 +45,21 @@ const DonationCard = ({ params, ...props }) => {
     router.push("/login");
   };
 
-  const handleShelterId = (e) => {
-    setShelterId(e.target.value);
+  const handleShelterId = (shelterId) => {
+    setIdShelterSelected(shelterId);
   };
 
   const handleDonation = () => {
     console.log(`Donation submitted: ${value}`);
     console.log("user id:", user.id);
-    console.log("shelter id:", shelterId);
-
+    console.log("shelter id:", idShelterSelected);
   };
 
   const modalContent = (
     <div className="total-modal-donation-total">
       <form className="total-modal-donation" onSubmit={handleSubmit}>
         <div className="container-modal-dropdown-donations">
-          <ShelterSelectFilter />
+          <ShelterSelectFilter onSelectedShelterId={handleShelterId} />
         </div>
         <p>Clique no botão abaixo para confirmar sua doação.</p>
         <button
