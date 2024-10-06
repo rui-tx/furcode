@@ -5,14 +5,14 @@ import "./styles/index.css";
 
 const Page = () => {
   const [formData, setFormData] = useState({
-    name: "nome",
-    vat: "1",
-    email: "q@c.com",
-    address1: "address1",
-    address2: "address2",
-    postalCode: "2",
-    phone: "3",
-    size: "4",
+    name: "",
+    vat: "",
+    email: "",
+    address1: "",
+    address2: "",
+    postalCode: "",
+    phone: "",
+    size: "",
     isActive: "true",
     creationDate: "",
   });
