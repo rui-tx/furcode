@@ -20,8 +20,9 @@
 .container-donation-image-card img {
   display: flex;
   justify-content: center;
-  max-width: 100%;
-  height: 80%;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
   border-radius: 20px;
 }
 
@@ -49,6 +50,12 @@
   padding: 1rem;
   position: relative;
   width: 30%;
+}
+
+.content {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 -5px;
 }
 
 .pricing-table .head {
@@ -108,8 +115,18 @@
   background: linear-gradient(to right, #8e2de2 0%, var(--accent) 100%);
   border-radius: 40px;
   font-weight: 500;
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  right: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px 1px;
+  white-space: wrap;
+  transition: all 0.5s ease;
+  text-align: center;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
 }
 
 .pricing-table .btn {
