@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 const AdoptionRequest = ({ petId, shelterId, personId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [state, setState] = useState("SENT");
 
   useEffect(() => {
     let isMounted = true;
     const controller = new AbortController();
 
-    const adoptBody = { shelterId, personId, petId };
+    const adoptBody = { shelterId, personId, petId, state };
     const fetchAdoptionRequest = async () => {
       const token = localStorage.getItem("token");
       try {

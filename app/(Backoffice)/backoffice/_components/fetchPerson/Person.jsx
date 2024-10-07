@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-const Person = ({ id, onNameFetched }) => {
+const Person = ({ id, onNameFetched, onEmailFetched }) => {
   const [personName, setPersonName] = useState("");
+  const [personEmail, setPersonEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,8 +24,8 @@ const Person = ({ id, onNameFetched }) => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setPersonName(data.name);
         onNameFetched(data.name);
+        onEmailFetched(data.email);
       } catch (e) {
         console.error("Failed to fetch person data:", e);
         setError("Failed to fetch person data: " + e.message);
@@ -34,7 +35,7 @@ const Person = ({ id, onNameFetched }) => {
     };
 
     fetchPerson();
-  }, [id, onNameFetched]);
+  }, [id, onNameFetched, onEmailFetched]);
 
   if (loading) return null;
   if (error) return <div>Error: {error}</div>;

@@ -14,8 +14,7 @@
 .backoffice-adoption-requests-container button{
     display: flex;
     align-items: center;
-
-    padding: 10px 15px;
+    padding: 7px 8px;
     background-color: grey;
     color: white;
     border: none;

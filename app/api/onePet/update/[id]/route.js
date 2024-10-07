@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 
-export async function POST(req) {
+export async function PATCH(req, { params }) {
+  const { id } = params;
   try {
     const token = req.headers
       .get("Authorization")
@@ -14,34 +15,21 @@ export async function POST(req) {
         { status: 401 }
       );
     }
+    const petData = await req.json();
+    console.log("Received pet data:", petData);
 
-    const adoptionData = await req.json();
-    console.log("Received adoption data:", adoptionData); 
-
-    if (
-      !adoptionData.shelterId ||
-      !adoptionData.personId ||
-      !adoptionData.petId 
-    ) {
-      return NextResponse.json(
-        { error: "shelterId, personId, and petId are required" },
-        { status: 400 }
-      );
-    }
-
-    const url = `${API_BASE_URL}/adoption-request`;
+    const url = `${API_BASE_URL}/pet/update/${id}`;
     const response = await fetch(url, {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(adoptionData),
+      body: JSON.stringify(petData),
     });
 
     const data = await response.json();
     console.log("API response:", data);
-
 
     if (response.ok) {
       return NextResponse.json(data, { status: 200 });
