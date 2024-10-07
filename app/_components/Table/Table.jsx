@@ -10,11 +10,14 @@ const Table = ({
   currentId,
   deleteEndpoint,
   onDataChange,
+  onAccept,
+  onRefuse
 }) => {
   const [data, setData] = useState(initialData);
   const [editingRow, setEditingRow] = useState(null);
   const [editedData, setEditedData] = useState({});
   const [updatedRow, setUpdatedRow] = useState(null);
+
 
   const renderValue = (item, header) => {
     const value = item[header.columnName];
@@ -95,6 +98,18 @@ const Table = ({
     setEditingRow(null);
   };
 
+  const handleAccept = (id) => {
+    if (onAccept) {
+      onAccept(id);
+    }
+  };
+
+  const handleRefuse = (id) => {
+    if (onRefuse) {
+      onRefuse(id);
+    }
+  };
+
   const renderInputField = (header, value) => {
     switch (header.type) {
       case "bool":
@@ -147,7 +162,7 @@ const Table = ({
           {headers.map((header, index) => (
             <li key={index}>{header.prettyLabel}</li>
           ))}
-          {(enableEdit || enableDelete) && <li>Quick Actions</li>}
+          <li>Actions</li>
         </ul>
       </div>
 
@@ -164,29 +179,29 @@ const Table = ({
                   : renderValue(item, header)}
               </li>
             ))}
-            {(enableEdit || enableDelete) && (
-              <li>
-                {editingRow === item.id ? (
-                  <>
-                    <button onClick={handleSave}>Save</button>
-                    <button onClick={handleCancel}>Cancel</button>
-                  </>
-                ) : (
-                  <>
-                    {enableEdit && (
-                      <button onClick={() => handleEdit(item.id, item)}>
-                        Edit
-                      </button>
-                    )}
-                    {enableDelete && (
-                      <button onClick={() => handleDelete(item.id)}>
-                        Delete
-                      </button>
-                    )}
-                  </>
-                )}
-              </li>
-            )}
+            <li>
+              {editingRow === item.id ? (
+                <>
+                  <button onClick={handleSave}>Save</button>
+                  <button onClick={handleCancel}>Cancel</button>
+                </>
+              ) : (
+                <>
+                  {enableEdit && (
+                    <button onClick={() => handleEdit(item.id, item)}>
+                      Edit
+                    </button>
+                  )}
+                  {enableDelete && (
+                    <button onClick={() => handleDelete(item.id)}>
+                      Delete
+                    </button>
+                  )}
+                  <button onClick={() => handleAccept(item.id)}>Accept</button>
+                  <button onClick={() => handleRefuse(item.id)}>Refuse</button>
+                </>
+              )}
+            </li>
           </ul>
           <ul className="more-content">
             <li></li>

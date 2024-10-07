@@ -19,17 +19,6 @@ export async function PATCH(req, { params }) {
     const adoptionData = await req.json();
     console.log("Received adoption data:", adoptionData);
 
-    if (
-      !adoptionData.shelterId ||
-      !adoptionData.personId ||
-      !adoptionData.petId
-    ) {
-      return NextResponse.json(
-        { error: "shelterId, personId, and petId are required" },
-        { status: 400 }
-      );
-    }
-
     const url = `${API_BASE_URL}/adoption-request/update/${id}`;
     const response = await fetch(url, {
       method: "PATCH",
