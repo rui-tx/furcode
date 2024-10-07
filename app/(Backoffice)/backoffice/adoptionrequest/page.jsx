@@ -8,6 +8,8 @@ const AdoptionRequestsPage = () => {
   const [error, setError] = useState(null);
   const [adoptionRequests, setAdoptionRequests] = useState([]);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [petId, setPetId] = useState(0);
+  const [isAccepted, setIsAccepted] = useState(false);
 
   const headers = [
     { prettyLabel: "ID", columnName: "id", type: "number" },
@@ -103,8 +105,10 @@ const AdoptionRequestsPage = () => {
       }
       const data = await response.json();
       console.log("Adoption request updated:", data);
-      
-      setRefreshTrigger(prev => prev + 1);
+      setPetId(data.petId);
+      console.log("Pet ID: ", petId);
+
+      setRefreshTrigger((prev) => prev + 1);
     } catch (e) {
       console.error("Failed to update adoption request:", e);
       setError("Failed to update adoption request: " + e.message);
@@ -115,11 +119,48 @@ const AdoptionRequestsPage = () => {
 
   const handleAccept = async (id) => {
     await handleStateChange(id, "ACCEPTED");
+    setIsAccepted(true);
   };
 
   const handleRefuse = async (id) => {
     await handleStateChange(id, "REFUSED");
   };
+
+  const handlePetAdopted = useCallback(async () => {
+    if (petId === 0) return; 
+
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      const response = await fetch(`/api/onePet/update/${petId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ isAdopted: true }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Pet adoption status updated:", data);
+
+      setRefreshTrigger((prev) => prev + 1);
+      setIsAccepted(false); 
+    } catch (e) {
+      console.error("Failed to update pet adoption status:", e);
+      setError("Failed to update pet adoption status: " + e.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [petId]);
+
+  useEffect(() => {
+    if (isAccepted && petId !== 0) {
+      handlePetAdopted();
+    }
+  }, [isAccepted, petId, handlePetAdopted]);
 
   if (loading) return <div>Loading adoption requests...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -137,6 +178,8 @@ const AdoptionRequestsPage = () => {
         onAccept={handleAccept}
         onRefuse={handleRefuse}
       />
+
+      {isAccepted && handlePetAdopted(petId)}
     </div>
   );
 };
