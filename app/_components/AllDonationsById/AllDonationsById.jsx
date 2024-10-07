@@ -89,8 +89,8 @@ const AllDonationsById = () => {
     const transformedShelter = shelters.find(
       (shelter) => shelter.id === donation.shelterId
     );
-    const shelterName = transformedShelter.name ;
-
+    const shelterName = transformedShelter?.name || "Abrigo não encontrado";
+  
     return {
       ...donation,
       date: new Date(donation.date).toLocaleDateString(),
@@ -98,9 +98,9 @@ const AllDonationsById = () => {
       shelter: shelterName,
     };
   });
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  
+  if (loading || shelters.length === 0) return <div>Loading...</div>;
+  
 
   return (
     <div className="container-donations-all">
