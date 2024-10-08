@@ -15,6 +15,7 @@ const Page = () => {
     size: "",
     isActive: "true",
     creationDate: "",
+    description: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -83,6 +84,7 @@ const Page = () => {
         size: "",
         isActive: "true",
         creationDate: "",
+        description: "",
       });
     } catch (error) {
       console.error("Failed to create shelter:", error.message);
@@ -95,6 +97,9 @@ const Page = () => {
       <div className="shelter-register-container">
         <h2 className="shelter-register-title">Registe a Sua Associação</h2>
         <div className="shelter-register-content-wrapper">
+          <div className="shelter-register-image">
+            <div className="shelter-register-image-container"></div>
+          </div>
           <div className="shelter-register-content">
             <div className="shelter-register-text">
               <p>
@@ -201,6 +206,15 @@ const Page = () => {
                     placeholder="data"
                     onChange={handleChange}
                     value={formData.creationDate}
+                    required
+                  />
+                  <input
+                    className="shelter-register-container-input-description"
+                    type="text"
+                    name="description"
+                    placeholder="Escreva uma breve descrição sobre sua associação"
+                    onChange={handleChange}
+                    value={formData.description}
                     required
                   />
                 </div>

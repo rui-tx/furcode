@@ -9,7 +9,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("https://st2.depositphotos.com/1106005/7729/i/450/depositphotos_77293322-stock-photo-gray-and-white-dog-paw.jpg");
+  background-image: url("../../../_images/backgroundimage.jpg");
   opacity: 0.1;
   z-index: -1;
 }
