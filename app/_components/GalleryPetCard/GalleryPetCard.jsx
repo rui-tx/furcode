@@ -32,7 +32,7 @@ const GalleryPetCard = ({ name, image, description, age, breed, onClick }) => {
           <div className="pet-image-placeholder">No Image Available</div>
         )}
       </div>
-      <div className="pet-info">
+      <div className="pet-info-gallery">
         <h3>{name}</h3>
         <p>
           {breed} • {age} anos
