@@ -8,11 +8,13 @@
 .ShelterGallery-banner {
   width: 80%;
   height: 200px;
+  margin-top: 1%;
+  margin-bottom: 20px;
 }
 .shelterGallery-cards {
   width: 80%;
   display: flex;
-  margin-top: 8%;
+  margin-top: 4%;
   flex-wrap: wrap;
   justify-content: space-evenly;
   flex: 1 0 auto;
@@ -25,14 +27,14 @@
 }
 
 .shelterGallery-search-bar{
-  position: absolute;
+  position: relative;
   display: flex;
-  width: 80%;
+  width: 100%;
   height: 30px;
-  margin-top: 2%;
+  margin: 20px 0;
   justify-content: center;
   align-items: center;
-
+  margin-bottom: 20px;
 }
 
 .input-search-shelter{
@@ -51,3 +53,28 @@
   padding: 0.09em;
 }
 
+@media (max-width: 768px) {
+  .shelterGallery-container {
+    width: 100%;
+    padding: 0 5%;
+  }
+
+  .shelterGallery-search-bar {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+  .shelterGallery-cards {
+    width: 100%;
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 425px) {
+  .shelterGallery-cards {
+    width: 100%;
+    margin-top: 50%;
+  }
+}

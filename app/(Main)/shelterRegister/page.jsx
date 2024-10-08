@@ -101,16 +101,19 @@ const Page = () => {
                 Junte-se à Furcode e faça parte de uma comunidade dedicada a
                 encontrar lares para os animais que mais precisam.
               </p>
+              <br />
               <p>
                 Ao registar a sua associação, estará a dar uma nova oportunidade
                 aos nossos amigos de quatro patas, ampliando o alcance das suas
                 ações e tornando o processo de adoção ainda mais simples e
                 acessível.
               </p>
+              <br />
               <p>
                 Queremos caminhar ao seu lado na missão de proporcionar novas
                 famílias a estes animais.
               </p>
+              <br />
               <p>Registe a sua associação e ajude-nos a fazer a diferença!</p>
             </div>
             <div className="shelter-register-form-wrapper">
