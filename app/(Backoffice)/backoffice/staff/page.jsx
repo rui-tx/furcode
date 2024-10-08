@@ -28,7 +28,7 @@ const StaffPage = () => {
     setIsLoading(true);
     try {
       const userData = JSON.parse(localStorage.getItem("user"));
-      const shelterId = userData.shelterId; // Assuming the shelter ID is stored in the user data
+      const shelterId = userData.shelterId; 
       const token = localStorage.getItem("token");
 
       const response = await fetch(`/api/getStaffInShelter/${shelterId}`, {

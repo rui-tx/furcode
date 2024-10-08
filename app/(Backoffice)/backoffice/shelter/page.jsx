@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import Table from "@/app/_components/Table/Table";
 import "./styles/index.css";
@@ -32,40 +31,90 @@ const ShelterBackofficePage = () => {
   }, []);
 
   const fetchShelterData = async () => {
+    console.log("Fetching shelter data");
     setIsLoading(true);
     try {
       const userData = JSON.parse(localStorage.getItem("user"));
       const shelterId = userData.shelterId;
       const token = localStorage.getItem("token");
+      console.log("Shelter ID:", shelterId);
+      console.log("Token:", token);
 
       if (!shelterId) {
         throw new Error("No shelter ID found for this user");
       }
-
       const response = await fetch(`/api/getShelter/${shelterId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Failed to fetch shelter data");
       }
-
       const data = await response.json();
+      console.log("Fetched shelter data:", data);
       setShelterData([data]);
     } catch (err) {
+      console.error("Error fetching shelter data:", err);
       setError(err.message);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const handleDataChange = async (newData) => {
+    console.log("Data changed:", newData);
+    if (newData && newData.length > 0) {
+      const updatedShelter = newData[0];
+      try {
+        const token = localStorage.getItem("token");
+        console.log("Using token for save:", token);
+
+        const response = await fetch(
+          `/api/v1/shelter/update/${updatedShelter.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(updatedShelter),
+          }
+        );
+
+        console.log("Response status:", response.status);
+
+        if (!response.ok) {
+          let errorMessage;
+          if (response.status === 404) {
+            errorMessage = `Shelter with ID ${updatedShelter.id} not found`;
+          } else {
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+              const errorData = await response.json();
+              errorMessage = errorData.error || "Failed to update shelter data";
+            } else {
+              errorMessage = await response.text();
+            }
+          }
+          throw new Error(errorMessage);
+        }
+
+        const savedShelter = await response.json();
+        console.log("Saved shelter data:", savedShelter);
+
+        setShelterData([savedShelter]);
+      } catch (err) {
+        console.error("Error saving shelter data:", err);
+        setError(err.message);
+      }
+    }
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -78,10 +127,11 @@ const ShelterBackofficePage = () => {
           key="shelter"
           headers={shelterHeaders}
           initialData={shelterData}
-          enableEdit={false}
+          enableEdit={true}
           enableDelete={false}
           currentId={null}
           deleteEndpoint=""
+          onDataChange={handleDataChange}
         />
       )}
     </div>
