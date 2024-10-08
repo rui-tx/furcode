@@ -11,7 +11,6 @@ const Page = () => {
   const [error, setError] = useState(null);
   const [petId, setPetId] = useState(0);
 
-
   const petsHeaders = [
     { prettyLabel: "Pet ID", columnName: "id", type: "number" },
     { prettyLabel: "Pet Name", columnName: "name", type: "string" },
@@ -50,36 +49,60 @@ const Page = () => {
     }
   };
 
-  const handleSavePet = useCallback(
-    async (editedPet) => {
-      try {
-        setLoading(true);
-        const token = localStorage.getItem("token");
-        const response = await fetch(`/api/onePet/update/${petId}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(editedPet),
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log("Pet adoption status updated:", data);
+  const handleSavePet = useCallback(async (editedPet) => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      const url = `/api/onePet/update/${editedPet.id}`;
 
-        setRefreshTrigger((prev) => prev + 1);
-        setIsAccepted(false);
-      } catch (e) {
-        console.error("Failed to update pet adoption status:", e);
-        setError("Failed to update pet adoption status: " + e.message);
-      } finally {
-        setLoading(false);
+      console.log("Sending PATCH request to:", url);
+      console.log("Request payload:", JSON.stringify(editedPet, null, 2));
+
+      const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(editedPet),
+      });
+
+      console.log("Response status:", response.status);
+      console.log(
+        "Response headers:",
+        JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2)
+      );
+
+      if (!response.ok) {
+        const responseText = await response.text();
+        console.log("Error response body:", responseText);
+
+        if (response.status === 404) {
+          throw new Error(
+            `Pet not found. The ID ${editedPet.id} may be incorrect.`
+          );
+        }
+
+        throw new Error(
+          `HTTP error! status: ${response.status}, body: ${responseText}`
+        );
       }
-    },
-    [petId]
-  );
+
+      const updatedPet = await response.json();
+      console.log("Pet updated:", updatedPet);
+
+      // Update the pet in the local state
+      setPets((prevPets) =>
+        prevPets.map((pet) => (pet.id === updatedPet.id ? updatedPet : pet))
+      );
+    } catch (e) {
+      console.error("Failed to update pet:", e);
+      setError("Failed to update pet: " + e.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   const handleDeletePet = async (petId) => {
     try {
       const response = await fetch(`/api/v1/pet/delete/${petId}`, {

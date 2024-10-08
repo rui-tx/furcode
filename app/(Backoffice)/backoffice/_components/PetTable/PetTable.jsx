@@ -1,58 +1,29 @@
 import React, { useState } from "react";
-import Table from "@/app/_components/Table/Table";
-import "./styles/index.css";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
+import EditPetModal from "../EditPetModal/EditPetModal";
+import "./styles/index.css";
 
 const PetTable = ({ pets, headers, onSave, onDelete }) => {
   const [editingPet, setEditingPet] = useState(null);
   const [error, setError] = useState(null);
 
-  const handleEdit = (id, pet) => {
-    setEditingPet({ id, ...pet });
-    setError(null);
+  const handleEdit = (pet) => {
+    setEditingPet(pet);
   };
 
-  const handleSave = async () => {
-    if (editingPet) {
-      try {
-        await onSave(editingPet);
-        setEditingPet(null);
-        setError(null);
-      } catch (error) {
-        setError(`Failed to save: ${error.message}`);
-      }
+  const handleSave = async (editedPet) => {
+    try {
+      await onSave(editedPet);
+      setEditingPet(null);
+      setError(null);
+    } catch (error) {
+      setError(`Failed to save: ${error.message}`);
     }
   };
 
   const handleCancel = () => {
     setEditingPet(null);
     setError(null);
-  };
-
-  const handleInputChange = (e, columnName) => {
-    const value =
-      e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setEditingPet((prev) => ({ ...prev, [columnName]: value }));
-  };
-
-  const renderEditableRow = (pet) => {
-    return headers.map((header) => (
-      <td key={header.columnName}>
-        {header.type === "bool" ? (
-          <input
-            type="checkbox"
-            checked={editingPet[header.columnName]}
-            onChange={(e) => handleInputChange(e, header.columnName)}
-          />
-        ) : (
-          <input
-            type="text"
-            value={editingPet[header.columnName]}
-            onChange={(e) => handleInputChange(e, header.columnName)}
-          />
-        )}
-      </td>
-    ));
   };
 
   return (
@@ -72,49 +43,38 @@ const PetTable = ({ pets, headers, onSave, onDelete }) => {
         <tbody>
           {pets.map((pet) => (
             <tr key={pet.id}>
-              {editingPet && editingPet.id === pet.id ? (
-                <>
-                  {renderEditableRow(pet)}
-                  <td>
-                    <button className="save-button" onClick={handleSave}>
-                      Save
-                    </button>
-                    <button className="cancel-button" onClick={handleCancel}>
-                      Cancel
-                    </button>
-                  </td>
-                </>
-              ) : (
-                <>
-                  {headers.map((header) => (
-                    <td key={header.columnName}>
-                      {header.type === "bool"
-                        ? pet[header.columnName]
-                          ? "Yes"
-                          : "No"
-                        : pet[header.columnName]}
-                    </td>
-                  ))}
-                  <td className="pet-table-actions">
-                    <button
-                      className="edit-button"
-                      onClick={() => handleEdit(pet.id, pet)}
-                    >
-                      <FiEdit /> Edit
-                    </button>
-                    <button
-                      className="delete-button"
-                      onClick={() => onDelete(pet.id)}
-                    >
-                      <FiTrash2 /> Delete
-                    </button>
-                  </td>
-                </>
-              )}
+              {headers.map((header) => (
+                <td key={header.columnName}>
+                  {header.type === "bool"
+                    ? pet[header.columnName]
+                      ? "Yes"
+                      : "No"
+                    : pet[header.columnName]}
+                </td>
+              ))}
+              <td className="pet-table-actions">
+                <button className="edit-button" onClick={() => handleEdit(pet)}>
+                  <FiEdit /> Edit
+                </button>
+                <button
+                  className="delete-button"
+                  onClick={() => onDelete(pet.id)}
+                >
+                  <FiTrash2 /> Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {editingPet && (
+        <EditPetModal
+          pet={editingPet}
+          headers={headers}
+          onSave={handleSave}
+          onCancel={handleCancel}
+        />
+      )}
       {error && <div className="error-message">{error}</div>}
     </div>
   );
