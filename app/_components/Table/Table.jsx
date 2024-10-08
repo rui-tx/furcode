@@ -11,13 +11,12 @@ const Table = ({
   deleteEndpoint,
   onDataChange,
   onAccept,
-  onRefuse
+  onRefuse,
 }) => {
   const [data, setData] = useState(initialData);
   const [editingRow, setEditingRow] = useState(null);
   const [editedData, setEditedData] = useState({});
   const [updatedRow, setUpdatedRow] = useState(null);
-
 
   const renderValue = (item, header) => {
     const value = item[header.columnName];
@@ -197,8 +196,17 @@ const Table = ({
                       Delete
                     </button>
                   )}
-                  <button onClick={() => handleAccept(item.id)}>Accept</button>
-                  <button onClick={() => handleRefuse(item.id)}>Refuse</button>
+
+                  {onAccept && (
+                    <button onClick={() => handleAccept(item.id)}>
+                      Accept
+                    </button>
+                  )}
+                  {onRefuse && (
+                    <button onClick={() => handleRefuse(item.id)}>
+                      Refuse
+                    </button>
+                  )}
                 </>
               )}
             </li>
