@@ -73,6 +73,13 @@
   font-weight: bold;
 }
 
+.title-donation {
+  color: var(--accent);
+  font-size: larger;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 .pricing-table .content .price {
   background: linear-gradient(to right, #8e2de2 0%, var(--accent) 100%);
   width: 90px;
@@ -86,7 +93,7 @@
 }
 
 .pricing-table:hover .content .price {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .pricing-table .content .price h1 {
@@ -133,6 +140,7 @@
   transition: all 0.3 linear;
   border: none;
   font-size: 14px;
+  width: 98%;
   text-transform: capitalize;
   position: relative;
   text-decoration: none;
@@ -151,7 +159,7 @@
   color: #333;
 }
 .pricing-table:hover .btn.bordered {
-  color: #fff !important;
+  cursor: pointer;
 }
 
 .pricing-table .btn.bordered:after {

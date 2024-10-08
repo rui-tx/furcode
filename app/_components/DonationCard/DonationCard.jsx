@@ -128,7 +128,7 @@ const DonationCard = ({ ...props }) => {
       </div>
       <div className="pricing-table gprice-single">
         <div className="head">
-          <h4 className="title">{header}</h4>
+          <h4 className="title-donation">{header}</h4>
         </div>
 
         <div className="content">

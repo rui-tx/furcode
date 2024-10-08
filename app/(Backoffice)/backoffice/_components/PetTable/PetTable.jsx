@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Table from "@/app/_components/Table/Table";
 import "./styles/index.css";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 
 const PetTable = ({ pets, headers, onSave, onDelete }) => {
   const [editingPet, setEditingPet] = useState(null);
@@ -55,10 +56,13 @@ const PetTable = ({ pets, headers, onSave, onDelete }) => {
   };
 
   return (
-    <div className="custom-table-container">
-      <table>
-        <thead className="custom-table-title">
-          <tr className="custom-table-row">
+    <div className="pet-table-container">
+      <div className="pet-table-header">
+        <h2 className="pet-table-title">Pet Adoption Backoffice</h2>
+      </div>
+      <table className="pet-table">
+        <thead>
+          <tr>
             {headers.map((header) => (
               <th key={header.columnName}>{header.prettyLabel}</th>
             ))}
@@ -67,13 +71,17 @@ const PetTable = ({ pets, headers, onSave, onDelete }) => {
         </thead>
         <tbody>
           {pets.map((pet) => (
-            <tr key={pet.id} className="custom-table-row">
+            <tr key={pet.id}>
               {editingPet && editingPet.id === pet.id ? (
                 <>
                   {renderEditableRow(pet)}
                   <td>
-                    <button onClick={handleSave}>Save</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                    <button className="save-button" onClick={handleSave}>
+                      Save
+                    </button>
+                    <button className="cancel-button" onClick={handleCancel}>
+                      Cancel
+                    </button>
                   </td>
                 </>
               ) : (
@@ -87,11 +95,19 @@ const PetTable = ({ pets, headers, onSave, onDelete }) => {
                         : pet[header.columnName]}
                     </td>
                   ))}
-                  <td>
-                    <button onClick={() => handleEdit(pet.id, pet)}>
-                      Edit
+                  <td className="pet-table-actions">
+                    <button
+                      className="edit-button"
+                      onClick={() => handleEdit(pet.id, pet)}
+                    >
+                      <FiEdit /> Edit
                     </button>
-                    <button onClick={() => onDelete(pet.id)}>Delete</button>
+                    <button
+                      className="delete-button"
+                      onClick={() => onDelete(pet.id)}
+                    >
+                      <FiTrash2 /> Delete
+                    </button>
                   </td>
                 </>
               )}
@@ -99,7 +115,7 @@ const PetTable = ({ pets, headers, onSave, onDelete }) => {
           ))}
         </tbody>
       </table>
-      {error && <div className="custom-table-error">{error}</div>}
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 };
