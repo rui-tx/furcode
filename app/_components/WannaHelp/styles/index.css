@@ -12,3 +12,9 @@
   color: var(--default-font-color);
   text-align: center;
 }
+
+@media (max-width: 425px) {
+  .wannahelp-text {
+    margin-top: 5%;
+  }
+}
