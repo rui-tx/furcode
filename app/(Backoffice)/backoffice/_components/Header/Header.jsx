@@ -13,7 +13,7 @@ const Header = ({ userName }) => {
   return (
     <header className="backoffice-header">
       <div className="backoffice-header-logo">
-        <h1>PetAdopt CRM</h1>
+        <h1>Furcode CRM</h1>
       </div>
       <div className="backoffice-header-right">
         <span className="backoffice-header-user">Olá, {userName}</span>
