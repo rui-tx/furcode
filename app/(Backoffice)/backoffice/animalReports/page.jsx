@@ -1,5 +1,6 @@
 import Table from "@/app/_components/Table/Table";
 import React from "react";
+import "./styles/index.css";
 
 const Page = () => {
   const headers = [
@@ -46,7 +47,7 @@ const Page = () => {
         key={1}
         headers={headers}
         initialData={data}
-        enableEdit={false}
+        enableEdit={true}
         enableDelete={false}
         currentId={null}
         deleteEndpoint=""

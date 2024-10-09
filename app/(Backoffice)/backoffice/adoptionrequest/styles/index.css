@@ -1,29 +1,31 @@
-.backoffice-adoption-requests-container{
-    width: 80%;
+.backoffice-adoption-requests-container {
+  width: 80%;
+  position: absolute;
+  top: 20%;
 }
 
-.backoffice-adoption-requests-container .table-container{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+.backoffice-adoption-requests-container .table-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .row ul li {
-    gap: 15px;
+  gap: 15px;
 }
 
-.backoffice-adoption-requests-container button{
-    display: flex;
-    align-items: center;
-    padding: 7px 8px;
-    background-color: grey;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+.backoffice-adoption-requests-container button {
+  display: flex;
+  align-items: center;
+  padding: 7px 8px;
+  background-color: grey;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-.backoffice-adoption-requests-container button:hover{
-    text-decoration: underline;
+.backoffice-adoption-requests-container button:hover {
+  text-decoration: underline;
 }

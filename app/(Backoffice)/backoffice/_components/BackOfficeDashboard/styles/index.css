@@ -1,0 +1,79 @@
+.dashboard-title {
+  color: #e91e63;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fff0f3;
+  border: 1px solid #ffc0cb;
+  border-radius: 8px;
+  padding: 15px;
+  width: 22%;
+  min-height: 200px;
+  text-align: center;
+  margin: 20px;
+}
+
+.stat-card h3 {
+  color: #e91e63;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.quick-actions {
+  background-color: #fff0f3;
+  border: 1px solid #ffc0cb;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 20%;
+}
+
+.quick-actions h2 {
+  color: #e91e63;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.action-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.action-buttons button {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 20px 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.action-buttons button:hover {
+  background-color: #c2185b;
+}
