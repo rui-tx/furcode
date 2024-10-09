@@ -5,8 +5,19 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 import ShelterSelectFilter from "../ShelterSelectFilter/ShelterSelectFilter";
-
+import { loadStripe } from "@stripe/stripe-js";
+import PaymentForm from "../PaymentForm/PaymentForm";
+import {
+  Elements,
+  PaymentElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 const DonationCard = ({ ...props }) => {
+  const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  );
+  const [clientSecret, setClientSecret] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const { isLoggedIn, logout } = useAuth();
@@ -57,33 +68,68 @@ const DonationCard = ({ ...props }) => {
     setIdShelterSelected(shelterId);
   };
 
-  const handleDonation = () => {
+  const handleDonation = async () => {
     if (!user || !user.id) return;
     setLoading(true);
-    const fetchDonation = async () => {
-      try {
-        const response = await fetch(`/api/donations/${user?.id}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(donationBody),
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log("Donation data:", data);
-      } catch (e) {
-        console.error("Failed to fetch donation data:", e);
-        setError("Failed to fetch donation data: " + e.message);
-      } finally {
-        setLoading(false);
+    try {
+      const response = await fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: value,
+          currency: "eur",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    };
-    fetchDonation();
+
+      const data = await response.json();
+      setClientSecret(data.clientSecret);
+    } catch (e) {
+      console.error("Failed to create PaymentIntent:", e);
+      setError("Failed to create PaymentIntent: " + e.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
+  const handlePayment = async (event) => {
+    event.preventDefault();
+
+    if (!stripe || !elements) {
+      // Stripe.js has not yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
+
+    setLoading(true);
+
+    const result = await stripe.confirmPayment({
+      //`Elements` instance that was used to create the Payment Element
+      elements,
+      confirmParams: {
+        return_url: "http://localhost:3000/donation-success",
+      },
+    });
+
+    if (result.error) {
+      // Show error to your customer
+      console.log(result.error.message);
+      setError(result.error.message);
+    } else {
+      // The payment has been processed!
+      if (result.paymentIntent.status === "succeeded") {
+        console.log("Payment succeeded!");
+        // Here you can call your backend to save the donation
+      }
+    }
+
+    setLoading(false);
+  };
   const modalContent = (
     <div className="total-modal-donation-total">
       <form className="total-modal-donation" onSubmit={handleSubmit}>
@@ -92,13 +138,18 @@ const DonationCard = ({ ...props }) => {
         </div>
         <p>Clique no botão abaixo para confirmar sua doação.</p>
         <button
-          type="submit"
+          type="button"
           className="donation-form-button"
           onClick={handleDonation}
         >
           Confirmar Doação
         </button>
       </form>
+      {clientSecret && (
+        <Elements stripe={stripePromise} options={{ clientSecret }}>
+          <PaymentForm clientSecret={clientSecret} />
+        </Elements>
+      )}
     </div>
   );
 
