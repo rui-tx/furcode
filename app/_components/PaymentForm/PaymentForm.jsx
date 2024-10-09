@@ -1,12 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   useStripe,
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
 
-const PaymentForm = ({ clientSecret }) => {
+const PaymentForm = ({ clientSecret, donationDetails }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -14,13 +13,10 @@ const PaymentForm = ({ clientSecret }) => {
 
   const handlePayment = async (event) => {
     event.preventDefault();
-
     if (!stripe || !elements) {
       return;
     }
-
     setLoading(true);
-
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
@@ -31,13 +27,32 @@ const PaymentForm = ({ clientSecret }) => {
     if (result.error) {
       setError(result.error.message);
     } else {
-      // The payment has been processed!
       if (result.paymentIntent.status === "succeeded") {
         console.log("Payment succeeded!");
-        // Here you can call your backend to save the donation
+        // Save the donation to the database
+        try {
+          const response = await fetch("/api/donations", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ...donationDetails,
+              paymentIntentId: result.paymentIntent.id,
+            }),
+          });
+          if (!response.ok) {
+            throw new Error("Failed to save donation");
+          }
+          // Redirect to success page or show success message
+          window.location.href = "/donation-sucess";
+        } catch (error) {
+          setError(
+            "Payment successful, but failed to save donation. Please contact support."
+          );
+        }
       }
     }
-
     setLoading(false);
   };
 
@@ -49,4 +64,5 @@ const PaymentForm = ({ clientSecret }) => {
     </form>
   );
 };
+
 export default PaymentForm;
