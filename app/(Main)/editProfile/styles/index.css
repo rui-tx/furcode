@@ -139,12 +139,33 @@ button:hover {
   display: none;
 }
 @media (max-width: 768px) {
+  .profile-form {
+    margin: 0 auto;
+    width: 100%;
+  }
+
   .profile-content {
     flex-direction: column;
+    align-items: center;
   }
 
   .edit-form-container,
   .activity-container {
     width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 425px) {
+  .activity-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table-controls {
+    flex-direction: column;
+    gap: .5rem;
   }
 }
