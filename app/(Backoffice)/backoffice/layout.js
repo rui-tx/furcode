@@ -4,11 +4,10 @@ import { AuthProvider } from "../../context/AuthContext";
 import "./backoffice.css";
 
 export default function BackOfficeLayout({ children }) {
-  const userName = "Paulo";
   return (
     <AuthProvider>
       <div className="back-office-layout">
-        <BackOfficeHeader userName={userName} />
+        <BackOfficeHeader />
         <div className="backoffice-content">
           <Sidebar />
           <main className="backoffice-main">{children}</main>

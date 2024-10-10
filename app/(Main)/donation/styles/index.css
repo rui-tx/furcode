@@ -33,7 +33,7 @@
 .total-value h1 {
   position: absolute;
   top: 15%;
-  color: var(--default-font-color);
+  color: #6a0dad;
   font-size: 3.5em;
 }
 
@@ -62,6 +62,7 @@
 .container-donation-after-values {
   position: relative;
   width: 100%;
+  z-index: -1;
   height: 20vh;
 }
 

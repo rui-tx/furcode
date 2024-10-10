@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles/index.css";
+import Link from "next/link";
 
 const BackofficeContent = () => {
   return (
@@ -29,10 +30,18 @@ const BackofficeContent = () => {
         <div className="quick-actions">
           <h2>Quick Actions</h2>
           <div className="action-buttons">
-            <button>Add New Animal</button>
-            <button>Process Adoption</button>
-            <button>Manage Volunteers</button>
-            <button>View Reports</button>
+            <Link href="/backoffice/pets" className="action-link">
+              Add New Animal
+            </Link>
+            <Link href="/backoffice/adoptionrequest" className="action-link">
+              Process Adoption
+            </Link>
+            <Link href="/backoffice/staff" className="action-link">
+              Manage Volunteers
+            </Link>
+            <Link href="/backoffice/animalReports" className="action-link">
+              View Reports
+            </Link>
           </div>
         </div>
       </div>

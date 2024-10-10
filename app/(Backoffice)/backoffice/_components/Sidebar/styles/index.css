@@ -52,3 +52,24 @@
 .sidebar-item span {
   font-size: 16px;
 }
+
+@media (max-width: 768px) {
+  .backoffice-sidebar {
+
+    width: 80px;
+  }
+
+  .sidebar-item span {
+    display: none;
+  }
+
+  .sidebar-item {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .sidebar-item svg {
+    margin-right: 0;
+    font-size: 24px;
+  }
+}
