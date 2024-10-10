@@ -14,7 +14,7 @@ const Page = ({ params }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [shelter, setShelter] = useState([]);
-  const [coordinates, setCoordinates] = useState([41.1517, -8.6099]); // Estado para coordenadas
+  const [coordinates, setCoordinates] = useState([41.1517, -8.6099]);
 
   useEffect(() => {
     if (!params.id) {
@@ -51,7 +51,6 @@ const Page = ({ params }) => {
         setShelter(data);
         console.log("Received shelter data:", data);
 
-        // Aqui você busca as coordenadas após obter os dados do abrigo
         fetchCoordinates(data.address1);
       } catch (e) {
         setError("Failed to fetch shelter data: " + e.message);
@@ -115,7 +114,18 @@ const Page = ({ params }) => {
           <span>
             <strong>E-mail:</strong> {shelter.email}
           </span>
-          <button className="contact-button">Entrar em Contato</button>
+          <button
+            className="contact-button"
+            onClick={() => {
+              const subject = encodeURIComponent("Interesse em adoção");
+              const body = encodeURIComponent(
+                `Olá ${shelter.name},\n\nGostaria de saber mais sobre o processo de adoção.\n\nAtenciosamente,\n[Seu Nome]`
+              );
+              window.location.href = `mailto:${shelter.email}?subject=${subject}&body=${body}`;
+            }}
+          >
+            Entrar em Contato
+          </button>
         </div>
       </div>
 
@@ -159,9 +169,15 @@ const Page = ({ params }) => {
       <div className="detailed-description">
         <h2>Redes Sociais</h2>
         <p>Links para as redes sociais do abrigo.</p>
-        <p>Facebook: <a href="{shelter.facebook}">{shelter.facebook}</a></p>
-        <p>Instagram: <a href="{shelter.instagram}">{shelter.instagram}</a></p>
-        <p>WebPage: <a href="{shelter.twitter}">{shelter.twitter}</a></p>
+        <p>
+          Facebook: <a href="{shelter.facebook}">{shelter.facebookUrl}</a>
+        </p>
+        <p>
+          Instagram: <a href="{shelter.instagram}">{shelter.instagramUrl}</a>
+        </p>
+        <p>
+          WebPage: <a href="{shelter.twitter}">{shelter.webPageUrl}</a>
+        </p>
       </div>
     </div>
   );
