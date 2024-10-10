@@ -3,7 +3,7 @@
   border-radius: 20px;
   padding: 20px 20px;
   margin: 20px 0;
-  box-shadow: 0 4px 15px rgba(106, 13, 173, 0.1);
+  box-shadow: 0 4px 15px var(--accent-shadow);
 }
 
 .impact-section h2 {
@@ -33,7 +33,7 @@
 
 .stat:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(106, 13, 173, 0.15);
+  box-shadow: 0 6px 20px var(--accent-shadow);
 }
 
 .stat h3 {
