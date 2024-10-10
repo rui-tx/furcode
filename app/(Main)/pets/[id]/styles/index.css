@@ -45,26 +45,23 @@
 
 .adopt-button {
   font-size: 1.5rem;
-  padding: 1rem;
+  padding: 15px 25px;
   background-color: #4caf50;
   color: white;
+  font-weight: bold;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: var(--default-button-border-radius);
   cursor: pointer;
   margin-top: 3rem;
-  width: 250px;
 }
 
-.like-button {
-  font-size: 1.2rem;
-  padding: 1rem;
-  background-color: var(--accent);
-  color: var(--default-background);
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  width: 250px;
+.adopt-button::before {
+  content: "🐾 ";
+  margin-right: 5px;
+}
+
+.adopt-button:hover{
+  scale: 1.1;
 }
 
 .full-width-container {
@@ -82,7 +79,7 @@
   position: absolute;
   top: 0px;
   right: 0px;
-  bottom: 0px;
+  bottom: -400px;
   left: 0px;
   opacity: 0.1;
   z-index: -10;
@@ -145,7 +142,7 @@
   font-size: 1.2em;
   color: var(--default-button-font-color);
   background-color: var(--default-button-bg-color);
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   border: none;
   cursor: pointer;
 }
@@ -182,7 +179,7 @@
   font-size: 1.2em;
   color: var(--default-button-font-color);
   background-color: var(--default-button-bg-color);
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   border: none;
   margin-top: 20px;
   cursor: pointer;
@@ -233,7 +230,7 @@
   font-size: 1.2em;
   color: var(--default-button-font-color);
   background-color: var(--default-button-bg-color);
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   border: none;
   cursor: pointer;
 }

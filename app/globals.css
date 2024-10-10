@@ -36,7 +36,7 @@ main {
   --default-button-bg-color: #ff9494;
   --default-button-bg-disabled-color: #4a4a4a;
   --default-button-bg-color-hover: #fd5252;
-  --default-button-border-radius: 0.5rem;
+  --default-button-border-radius: 30px;
 
   /* a from form */
   --default-a-font-color: #4a4a4a;
