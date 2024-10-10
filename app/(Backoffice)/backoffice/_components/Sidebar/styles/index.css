@@ -3,7 +3,7 @@
   height: 75vh;
   background-color: #f8f8f8;
   padding: 20px 0;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 0 5px var(--accent-shadow);
 }
 
 .backoffice-sidebar ul {

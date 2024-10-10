@@ -38,7 +38,7 @@
 .filter-select:focus {
   outline: none;
   border-color: #8a6cbe;
-  box-shadow: 0 0 0 3px rgba(138, 108, 190, 0.25);
+  box-shadow: 0 0 0 3px var(--accent-shadow);
 }
 
 .filter-select:hover {
