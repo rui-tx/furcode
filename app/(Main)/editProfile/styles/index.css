@@ -9,8 +9,9 @@
   margin: 2rem auto;
   padding: 2rem;
   background-color: var(--card-background);
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(255, 107, 107, 0.1);
+  border-radius: var(--default-button-border-radius);
+  box-shadow: 0 8px 24px var(--accent-shadow);
+  /* border: 1px solid  var(--default-border-color); */
 }
 
 .profile-header {
@@ -20,7 +21,7 @@
 
 .profile-header h1 {
   font-size: 2.8rem;
-  color: var(--primary--color--to--editProfile);
+  color: var(--default-border-color);
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
@@ -44,12 +45,13 @@
   border-radius: 15px;
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px dashed var(--default-border-color);
 }
 
 h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: var(--primary--color--to--editProfile);
+  color: var(--default-border-color);
   font-weight: 600;
 }
 
@@ -61,10 +63,10 @@ h2 {
 
 .table-control-btn {
   padding: 0.75rem 1.5rem;
-  background-color: var(--secundary--color--to--editProfile);
+  background-color: var(--default-border-color);
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: var(--default-button-border-radius);
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -73,7 +75,7 @@ h2 {
 
 .table-control-btn:hover,
 .table-control-btn.active {
-  background-color: var(--primary--color--to--editProfile);
+  text-decoration: underline;
   transform: translateY(-2px);
 }
 
@@ -126,13 +128,13 @@ button {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #ff8c8c;
+  text-decoration: underline;
 }
 
 .table-container ul.more-content li {
@@ -166,6 +168,6 @@ button:hover {
 
   .table-controls {
     flex-direction: column;
-    gap: .5rem;
+    gap: 0.5rem;
   }
 }

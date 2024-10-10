@@ -34,7 +34,7 @@
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: var(--default-button-border-radius);
   cursor: pointer;
   margin-top: 5%;
   transition: background-color 0.3s ease;

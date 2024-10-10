@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import "./styles/index.css";
+import { useAuth } from "../../context/AuthContext";
 
 const Page = () => {
+  const { updateUser } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     vat: "",
@@ -54,9 +56,14 @@ const Page = () => {
 
       const result = await response.json();
 
-      // Update user data in localStorage with the new shelter ID
+      // Atualiza o localStorage e o estado do contexto Auth com os novos dados
       userData.shelterId = result.id;
+      userData.role = "MANAGER";
       localStorage.setItem("user", JSON.stringify(userData));
+      console.log(userData);
+
+      // Chama a função updateUser do contexto Auth para refletir as mudanças no estado
+      updateUser({ shelterId: result.id, role: "MANAGER" });
 
       return result;
     } catch (error) {

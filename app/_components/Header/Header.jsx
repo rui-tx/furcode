@@ -7,6 +7,9 @@ import logotipo from "../../_images/logotipo.png";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
+
+
+  
   // const [location, setLocation] = useState(() => {
   //   const storedLocation = localStorage.getItem("userLocation");
   //   return storedLocation ? JSON.parse(storedLocation) : null;
@@ -14,6 +17,17 @@ const Header = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+
+
+
+const ableToOpenBackOffice = () => {
+  if (user.role === "MANAGER") {
+    setAbleToBackOffice(true);
+  } else {
+    setAbleToBackOffice(false);
+  }
+};
   // useEffect(() => {
   //   if (!location && navigator.geolocation) {
   //     navigator.geolocation.getCurrentPosition(
@@ -59,17 +73,16 @@ const Header = () => {
             <li>
               <Link href="/pets">ANIMAIS</Link>
             </li>
-            <li>
-              <Link href="/shelter">ASSOCIAÇÕES</Link>
-            </li>
+
             <li>
               <Link href="/donation">DOAÇÕES</Link>
             </li>
             {isLoggedIn ? (
               <>
                 <li>
-                  <Link href="/backoffice">BackOffice</Link>
+                  <Link href="/shelter">ASSOCIAÇÕES</Link>
                 </li>
+                
                 <li>
                   <Link href="/editProfile">EDITAR PERFIL</Link>
                 </li>
