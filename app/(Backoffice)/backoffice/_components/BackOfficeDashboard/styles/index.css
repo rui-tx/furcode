@@ -77,3 +77,33 @@
 .action-buttons button:hover {
   background-color: #c2185b;
 }
+
+@media (max-width: 1024px) {
+  .stat-card {
+    width: 30%;
+    padding: 10px;
+    margin: 10px;
+    min-height: 150px;
+  }
+
+  .stat-card h3 {
+    font-size: 20px;
+  }
+
+  .stat-card p {
+    font-size: 20px;
+  }
+
+  .quick-actions {
+    padding: 15px;
+  }
+
+  .action-buttons button {
+    padding: 15px 20px;
+    font-size: 14px;
+  }
+
+  .backoffice-container {
+    padding-right: 10%;
+  }
+}
