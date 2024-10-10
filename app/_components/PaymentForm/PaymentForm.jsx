@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   useStripe,
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
+import { useState } from "react";
 
 const PaymentForm = ({ clientSecret, donationDetails }) => {
   const stripe = useStripe();
@@ -20,51 +21,49 @@ const PaymentForm = ({ clientSecret, donationDetails }) => {
 
     setLoading(true);
 
+    const result = await stripe.confirmPayment({
+      elements,
+      redirect: "if_required",
+    });
+
+    if (result.error) {
+      setError(result.error.message);
+      setLoading(false);
+    } else {
+      // Payment succeeded
+      await handlePaymentSuccess(result.paymentIntent);
+    }
+  };
+
+  const handlePaymentSuccess = async (paymentIntent) => {
     try {
-      const result = await stripe.confirmPayment({
-        elements,
-        redirect: "if_required",
+      console.log("Payment Intent:", paymentIntent);
+      const requestBody = {
+        paymentIntentId: paymentIntent.id,
+        shelterId: donationDetails.shelterId,
+      };
+      console.log("Request body:", JSON.stringify(requestBody));
+
+      const response = await fetch(`/api/donations/${donationDetails.userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
       });
 
-      if (result.error) {
-        throw new Error(result.error.message);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      if (result.paymentIntent.status === "succeeded") {
-        console.log("Payment succeeded!");
-
-        const response = await fetch(
-          `/api/person/${donationDetails.userId}/donate`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              total: donationDetails.amount,
-              currency: "eur",
-              date: new Date().toISOString(),
-              shelterId: donationDetails.shelterId,
-              personId: donationDetails.userId,
-              paymentIntentId: result.paymentIntent.id,
-              paymentMethod: result.paymentIntent.payment_method,
-            }),
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`Failed to save donation: ${response.statusText}`);
-        }
-
-        const donationData = await response.json();
-        console.log("Donation saved:", donationData);
-
-        // Handle successful donation (e.g., show a success message, redirect)
-        window.location.href = `/donation-success?payment_intent=${result.paymentIntent.id}`;
-      }
+      const data = await response.json();
+      console.log("Donation saved:", data);
+      // Handle successful donation (e.g., show success message, redirect)
     } catch (error) {
-      console.error("Error:", error);
-      setError(error.message || "An error occurred. Please try again.");
+      console.error("Failed to save donation:", error);
+      setError(
+        "Payment successful, but failed to save donation. Please contact support."
+      );
     } finally {
       setLoading(false);
     }
@@ -74,7 +73,7 @@ const PaymentForm = ({ clientSecret, donationDetails }) => {
     <form onSubmit={handleSubmit}>
       <PaymentElement />
       <button type="submit" disabled={!stripe || loading}>
-        Submit Payment
+        {loading ? "Processing..." : "Pay"}
       </button>
       {error && <div>{error}</div>}
     </form>
