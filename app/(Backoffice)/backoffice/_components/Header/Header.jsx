@@ -1,14 +1,19 @@
+"use client";
 import React from "react";
 import { Bell, User, LogOut } from "lucide-react";
 import "./styles/index.css";
+import { useRouter } from "next/navigation";
 
 const Header = ({ userName }) => {
+  const router = useRouter();
 
-
+  const handleLogout = () => {
+    router.push("/");
+  };
   return (
     <header className="backoffice-header">
       <div className="backoffice-header-logo">
-        <h1>PetAdopt CRM</h1>
+        <h1>Furcode CRM</h1>
       </div>
       <div className="backoffice-header-right">
         <span className="backoffice-header-user">Olá, {userName}</span>
@@ -19,7 +24,7 @@ const Header = ({ userName }) => {
         <div className="backoffice-header-user-icon">
           <User size={24} />
         </div>
-        <button className="backoffice-header-logout">
+        <button className="backoffice-header-logout" onClick={handleLogout}>
           <LogOut size={24} />
           <span>Sair</span>
         </button>

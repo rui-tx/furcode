@@ -1,0 +1,85 @@
+.shelter-select-filter {
+    width: 100%;
+    position: relative;
+    font-family: "Arial", sans-serif;
+  }
+
+ .container-modal-dropdown-donations{
+    width: 100%;
+ }
+  
+  .cute-select-container-donation {
+    position: relative;
+    width: 100%;
+    font-family: "Arial", sans-serif;
+  }
+  
+  .cute-select-donation-button {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #f0e6ff;
+    border: 2px solid #d0bdf4;
+    border-radius: 25px;
+    font-size: 16px;
+    color: #6a4c93;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+  
+  .cute-select-donation-button:hover,
+  .cute-select-donation-button.open {
+    background-color: #e1d2ff;
+    box-shadow: 0 4px 8px rgba(106, 76, 147, 0.2);
+  }
+  
+  .cute-select-donation-arrow {
+    float: right;
+    transition: transform 0.3s ease;
+  }
+  
+  .cute-select-donation-button.open .cute-select-donation-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .cute-select-donation-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 2px solid #d0bdf4;
+    border-radius: 15px;
+    margin-top: 5px;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(106, 76, 147, 0.15);
+    max-height: 200px; 
+    overflow-y: auto;  
+  }
+  
+  .cute-select-donation-option {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .cute-select-donation-option:hover,
+  .cute-select-donation-option.selected {
+    background-color: #f0e6ff;
+  }
+  
+  .cute-select-donation-option.selected {
+    background-color: #d0bdf4;
+    font-weight: bold;
+  }
+  
+  .shelter-info {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f0e6ff;
+    border: 1px solid #d0bdf4;
+    border-radius: 10px;
+    color: #6a4c93;
+  }
+  

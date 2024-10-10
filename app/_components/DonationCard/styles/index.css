@@ -3,7 +3,6 @@
   border: 1px solid var(--default-border-color);
   border-radius: 20px;
   width: 30%;
-  min-height: 100%;
   display: flex;
   box-shadow: 0px 0px 18px var(--accent-shadow);
   background-color: white;
@@ -20,8 +19,9 @@
 .container-donation-image-card img {
   display: flex;
   justify-content: center;
-  max-width: 100%;
-  height: 80%;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
   border-radius: 20px;
 }
 
@@ -48,13 +48,17 @@
   text-align: center;
   padding: 1rem;
   position: relative;
-  width: 30%;
+  width: 40%;
+}
 
+.content {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 -5px;
 }
 
 .pricing-table .head {
   border-bottom: 1px solid #eee;
-  padding-bottom: 50px;
   transition: all 0.5s ease;
 }
 
@@ -63,6 +67,13 @@
 }
 
 .pricing-table .head .title {
+  color: var(--accent);
+  font-size: larger;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.title-donation {
   color: var(--accent);
   font-size: larger;
   margin-bottom: 20px;
@@ -78,12 +89,11 @@
   border-radius: 50%;
   border: 5px solid #fff;
   box-shadow: 0px 0px 10px #ccc;
-  margin-top: -50px;
   transition: all 0.5s ease;
 }
 
 .pricing-table:hover .content .price {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .pricing-table .content .price h1 {
@@ -109,8 +119,14 @@
   background: linear-gradient(to right, #8e2de2 0%, var(--accent) 100%);
   border-radius: 40px;
   font-weight: 500;
-  position: relative;
-  display: inline-block;
+  align-items: center;
+  padding: 1px 1px;
+  white-space: wrap;
+  transition: all 0.5s ease;
+  text-align: center;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
 }
 
 .pricing-table .btn {
@@ -124,6 +140,7 @@
   transition: all 0.3 linear;
   border: none;
   font-size: 14px;
+  width: 98%;
   text-transform: capitalize;
   position: relative;
   text-decoration: none;
@@ -142,7 +159,7 @@
   color: #333;
 }
 .pricing-table:hover .btn.bordered {
-  color: #fff !important;
+  cursor: pointer;
 }
 
 .pricing-table .btn.bordered:after {
@@ -166,6 +183,92 @@
 .pricing-table:hover .btn.bordered:after {
   opacity: 0;
   transform: scale(0);
+}
+
+.container-adoption-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.container-adoption-modal-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--default-font-color);
+}
+
+.container-adoption-modal-button {
+  width: 50%;
+  height: 40px;
+  font-size: 1.2em;
+  color: var(--default-button-font-color);
+  background-color: var(--default-button-bg-color);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.container-adoption-modal-button:hover {
+  background-color: var(--default-button-hover-bg-color);
+}
+
+.total-modal-donation-total {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.total-modal-donation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: white;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+}
+
+.total-modal-donation input {
+  width: 80%;
+  height: 35px;
+  padding-left: 15px;
+  outline: none;
+  border: 1px solid var(--default-border-color);
+  margin-bottom: 1rem;
+}
+
+.total-modal-donation p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--default-font-color);
+  line-height: 1.6;
+}
+
+.donation-form-button {
+  width: 50%;
+  height: 40px;
+  font-size: 1.2em;
+  color: var(--default-button-font-color);
+  background-color: var(--default-button-bg-color);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.donation-form-button:hover {
+  background-color: var(--default-button-hover-bg-color);
 }
 
 @media (max-width: 1024px) {

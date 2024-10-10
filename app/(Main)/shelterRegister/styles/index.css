@@ -1,133 +1,173 @@
 .page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.page-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../_images/backgroundimage.jpg");
+  opacity: 0.1;
+  z-index: -1;
 }
 
 .shelter-register-container {
-    max-width: 80%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--default-border-color);
-    box-shadow: 1px 1px 1px var( --accent-shadow);
-    border-radius: var(--default-border-radius);
-    overflow: hidden;
-    background-image: url('../../../_images/background.jpg');
-    background-size: cover;
-    background-position: left center;
-  }
- 
-  .shelter-register-title{
-    color: var(--default-font-color);
-    text-align: center;
-    font-size: 2.5em;
-    margin: 20px 0;
+  position: relative;
+  width: 70%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--default-border-color);
+  box-shadow: 1px 1px 1px var(--accent-shadow);
+  border-radius: var(--default-border-radius);
+  background-color: white;
+  /* background-color: #e7fbf9; */
+  
+}
+
+.shelter-register-title {
+  color: var(--default-font-color);
+  text-align: center;
+  font-size: 2.5em;
+  margin: 20px 0;
+}
+
+.shelter-register-content-wrapper {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.shelter-register-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  justify-content: end;
+  align-items: end;
+}
+
+.shelter-register-image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 70%;
+  background-image: url("../../../_images/dogandcatshelterregister.png");
+}
+
+.shelter-register-content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 50%;
+  padding: 50px;
+}
+
+.shelter-register-text {
+  margin-bottom: 20px;
+}
+
+.shelter-register-form-wrapper {
+  flex: 1;
+}
+
+.shelter-register-container-register {
+  display: flex;
+  flex-direction: column;
+}
+
+.shelter-register-container-input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.shelter-register-container-input input {
+  width: 100%;
+  height: 35px;
+  padding-left: 15px;
+  outline: none;
+  border: 1px solid var(--default-border-color);
+  border-radius: 5px;
+}
+
+.shelter-register-container-button button {
+  width: 200px;
+  height: 40px;
+  font-size: 1.2em;
+  color: var(--default-button-font-color);
+  background-color: var(--default-button-bg-color);
+  border-radius: var(--default-button-border-radius);
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.shelter-register-container-button button:hover {
+  background-color: var(--default-button-bg-color-hover);
+}
+
+.shelter-register-success-message {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: var(--success-bg-color);
+  border-radius: var(--default-border-radius);
+  color: var(--success);
+  font-weight: bold;
+}
+
+.shelter-register-container-input-description {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+@media (max-width: 768px) {
+  .shelterRegisterContainer {
+    width: 95%;
   }
 
   .shelter-register-content-wrapper {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   .shelter-register-content {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    padding: 20px;
-    width: 50%;
-  }
-  
-  .shelter-register-text {
-    margin-bottom: 20px;
-  }
-
-  .shelter-register-form-wrapper{
-    flex: 1;
-  }
-  
-  .shelter-register-container-register {
-    display: flex;
-    flex-direction: column;
-  }
- 
-  .shelter-register-container-input {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .shelter-register-container-input input {
     width: 100%;
-    height: 35px;
-    padding-left: 15px;
-    outline: none;
-    border: 1px solid var(--default-border-color);
-    border-radius: 5px;
+    align-items: center;
   }
-  
-  .shelter-register-container-button button {
-    width: 200px;
-    height: 40px;
-    font-size: 1.2em;
-    color: var(--default-button-font-color);
-    background-color: var(--default-button-bg-color);
-    border-radius: var(--default-button-border-radius);
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
+
+  .shelter-register-text,
+  .shelter-register-form-wrapper {
+    width: 100%;
+    max-width: 500px;
   }
-  
-  .shelter-register-container-button button:hover {
-    background-color: var(--default-button-bg-color-hover);
+}
+
+@media (max-width: 425px) {
+  .shelter-register-container {
+    height: auto;
   }
-  
-  .shelter-register-success-message{
-    text-align: center;
-    margin-top: 20px;
+
+  .shelter-register-content {
     padding: 10px;
-    background-color: var(--success-bg-color);
-    border-radius: var(--default-border-radius);
-    color: var(--success);
-    font-weight: bold;
-  }
-  
-  @media (max-width: 768px) {
-    .shelterRegisterContainer {
-      width: 95%;
-    }
-
-    .shelter-register-content-wrapper {
-        justify-content: center;
-    }
-    
-    .shelter-register-content {
-        width: 100%;
-        align-items: center;
-    }
-
-    .shelter-register-text,
-    .shelter-register-form-wrapper{
-        width: 100%;
-        max-width: 500px;
-    }
   }
 
-  @media (max-width: 425px) {
-    .shelter-register-container {
-        height: auto;
-    }
-
-    .shelter-register-content {
-        padding: 10px;
-    }
-
-    .shelter-register-title {
-        font-size: 2em;
-    }
+  .shelter-register-title {
+    font-size: 2em;
   }
+}

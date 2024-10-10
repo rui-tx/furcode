@@ -1,16 +1,18 @@
 .table-container {
   width: 100%;
-  margin: 1rem auto 1rem auto;
+  margin: 1rem auto;
   background: var(--default-background);
   color: var(--default-font-color);
-  overflow: hidden;
-  position: relative;
+  overflow-x: auto;
 }
 
-/* lists */
 .row ul {
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .row ul li {
@@ -18,124 +20,55 @@
   font-size: 16px;
   font-weight: normal;
   list-style: none;
-  display: inline-block;
-  width: 20%;
+  flex: 1;
+  padding: 15px;
   box-sizing: border-box;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
 }
 
-@media only screen and (max-width: 767px) and (min-width: 480px),
-  only screen and (max-width: 479px) {
-  .row ul li {
-    font-size: 13px;
-  }
+.title {
+  background-color: var(--accent);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .title ul li {
   font-weight: bold;
-  padding: 15px 13px;
+  padding: 15px 10px;
 }
 
-.row ul li {
-  padding: 5px 10px;
-}
-
-/* rows */
-.row {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.2s ease-out;
-  border-top: 1px solid rgba(0, 0, 0, 1); /* darken($light-bg, 100%) equivalent */
-}
-
-.row:hover {
-  background-color: #ff949425; /* lighten($dark-bg, 10%) equivalent */
-  height: auto;
-}
-
-.row ul li:hover {
-  white-space: wrap;
-}
-
+/* Responsive adjustments */
 @media only screen and (max-width: 767px) {
-  .row:hover {
-    height: auto;
+  .row ul li {
+    font-size: 14px;
+    padding: 8px 5px;
+  }
+
+  .title ul li {
+    padding: 12px 5px;
   }
 }
 
-@media only screen and (max-width: 359px) {
-  .row:hover {
-    height: auto;
-  }
+.more-content {
+  display: none !important;
 }
 
-.title {
-  padding: 25px 0 5px 0;
-  height: 45px;
-  font-size: 0;
-  background-color: var(--accent);
-}
-
-.title:hover {
-  height: 45px;
-  background-color: var(--accent);
-}
-
-.title-hide {
-  @media only screen and (max-width: 767px) {
-    display: none;
-  }
-}
-
-/* update content */
 .update-row {
   animation: update 1s ease;
 }
 
-/* more content */
-ul.more-content li {
-  position: relative;
-  top: 22px;
-  font-size: 13px;
-  margin: 0;
-  padding: 10px 13px;
-  display: block;
-  height: 50px;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.45); /* darken($text, 50%) equivalent */
-}
-
-@media only screen and (max-width: 767px) {
-  ul.more-content li {
-    font-size: 11px;
-  }
-}
-
-/* small content */
-.small {
-  color: rgba(0, 0, 0, 0.54); /* darken($text, 60%) equivalent */
-  font-size: 10px;
-  padding: 0 10px;
-  margin: 0;
-}
-
-@media only screen and (max-width: 767px) {
-  .small {
-    display: none;
-  }
-}
-
-/* keyframe animations */
 @keyframes update {
-  0% {
+  0%,
+  100% {
     background: var(--default-background);
   }
   50% {
     background: var(--success);
-  }
-  100% {
-    background: var(--default-background);
   }
 }

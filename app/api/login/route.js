@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const API_BASE_URL = "http://localhost:8080/api/v1";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL + "/v1";
 
 async function loginUser(url, email, password) {
   const response = await fetch(url, {
@@ -15,12 +15,12 @@ async function loginUser(url, email, password) {
 }
 
 export async function POST(req) {
+  console.log(API_BASE_URL);
   const { email, password } = await req.json();
 
   /****    APENAS PARA TESTE DEPOIS APAGAR    ****/
   if (email === "teste@teste.com" && password === "teste") {
     return NextResponse.json(
-      { message: "Login de teste bem-sucedido", token: "fake-token" },
       { status: 200 }
     );
   }
@@ -47,6 +47,8 @@ export async function POST(req) {
 
     if (response.ok) {
       const data = await response.json();
+      console.log("Login response data:", data);
+
       return NextResponse.json(data, { status: 200 });
     }
 

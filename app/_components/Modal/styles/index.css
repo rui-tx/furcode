@@ -16,7 +16,7 @@
 .modalContent {
   background-color: white;
   border-radius: 1rem;
-  max-width: 50%;
+  max-width: 90%;
   padding: 1rem;
   width: 100%;
   z-index: 1001;
@@ -25,6 +25,7 @@
 .modalTitle {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .modalText {

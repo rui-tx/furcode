@@ -36,3 +36,15 @@
   margin-top: 0;
   width: 100%;
 }
+
+@media ( max-width: 768px) {
+  .carousel-petcontainer {
+    margin-top: 10%;
+  }
+}
+
+@media (max-width: 425px) {
+  .carousel-petcontainer {
+    margin-top: 15%;
+  }
+}

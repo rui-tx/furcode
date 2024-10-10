@@ -5,8 +5,10 @@ import DonationCard from "../../_components/DonationCard/DonationCard";
 import TotalDonations from "../../_components/TotalDonations/TotalDonations";
 import "./styles/index.css";
 import DonationsCarousel from "../../_components/DonationsCarousel/DonationsCarousel";
+import { useAuth } from "../../context/AuthContext";
 
 const page = () => {
+  const { user } = useAuth();
   const donationSettings = [
     {
       imageUrlDonation:
@@ -16,7 +18,6 @@ const page = () => {
         "Ajuda a comprar ração para um dia de um cão ou gato",
       value: "5",
       header: "Silver",
-      line1: "Line 1",
     },
     {
       imageUrlDonation:
@@ -26,7 +27,6 @@ const page = () => {
         "Contribui para alimentos e cuidados de saúde básicos.",
       value: "10",
       header: "Gold",
-      line1: "Line 1",
     },
     {
       imageUrlDonation:
@@ -35,7 +35,6 @@ const page = () => {
       descriptionDonation: "Auxilia na vacinação e tratamento de dois animais.",
       value: "15",
       header: "Platinum",
-      line1: "Line 1",
     },
   ];
 
@@ -60,7 +59,6 @@ const page = () => {
               descriptionDonation={donation.descriptionDonation}
               value={donation.value}
               header={donation.header}
-              line1={donation.line1}
             />
           ))}
         </div>

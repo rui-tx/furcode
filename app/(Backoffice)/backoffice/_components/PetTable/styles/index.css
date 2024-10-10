@@ -1,0 +1,216 @@
+/* Pet Adoption Backoffice Table Styles */
+
+.pet-table-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.pet-table-header {
+  background-color: #ffcccb;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pet-table-title {
+  color: #e84a5f;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.pet-table-title svg {
+  margin-right: 0.5rem;
+}
+
+.add-pet-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-pet-button:hover {
+  background-color: #45a049;
+}
+
+.pet-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pet-table th {
+  background-color: #ffeaeb;
+  color: #e84a5f;
+  font-weight: bold;
+  text-align: left;
+  padding: 1rem;
+}
+
+.pet-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.pet-table tr:hover {
+  background-color: #fff0f5;
+}
+
+.pet-table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-button,
+.delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #e6f7ff;
+}
+
+.delete-button:hover {
+  background-color: #fff2f0;
+}
+
+.edit-button svg,
+.delete-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.edit-button svg {
+  color: #1890ff;
+}
+
+.delete-button svg {
+  color: #ff4d4f;
+}
+
+.editable-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+}
+
+.editable-checkbox {
+  width: 18px;
+  height: 18px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.save-button {
+  background-color: #52c41a;
+  color: white;
+  margin-right: 0.5rem;
+}
+
+.cancel-button {
+  background-color: #f5f5f5;
+  color: #595959;
+}
+
+.error-message {
+  color: #ff4d4f;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  background-color: #fff2f0;
+  border: 1px solid #ffccc7;
+  border-radius: 4px;
+}
+
+.pet-table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-button,
+.delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 2px solid;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.edit-button {
+  color: #4caf50;
+  border-color: #4caf50;
+}
+
+.edit-button:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+.delete-button {
+  color: #ff4d4f;
+  border-color: #ff4d4f;
+}
+
+.delete-button:hover {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.edit-button:focus,
+.delete-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.edit-button svg,
+.delete-button svg {
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .pet-table-container {
+    margin: 1rem;
+  }
+
+  .pet-table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-pet-button {
+    margin-top: 1rem;
+  }
+
+  .pet-table th,
+  .pet-table td {
+    padding: 0.5rem;
+  }
+}

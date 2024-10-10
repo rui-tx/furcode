@@ -8,6 +8,8 @@
 .ShelterGallery-banner {
   width: 80%;
   height: 200px;
+  margin-top: 1%;
+  margin-bottom: 20px;
 }
 .shelterGallery-cards {
   width: 80%;
@@ -16,4 +18,63 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   flex: 1 0 auto;
+}
+
+.container-gallery-cards-shelter{
+  width: auto;
+  height: auto;
+  margin: 20px;
+}
+
+.shelterGallery-search-bar{
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 30px;
+  margin: 20px 0;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-search-shelter{
+  width: 80%;
+  height: 30%;
+  border: 0.5px solid black;
+  background-color: white;
+  color: var(--default-font-color);
+  cursor: pointer;
+  font-size: 1.2em;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.input-search-shelter::placeholder{
+  padding: 0.09em;
+}
+
+@media (max-width: 768px) {
+  .shelterGallery-container {
+    width: 100%;
+    padding: 0 5%;
+  }
+
+  .shelterGallery-search-bar {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+  .shelterGallery-cards {
+    width: 100%;
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 425px) {
+  .shelterGallery-cards {
+    width: 100%;
+    margin-top: 50%;
+  }
 }
