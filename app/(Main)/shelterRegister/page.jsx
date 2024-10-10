@@ -57,17 +57,13 @@ const Page = () => {
       }
 
       const result = await response.json();
-      // eslint-disable-next-line no-console
       console.warn = () => {};
-      // Atualiza o localStorage e o estado do contexto Auth com os novos dados
       userData.shelterId = result.id;
       userData.role = "MANAGER";
       localStorage.setItem("user", JSON.stringify(userData));
 
-      // Chama a função updateUser do contexto Auth para refletir as mudanças no estado
       updateUser({ shelterId: result.id, role: "MANAGER" });
 
-      // Upload da imagem do shelter
       if (shelterImage) {
         const formData = new FormData();
         formData.append("file", shelterImage);
