@@ -31,7 +31,7 @@ const Footer = () => {
             <p>
               Contacte-nos através:
               <br />
-              furcode@minderacodeacademy.com
+              PetHub@minderacodeacademy.com
             </p>
             <ul>
               <li>
@@ -84,7 +84,7 @@ const Footer = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <Link href="/about">Sobre Furcode</Link>
+              <Link href="/about">Sobre PetHub</Link>
             </li>
             <li>
               <Link href="/shelterRegister">Registe a sua Associação</Link>
@@ -105,8 +105,8 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-copyright">
-        &copy; {new Date().getFullYear()} Mindera Mindswap 7<sup>th</sup> Edition. All
-        Rights Reserved
+        &copy; {new Date().getFullYear()} Mindera Mindswap 7<sup>th</sup>{" "}
+        Edition. All Rights Reserved
       </div>
     </footer>
   );
