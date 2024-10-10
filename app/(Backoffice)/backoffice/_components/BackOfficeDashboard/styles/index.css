@@ -113,3 +113,35 @@
     padding-right: 3%;
   }
 }
+
+@media (max-width: 425px) {
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card {
+    width: 80%;
+    margin: 10px 0;
+  }
+
+  .quick-actions {
+    width: 80%;
+    height: auto;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .action-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .action-buttons button {
+    width: calc(48% - 10px);
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
