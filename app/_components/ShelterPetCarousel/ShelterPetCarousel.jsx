@@ -6,20 +6,46 @@ import "./styles/index.css";
 
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
-const ShelterPetCarousel = () => {
+const ShelterPetCarousel = ({ params }) => {
   const [sliderSettings, setSliderSettings] = useState(null);
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [reload, setReload] = useState(0);
   const [petsInShelter, setPetsInShelter] = useState([]);
 
   useEffect(() => {
-    const fetchPets = async () => {
-      const result = await fetch("/api/petsGallery");
-      const data = await result.json();
-      setPetsInShelter(data);
-      console.log(data);
+    if (!params) return;
+
+    setLoading(true);
+    const fetchPet = async () => {
+      try {
+        const response = await fetch(`/api/petsGallery/${params}`, {
+          method:"GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          if (response.status === 404) {
+            setError("Pet not found");
+            return;
+          }
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Pet data:", data);
+        setPetsInShelter(data);
+      } catch (e) {
+        console.error("Failed to fetch pet data:", e);
+        setError("Failed to fetch pet data: " + e.message);
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchPets();
-  }, []);
+
+    fetchPet();
+  }, [params, reload]);
 
   useEffect(() => {
     const loadStyles = async () => {
