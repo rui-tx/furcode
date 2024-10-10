@@ -83,6 +83,7 @@ input {
   cursor: pointer;
   font-size: 1em;
   margin-top: 10px;
+  font-weight: bold;
 }
 
 .submit-btn:hover {
