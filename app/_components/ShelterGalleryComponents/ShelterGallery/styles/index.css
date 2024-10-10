@@ -14,7 +14,7 @@
 .shelterGallery-cards {
   width: 80%;
   display: flex;
-  margin-top: 4%;
+  margin-top: 7%;
   flex-wrap: wrap;
   justify-content: space-evenly;
   flex: 1 0 auto;
@@ -61,20 +61,20 @@
 
   .shelterGallery-search-bar {
     width: 100%;
-    margin-top: 15px;
+    margin-top: 25px;
     margin-bottom: 15px;
     position: relative;
   }
 
   .shelterGallery-cards {
     width: 100%;
-    margin-top: 50%;
+    margin-top: 19%;
   }
 }
 
 @media (max-width: 425px) {
   .shelterGallery-cards {
     width: 100%;
-    margin-top: 90%;
+    margin-top: 55%;
   }
 }
