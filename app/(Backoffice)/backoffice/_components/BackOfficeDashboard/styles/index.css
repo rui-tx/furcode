@@ -63,6 +63,7 @@
   justify-content: space-around;
 }
 
+.action-buttons a,
 .action-buttons button {
   background-color: #e91e63;
   color: white;
@@ -71,9 +72,13 @@
   padding: 20px 25px;
   cursor: pointer;
   font-size: 16px;
+  text-align: center;
+  text-decoration: none;
   transition: background-color 0.3s;
+  display: inline-block;
 }
 
+.action-buttons a,
 .action-buttons button:hover {
   background-color: #c2185b;
 }
