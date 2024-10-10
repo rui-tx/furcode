@@ -107,3 +107,9 @@
     padding-right: 10%;
   }
 }
+
+@media (max-width: 768px) {
+  .backoffice-container {
+    padding-right: 3%;
+  }
+}
