@@ -20,13 +20,14 @@ const DonationCard = ({ ...props }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+  const [userId, setUserId] = useState(null);
+
   const { isLoggedIn, logout } = useAuth();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [reload, setReload] = useState(0);
   const [idShelterSelected, setIdShelterSelected] = useState(null);
-  const userId = localStorage.getItem("user");
 
   const {
     value,
@@ -38,6 +39,11 @@ const DonationCard = ({ ...props }) => {
     imageAltDonation,
     descriptionDonation,
   } = props;
+
+  useEffect(() => {
+    // This will only run on the client-side
+    setUserId(localStorage.getItem("user"));
+  }, []);
 
   const donationBody = {
     total: value,
@@ -96,20 +102,16 @@ const DonationCard = ({ ...props }) => {
       setLoading(false);
     }
   };
-
   const handlePayment = async (event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
     setLoading(true);
 
     const result = await stripe.confirmPayment({
-      //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
         return_url: "http://localhost:3000/donation-success",
@@ -117,14 +119,40 @@ const DonationCard = ({ ...props }) => {
     });
 
     if (result.error) {
-      // Show error to your customer
       console.log(result.error.message);
       setError(result.error.message);
     } else {
       // The payment has been processed!
       if (result.paymentIntent.status === "succeeded") {
         console.log("Payment succeeded!");
-        // Here you can call your backend to save the donation
+
+        // Call your backend to save the donation
+        try {
+          const response = await fetch(`/api/v1/person/${user.id}/donate`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              total: value,
+              currency: "eur",
+              shelterId: idShelterSelected,
+              paymentIntentId: result.paymentIntent.id,
+              paymentMethod: result.paymentIntent.payment_method,
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to save donation");
+          }
+
+          const donationData = await response.json();
+          console.log("Donation saved:", donationData);
+          // Handle successful donation (e.g., show a success message, redirect)
+        } catch (error) {
+          console.error("Error saving donation:", error);
+          setError("Failed to save donation. Please contact support.");
+        }
       }
     }
 
@@ -147,7 +175,14 @@ const DonationCard = ({ ...props }) => {
       </form>
       {clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <PaymentForm clientSecret={clientSecret} />
+          <PaymentForm
+            clientSecret={clientSecret}
+            donationDetails={{
+              userId: user.id,
+              amount: value,
+              shelterId: idShelterSelected,
+            }}
+          />
         </Elements>
       )}
     </div>

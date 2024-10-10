@@ -11,55 +11,71 @@ const PaymentForm = ({ clientSecret, donationDetails }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handlePayment = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (!stripe || !elements) {
       return;
     }
-    setLoading(true);
-    const result = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: "http://localhost:3000/donation-sucess",
-      },
-    });
 
-    if (result.error) {
-      setError(result.error.message);
-    } else {
+    setLoading(true);
+
+    try {
+      const result = await stripe.confirmPayment({
+        elements,
+        redirect: "if_required",
+      });
+
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
+
       if (result.paymentIntent.status === "succeeded") {
         console.log("Payment succeeded!");
-        // Save the donation to the database
-        try {
-          const response = await fetch("/api/donations", {
+
+        const response = await fetch(
+          `/api/person/${donationDetails.userId}/donate`,
+          {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              ...donationDetails,
+              total: donationDetails.amount,
+              currency: "eur",
+              date: new Date().toISOString(),
+              shelterId: donationDetails.shelterId,
+              personId: donationDetails.userId,
               paymentIntentId: result.paymentIntent.id,
+              paymentMethod: result.paymentIntent.payment_method,
             }),
-          });
-          if (!response.ok) {
-            throw new Error("Failed to save donation");
           }
-          // Redirect to success page or show success message
-          window.location.href = "/donation-sucess";
-        } catch (error) {
-          setError(
-            "Payment successful, but failed to save donation. Please contact support."
-          );
+        );
+
+        if (!response.ok) {
+          throw new Error(`Failed to save donation: ${response.statusText}`);
         }
+
+        const donationData = await response.json();
+        console.log("Donation saved:", donationData);
+
+        // Handle successful donation (e.g., show a success message, redirect)
+        window.location.href = "/donation-success";
       }
+    } catch (error) {
+      console.error("Error:", error);
+      setError(error.message || "An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
-    <form onSubmit={handlePayment}>
+    <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <button disabled={!stripe || loading}>Submit Payment</button>
+      <button type="submit" disabled={!stripe || loading}>
+        Submit Payment
+      </button>
       {error && <div>{error}</div>}
     </form>
   );
