@@ -102,62 +102,7 @@ const DonationCard = ({ ...props }) => {
       setLoading(false);
     }
   };
-  const handlePayment = async (event) => {
-    event.preventDefault();
 
-    if (!stripe || !elements) {
-      return;
-    }
-
-    setLoading(true);
-
-    const result = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: "http://localhost:3000/donation-success",
-      },
-    });
-
-    if (result.error) {
-      console.log(result.error.message);
-      setError(result.error.message);
-    } else {
-      // The payment has been processed!
-      if (result.paymentIntent.status === "succeeded") {
-        console.log("Payment succeeded!");
-
-        // Call your backend to save the donation
-        try {
-          const response = await fetch(`/api/v1/person/${user.id}/donate`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              total: value,
-              currency: "eur",
-              shelterId: idShelterSelected,
-              paymentIntentId: result.paymentIntent.id,
-              paymentMethod: result.paymentIntent.payment_method,
-            }),
-          });
-
-          if (!response.ok) {
-            throw new Error("Failed to save donation");
-          }
-
-          const donationData = await response.json();
-          console.log("Donation saved:", donationData);
-          // Handle successful donation (e.g., show a success message, redirect)
-        } catch (error) {
-          console.error("Error saving donation:", error);
-          setError("Failed to save donation. Please contact support.");
-        }
-      }
-    }
-
-    setLoading(false);
-  };
   const modalContent = (
     <div className="total-modal-donation-total">
       <form className="total-modal-donation" onSubmit={handleSubmit}>

@@ -60,7 +60,7 @@ const PaymentForm = ({ clientSecret, donationDetails }) => {
         console.log("Donation saved:", donationData);
 
         // Handle successful donation (e.g., show a success message, redirect)
-        window.location.href = "/donation-success";
+        window.location.href = `/donation-success?payment_intent=${result.paymentIntent.id}`;
       }
     } catch (error) {
       console.error("Error:", error);
