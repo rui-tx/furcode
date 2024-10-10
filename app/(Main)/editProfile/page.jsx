@@ -14,6 +14,16 @@ const Page = () => {
   const [headers, setHeaders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [ableToBackOffice, setAbleToBackOffice] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      console.log("User role:", user.role);
+      setAbleToBackOffice(user.role === "MANAGER");
+    } else {
+      setAbleToBackOffice(false);
+    }
+  }, [user]);
 
   useEffect(() => {
     setKey((prevKey) => prevKey + 1);
@@ -45,6 +55,10 @@ const Page = () => {
 
   const handleTableChange = (newTable) => {
     setActiveTable(newTable);
+  };
+
+  const handleToBackOffice = () => {
+    window.location.href = "/backoffice";
   };
 
   const renderTable = () => {
@@ -96,6 +110,11 @@ const Page = () => {
             >
               Adopted Furry Friends
             </button>
+            {ableToBackOffice && (
+              <button className="table-control-btn" onClick={handleToBackOffice}>
+                BackOffice
+              </button>
+            )}
           </div>
           <div className="table-container">{renderTable()}</div>
         </div>

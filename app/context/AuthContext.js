@@ -1,6 +1,4 @@
 "use client";
-
-
 import { createContext, useContext, useEffect, useState } from "react";
 import * as jwtDecode from "jwt-decode";
 
@@ -24,6 +22,12 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
+  const updateUser = (newUserData) => {
+    const updatedUser = { ...user, ...newUserData };
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  };
+
   const login = async (email, password) => {
     try {
       console.log("Attempting login with:", email, password);
@@ -37,14 +41,11 @@ export const AuthProvider = ({ children }) => {
       console.log("Response status:", response.status);
       const data = await response.json();
       console.log("Response data:", data);
-
       if (response.ok) {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.person));
-
         console.log("Full user data:", JSON.stringify(data.person, null, 2));
-
         setIsLoggedIn(true);
         setToken(data.token);
         setUser(data.person);
@@ -70,7 +71,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, setUser, token, user, loading, login, logout }}
+      value={{ isLoggedIn, updateUser, token, user, loading, login, logout, setUser }}
     >
       {children}
     </AuthContext.Provider>

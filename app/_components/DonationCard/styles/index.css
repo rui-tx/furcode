@@ -147,7 +147,7 @@
   margin: 2px;
   z-index: 9999;
   text-decoration: none;
-  border-radius: 50px;
+  border-radius: var(--default-button-border-radius);
 }
 
 .pricing-table .btn:hover {
@@ -164,7 +164,7 @@
 
 .pricing-table .btn.bordered:after {
   background: #fff none repeat scroll 0 0;
-  border-radius: 50px;
+  border-radius: var(--default-button-border-radius);
   content: "";
   height: 100%;
   left: 0;
@@ -209,7 +209,7 @@
   font-size: 1.2em;
   color: var(--default-button-font-color);
   background-color: var(--default-button-bg-color);
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   border: none;
   cursor: pointer;
 }
@@ -262,7 +262,7 @@
   font-size: 1.2em;
   color: var(--default-button-font-color);
   background-color: var(--default-button-bg-color);
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   border: none;
   cursor: pointer;
 }

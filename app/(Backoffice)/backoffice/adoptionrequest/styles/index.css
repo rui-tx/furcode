@@ -20,7 +20,7 @@
   background-color: grey;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--default-button-border-radius);
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;

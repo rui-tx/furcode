@@ -9,7 +9,7 @@
   margin: 2rem auto;
   padding: 2rem;
   background-color: var(--card-background);
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   box-shadow: 0 8px 24px rgba(255, 107, 107, 0.1);
 }
 
@@ -64,7 +64,7 @@ h2 {
   background-color: var(--secundary--color--to--editProfile);
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: var(--default-button-border-radius);
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -126,7 +126,7 @@ button {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   cursor: pointer;
   transition: all 0.3s ease;
 }

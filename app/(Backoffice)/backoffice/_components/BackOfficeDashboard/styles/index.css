@@ -67,7 +67,7 @@
   background-color: #e91e63;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   padding: 20px 25px;
   cursor: pointer;
   font-size: 16px;
