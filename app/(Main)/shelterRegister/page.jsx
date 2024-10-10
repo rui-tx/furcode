@@ -233,26 +233,23 @@ const Page = () => {
                   <input
                     type="text"
                     name="instagramUrl"
-                    placeholder="Instagram URL"
+                    placeholder="Instagram URL (opcional)"
                     onChange={handleChange}
                     value={formData.instagramUrl}
-                    required
                   />
                   <input
                     type="text"
                     name="facebookUrl"
-                    placeholder="facebook URL"
+                    placeholder="Facebook URL (opcional)"
                     onChange={handleChange}
                     value={formData.facebookUrl}
-                    required
                   />
                   <input
                     type="text"
                     name="webPageUrl"
-                    placeholder="Web Page URL"
+                    placeholder="Web Page URL (opcional)"
                     onChange={handleChange}
                     value={formData.webPageUrl}
-                    required
                   />
                 </div>
                 <div className="shelter-register-container-button">
