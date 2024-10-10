@@ -1,16 +1,40 @@
 .navbar {
-  background-color: var(--default-background);
+  background-color: #f0e6ff;
   width: 100%;
-  height: 100px;
+  height: 13vh;
   color: var(--default-font-color);
   display: flex;
   align-items: center;
   justify-content: space-around;
   position: relative;
-  border-bottom: 1px solid var(--default-border-color);
+  border-bottom: 1px solid #f0e6ff;;
+}
+
+.nav-logo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 100%;
+}
+
+.nav-image img {
+  position: relative;
+  width: 140px;
+  height: auto;
+}
+
+.nav-links {
+  width: 50%;
+  height: 100%;
 }
 
 .nav-links ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   display: flex;
   align-items: center;
 }
@@ -23,14 +47,6 @@
   list-style: none;
   cursor: pointer;
   margin-left: 40px;
-}
-
-.nav-image img {
-  position: absolute;
-  left: 8%;
-  top: 0;
-  width: 100px;
-  height: auto;
 }
 
 .nav-links a {
@@ -114,7 +130,7 @@
   }
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
   .nav-links ul li {
     font-size: 10px 0;
   }
