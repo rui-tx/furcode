@@ -18,12 +18,12 @@ const Footer = () => {
           <div className="footer-logo-and-icons">
             <div className="footer-logo">
               <div className="footer-image">
-                <Link href="/">
+                {/* <Link href="/">
                   <img
                     src="https://media.istockphoto.com/id/1179573533/vector/vector-group-of-pets-dog-cat-humming-bird-parrot-chameleon-butterfly-rabbit-isolated-on.jpg?s=612x612&w=0&k=20&c=SFDqjevwsQ00ZoZWFQRhscVxnrrkVDns0KjDH-hUynA="
                     alt="logo"
                   />
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

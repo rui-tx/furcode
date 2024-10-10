@@ -3,6 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import "./styles/index.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import logotipo from "../../_images/logotipo.png";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
@@ -36,10 +37,7 @@ const Header = () => {
         <div className="nav-logo">
           <div className="nav-image">
             <Link href="/">
-              <img
-                src="https://media.istockphoto.com/id/1179573533/vector/vector-group-of-pets-dog-cat-humming-bird-parrot-chameleon-butterfly-rabbit-isolated-on.jpg?s=612x612&w=0&k=20&c=SFDqjevwsQ00ZoZWFQRhscVxnrrkVDns0KjDH-hUynA="
-                alt="logo"
-              />
+              <img src={logotipo.src} className="logotipo-image" />
             </Link>
           </div>
         </div>

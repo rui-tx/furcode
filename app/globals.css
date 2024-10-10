@@ -21,7 +21,7 @@ main {
   --default-background: #f9f9f9;
   --default-font-color: #4a4a4a;
   --default-font-shadow: #ffffff;
-  --default-border-color: #ff9494;
+  --default-border-color: #6a0dad;
   --default-border-radius: 0.5rem;
   --accent: #ff9494;
   --accent-fade: #ff949425;
@@ -39,10 +39,10 @@ main {
   --default-button-border-radius: 0.5rem;
 
   /* a from form */
-  --default-a-font-color: blue;
+  --default-a-font-color: #4a4a4a;
 
   /* footer links color */
-  --default-footer-font-color: rgb(14, 18, 155);
+  --default-footer-font-color: #4a4a4a;
 }
 
 body {
