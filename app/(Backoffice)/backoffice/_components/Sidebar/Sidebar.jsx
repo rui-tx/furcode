@@ -6,7 +6,7 @@ import "./styles/index.css";
 const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
   const menuItems = [
-    { name: "Dashboard", icon: Home, href: "/" },
+    { name: "Dashboard", icon: Home, href: "#" },
     { name: "Animais", icon: Cat, href: "/backoffice/pets" },
     { name: "Abrigo", icon: Building, href: "/backoffice/shelter" },
     {name: "Adoções", icon: Heart, href: "/backoffice/adoptionrequest"},
