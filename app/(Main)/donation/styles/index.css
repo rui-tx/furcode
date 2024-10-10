@@ -62,6 +62,7 @@
 .container-donation-after-values {
   position: relative;
   width: 100%;
+  z-index: -1;
   height: 20vh;
 }
 
