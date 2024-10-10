@@ -6,7 +6,7 @@ const BackofficeContent = () => {
   return (
     <div className="backoffice-container">
       <div className="backoffice-container-table">
-        <h1 className="dashboard-title">Welcome to Furcode CRM</h1>
+        <h1 className="dashboard-title">Welcome to PetHub CRM</h1>
 
         <div className="stats-container">
           <div className="stat-card">

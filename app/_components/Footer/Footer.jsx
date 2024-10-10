@@ -31,7 +31,7 @@ const Footer = () => {
             <p>
               Contacte-nos através:
               <br />
-              furcode@minderacodeacademy.com
+              pethub@minderacodeacademy.com
             </p>
             <ul>
               <li>
@@ -84,7 +84,7 @@ const Footer = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <Link href="/about">Sobre Furcode</Link>
+              <Link href="/about">Sobre PetHub</Link>
             </li>
             <li>
               <Link href="/shelterRegister">Registe a sua Associação</Link>
