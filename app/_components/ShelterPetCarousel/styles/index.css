@@ -1,14 +1,13 @@
 .carousel-pet-shelter-container {
-    position: relative;
-    width: 100%;
-    max-width: 2200px;
-    padding: 0 20px;
-    height: 200px;
-    background-color: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 150px;
+  position: relative;
+  width: 113%;
+  max-width: 2200px;
+  height: 200px;
+  background-color: none;
+  display: flex;
+  justify-content: stretch;
+  align-items: start;
+  margin-top: 50px;
   }
   
   .shelter-animal-slider {

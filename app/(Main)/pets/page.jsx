@@ -35,16 +35,16 @@ const Page = () => {
       const { base64, contentType } = data;
       console.log(`Received ${contentType} image for pet ${petId}`);
 
-      // Create a data URL from the base64 string
+      
       const imageUrl = `data:${contentType};base64,${base64}`;
       console.log(
         `Image URL for pet ${petId}:`,
         imageUrl.substring(0, 50) + "..."
-      ); // Log the first 50 characters of the URL
+      ); 
       return imageUrl;
     } catch (error) {
       console.error(`Error fetching image for pet ${petId}:`, error);
-      return "/path/to/fallback/image.jpg"; // Provide a fallback image
+      return "/path/to/fallback/image.jpg"; 
     }
   };
   const fetchPets = useCallback(async () => {
@@ -68,7 +68,7 @@ const Page = () => {
       console.log(data);
       const adoptedPets = data.filter((pet) => pet.isAdopted === false);
 
-      // Fetch images for each pet
+      
       const petsWithImages = await Promise.all(
         adoptedPets.map(async (pet) => {
           const image = await fetchPetImages(pet.id);
@@ -139,7 +139,7 @@ const Page = () => {
             <GalleryPetCard
               key={pet.id}
               name={pet.name}
-              image={pet.image} // This should be the base64 string or data URL
+              image={pet.image} 
               description={pet.description}
               age={pet.age}
               breed={pet.breed}

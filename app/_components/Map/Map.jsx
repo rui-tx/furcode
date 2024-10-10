@@ -3,10 +3,9 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "./styles/index.css";
 
 const Map = ({position}) => {
-  // const position = [51.505, -0.09];
   const customMarkerIcon = L.divIcon({
     className: "marker-shelter",
-    iconSize: [20, 20], // Defina o tamanho do ícone aqui, se necessário
+    iconSize: [20, 20], 
   });
 
   return (

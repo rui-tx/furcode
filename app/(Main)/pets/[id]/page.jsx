@@ -9,7 +9,25 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext";
 import AdoptionRequest from "../../../_components/AdoptionRequest/AdoptionRequest";
 
-const Page = ({ params, petId, shelterId, personId }) => {
+const fetchPetImage = async (petId) => {
+  try {
+    const response = await fetch(`/api/download/pet/${petId}/image/cover.jpg`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    if (data.error) {
+      throw new Error(data.error);
+    }
+    const { base64, contentType } = data;
+    return `data:${contentType};base64,${base64}`;
+  } catch (error) {
+    console.error(`Error fetching image for pet ${petId}:`, error);
+    return "/path/to/fallback/image.jpg";
+  }
+};
+
+const Page = ({ params }) => {
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -58,14 +76,6 @@ const Page = ({ params, petId, shelterId, personId }) => {
     }
   }, [user]);
 
-  const handleAdoptButton = () => {
-    showModal(true);
-  };
-
-  const showModal = (show) => {
-    setIsModalOpen(show);
-  };
-
   useEffect(() => {
     if (!params.id) return;
 
@@ -83,6 +93,20 @@ const Page = ({ params, petId, shelterId, personId }) => {
 
         const data = await response.json();
         console.log("Pet data:", data);
+
+
+        const coverImage = await fetchPetImage(data.id);
+        data.coverImage = coverImage;
+
+
+        if (data.imageList && data.imageList.length > 0) {
+          const imagePromises = data.imageList.map(async (image) => {
+            const imageData = await fetchPetImage(data.id);
+            return { ...image, data: imageData };
+          });
+          data.imageList = await Promise.all(imagePromises);
+        }
+
         setPet(data);
       } catch (e) {
         console.error("Failed to fetch pet data:", e);
@@ -94,6 +118,14 @@ const Page = ({ params, petId, shelterId, personId }) => {
 
     fetchPet();
   }, [params.id, reload]);
+
+  const handleAdoptButton = () => {
+    showModal(true);
+  };
+
+  const showModal = (show) => {
+    setIsModalOpen(show);
+  };
 
   if (loading) {
     return <div>Loading...</div>;

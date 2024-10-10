@@ -16,6 +16,9 @@ const Page = () => {
     isActive: "true",
     creationDate: "",
     description: "",
+    facebookUrl: "",
+    instagramUrl: "",
+    webPageUrl: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -85,6 +88,9 @@ const Page = () => {
         isActive: "true",
         creationDate: "",
         description: "",
+        facebookUrls: "",
+        instagramUrls: "",
+        webPageUrls: "",
       });
     } catch (error) {
       console.error("Failed to create shelter:", error.message);
@@ -215,6 +221,30 @@ const Page = () => {
                     placeholder="Escreva uma breve descrição sobre sua associação"
                     onChange={handleChange}
                     value={formData.description}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="instagramUrl"
+                    placeholder="Instagram URL"
+                    onChange={handleChange}
+                    value={formData.instagramUrl}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="facebookUrl"
+                    placeholder="facebook URL"
+                    onChange={handleChange}
+                    value={formData.facebookUrl}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="webPageUrl"
+                    placeholder="Web Page URL"
+                    onChange={handleChange}
+                    value={formData.webPageUrl}
                     required
                   />
                 </div>
