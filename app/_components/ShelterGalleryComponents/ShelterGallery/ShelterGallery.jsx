@@ -14,33 +14,83 @@ const ShelterGallery = () => {
   const router = useRouter();
   const shelterPerPage = 10;
 
+  const fetchShelterImages = async (shelterId) => {
+    console.log(`Fetching image for shelter ${shelterId}`);
+    try {
+      const response = await fetch(
+        `/api/download/shelter/${shelterId}/image/cover.jpg`
+      );
+      console.log(
+        `Response status for shelter ${shelterId}: ${response.status}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      const { base64, contentType } = data;
+      console.log(`Received ${contentType} image for shelter ${shelterId}`);
+
+      const imageUrl = `data:${contentType};base64,${base64}`;
+      console.log(
+        `Image URL for shelter ${shelterId}:`,
+        imageUrl.substring(0, 50) + "..."
+      );
+      return imageUrl;
+    } catch (error) {
+      console.error(`Error fetching image for shelter ${shelterId}:`, error);
+      return "/path/to/fallback/shelter/image.jpg";
+    }
+  };
+
   const fetchShelters = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`/api/shelterGallery?page=${currentPage}&limit=${shelterPerPage}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `/api/shelterGallery?page=${currentPage}&limit=${shelterPerPage}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       console.log(data);
+
       if (data.length === 0) {
         setHasMore(false);
-        console.log("Não há mais abrigos para carregar. Fim dos dados alcançado.");
+        console.log(
+          "Não há mais abrigos para carregar. Fim dos dados alcançado."
+        );
       } else {
+        const sheltersWithImages = await Promise.all(
+          data.map(async (shelter) => {
+            const image = await fetchShelterImages(shelter.id);
+            return { ...shelter, image };
+          })
+        );
+
         setShelters((prevShelters) => {
-          const newShelters = data.filter(
-            (newShelter) => !prevShelters.some((shelter) => shelter.id === newShelter.id)
+          const newShelters = sheltersWithImages.filter(
+            (newShelter) =>
+              !prevShelters.some((shelter) => shelter.id === newShelter.id)
           );
           if (newShelters.length === 0) {
-            console.log("Todos os abrigos desta página já foram carregados. Não há novos dados.");
+            console.log(
+              "Todos os abrigos desta página já foram carregados. Não há novos dados."
+            );
             setHasMore(false);
             return prevShelters;
           }
@@ -79,8 +129,10 @@ const ShelterGallery = () => {
     router.push(`/shelter/${id}`);
   };
 
-  const filteredShelters = shelters.filter((shelter) =>
-    search.toLowerCase() === "" || shelter.name.toLowerCase().includes(search.toLowerCase())
+  const filteredShelters = shelters.filter(
+    (shelter) =>
+      search.toLowerCase() === "" ||
+      shelter.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -98,16 +150,19 @@ const ShelterGallery = () => {
       </div>
       <div className="shelterGallery-cards">
         {filteredShelters.map((shelter) => (
-          <div 
-            key={shelter.id} 
-            className="container-gallery-cards-shelter" 
+          <div
+            key={shelter.id}
+            className="container-gallery-cards-shelter"
             onClick={() => handleClick(shelter.id)}
           >
-            <ShelterGalleryCard shelter={shelter} />
+            <ShelterGalleryCard
+              shelter={{ ...shelter, image: shelter.image }}
+            />
           </div>
         ))}
       </div>
-      <div className="sentinel"></div>
+      {hasMore && <div className="sentinel"></div>}
+      {loading && <p>Carregando mais abrigos...</p>}
     </div>
   );
 };
