@@ -9,12 +9,12 @@ const ShelterBackofficePage = () => {
   const [error, setError] = useState(null);
 
   const shelterHeaders = [
-    { prettyLabel: "ID Abrigo", columnName: "id", type: "string" },
+    { prettyLabel: "ID Associação", columnName: "id", type: "string" },
     { prettyLabel: "Nome", columnName: "name", type: "string" },
     { prettyLabel: "NIF", columnName: "vat", type: "string" },
     { prettyLabel: "Email", columnName: "email", type: "string" },
-    { prettyLabel: "Direção", columnName: "address1", type: "string" },
-    { prettyLabel: "Direção 2", columnName: "address2", type: "string" },
+    { prettyLabel: "Morada", columnName: "address1", type: "string" },
+    { prettyLabel: "Morada 2", columnName: "address2", type: "string" },
     { prettyLabel: "Código Postal", columnName: "postalCode", type: "string" },
     { prettyLabel: "Telefone", columnName: "phone", type: "string" },
     { prettyLabel: "Tamanho", columnName: "size", type: "string" },
