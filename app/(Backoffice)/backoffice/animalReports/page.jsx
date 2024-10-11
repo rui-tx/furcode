@@ -4,15 +4,15 @@ import "./styles/index.css";
 
 const Page = () => {
   const headers = [
-    { prettyLabel: "Animal ID", columnName: "animalId", type: "string" },
-    { prettyLabel: "Animal Name", columnName: "animalName", type: "string" },
-    { prettyLabel: "Animal Type", columnName: "animalType", type: "string" },
-    { prettyLabel: "Animal Breed", columnName: "animalBreed", type: "string" },
-    { prettyLabel: "Report Date", columnName: "reportDate", type: "string" },
-    { prettyLabel: "Reported By", columnName: "reportedBy", type: "string" },
-    { prettyLabel: "Reported To", columnName: "reportedTo", type: "string" },
+    { prettyLabel: "ID Animal", columnName: "animalId", type: "string" },
+    { prettyLabel: "Nome", columnName: "animalName", type: "string" },
+    { prettyLabel: "Tipo", columnName: "animalType", type: "string" },
+    { prettyLabel: "Raça", columnName: "animalBreed", type: "string" },
+    { prettyLabel: "Data", columnName: "reportDate", type: "string" },
+    { prettyLabel: "Reportado por", columnName: "reportedBy", type: "string" },
+    { prettyLabel: "Reportado a", columnName: "reportedTo", type: "string" },
     {
-      prettyLabel: "Reported Details",
+      prettyLabel: "Detalhes",
       columnName: "reportedDetails",
       type: "string",
     },

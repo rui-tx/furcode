@@ -87,12 +87,12 @@ const Page = () => {
       <div className="profile-header">
         <h1>O Teu Perfil Patudo</h1>
         <p>Bem vindo(a), {user?.firstName}</p>
-        <p>Atualize suas informações e confira a sua jornada de adoção.</p>
+        <p>Atualize as suas informações e confira a sua jornada de adoção.</p>
       </div>
       <div className="profile-content">
         <EditProfileForm />
         <div className="activity-container">
-          <h2>Sua Atividade</h2>
+          <h2>Atividade</h2>
           <div className="table-controls">
             <button
               onClick={() => handleTableChange("donations")}
@@ -100,7 +100,7 @@ const Page = () => {
                 activeTable === "donations" ? "active" : ""
               }`}
             >
-              Suas Doações
+              Doações
             </button>
             <button
               onClick={() => handleTableChange("adoptedAnimals")}

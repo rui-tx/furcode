@@ -30,7 +30,7 @@ const EditPetModal = ({ pet, headers, onSave, onCancel }) => {
         <button className="modal-close" onClick={onCancel}>
           <FiX />
         </button>
-        <h2>Edit Pet</h2>
+        <h2>Editar Animal</h2>
         <form onSubmit={handleSubmit}>
           {headers.map((header) => (
             <div key={header.columnName} className="form-group">
@@ -54,10 +54,10 @@ const EditPetModal = ({ pet, headers, onSave, onCancel }) => {
           ))}
           <div className="modal-actions">
             <button type="submit" className="save-button">
-              Save
+              Guardar
             </button>
             <button type="button" className="cancel-button" onClick={onCancel}>
-              Cancel
+              Cancelar
             </button>
           </div>
         </form>

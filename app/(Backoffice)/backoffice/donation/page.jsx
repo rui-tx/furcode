@@ -62,7 +62,7 @@ const Page = () => {
 
   return (
     <div className="donations-page-container">
-      <h1>Donations</h1>
+      <h1>Doações</h1>
       <Table
         key="donations"
         headers={donationHeaders}

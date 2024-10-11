@@ -161,7 +161,7 @@ const Page = ({ params }) => {
 
   return (
     <div className="pet-info">
-      <h2>Criar novo Animal - Cão</h2>
+      <h2>Criar Animal - Cão</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="label" htmlFor="breedName">
@@ -206,7 +206,7 @@ const Page = ({ params }) => {
               onChange={handleChange}
               className="checkbox"
             />
-            Vacinado/a
+            Vacinado:
           </label>
         </div>
 
