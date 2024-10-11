@@ -29,7 +29,7 @@ const PetTable = ({ pets, headers, onSave, onDelete }) => {
   return (
     <div className="pet-table-container">
       <div className="pet-table-header">
-        <h2 className="pet-table-title">Pet Adoption Backoffice</h2>
+        <h2 className="pet-table-title">Backoffice de Adoção de Animais</h2>
       </div>
       <table className="pet-table">
         <thead>
@@ -37,7 +37,7 @@ const PetTable = ({ pets, headers, onSave, onDelete }) => {
             {headers.map((header) => (
               <th key={header.columnName}>{header.prettyLabel}</th>
             ))}
-            <th>Actions</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -54,13 +54,13 @@ const PetTable = ({ pets, headers, onSave, onDelete }) => {
               ))}
               <td className="pet-table-actions">
                 <button className="edit-button" onClick={() => handleEdit(pet)}>
-                  <FiEdit /> Edit
+                  <FiEdit /> Editar
                 </button>
                 <button
                   className="delete-button"
                   onClick={() => onDelete(pet.id)}
                 >
-                  <FiTrash2 /> Delete
+                  <FiTrash2 /> Apagar
                 </button>
               </td>
             </tr>

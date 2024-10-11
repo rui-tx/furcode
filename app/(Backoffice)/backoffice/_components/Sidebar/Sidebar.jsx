@@ -10,7 +10,7 @@ const Sidebar = () => {
     { name: "Página Principal", icon: Home, href: "/" },
     { name: "Dashboard", icon: AiTwotoneDashboard, href: "/backoffice" },
     { name: "Animais", icon: Cat, href: "/backoffice/pets" },
-    { name: "Abrigo", icon: Building, href: "/backoffice/shelter" },
+    { name: "Associação", icon: Building, href: "/backoffice/shelter" },
     {name: "Adoções", icon: Heart, href: "/backoffice/adoptionrequest"},
     { name: "Staff", icon: Users, href: "/backoffice/staff" },
     { name: "Doações", icon: Heart, href: "/backoffice/donation" },

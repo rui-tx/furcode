@@ -89,12 +89,6 @@ const Footer = () => {
               <Link href="/about">Sobre PetHub</Link>
             </li>
             <li>
-              <Link href="/shelterRegister">Registe a sua Associação</Link>
-            </li>
-            <li>
-              <Link href="/wannaHelp">Ajude a Ajudar</Link>
-            </li>
-            <li>
               <Link href="/privacy">Política de Privacidade</Link>
             </li>
             <li>

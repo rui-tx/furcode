@@ -9,18 +9,18 @@ const ShelterBackofficePage = () => {
   const [error, setError] = useState(null);
 
   const shelterHeaders = [
-    { prettyLabel: "ID", columnName: "id", type: "string" },
-    { prettyLabel: "Name", columnName: "name", type: "string" },
-    { prettyLabel: "VAT", columnName: "vat", type: "string" },
+    { prettyLabel: "ID Associação", columnName: "id", type: "string" },
+    { prettyLabel: "Nome", columnName: "name", type: "string" },
+    { prettyLabel: "NIF", columnName: "vat", type: "string" },
     { prettyLabel: "Email", columnName: "email", type: "string" },
-    { prettyLabel: "Address 1", columnName: "address1", type: "string" },
-    { prettyLabel: "Address 2", columnName: "address2", type: "string" },
-    { prettyLabel: "Postal Code", columnName: "postalCode", type: "string" },
-    { prettyLabel: "Phone", columnName: "phone", type: "string" },
-    { prettyLabel: "Size", columnName: "size", type: "string" },
-    { prettyLabel: "Active", columnName: "isActive", type: "boolean" },
+    { prettyLabel: "Morada", columnName: "address1", type: "string" },
+    { prettyLabel: "Morada 2", columnName: "address2", type: "string" },
+    { prettyLabel: "Código Postal", columnName: "postalCode", type: "string" },
+    { prettyLabel: "Telefone", columnName: "phone", type: "string" },
+    { prettyLabel: "Tamanho", columnName: "size", type: "string" },
+    { prettyLabel: "Ativo", columnName: "isActive", type: "boolean" },
     {
-      prettyLabel: "Creation Date",
+      prettyLabel: "Data Abertura",
       columnName: "creationDate",
       type: "string",
     },
@@ -121,7 +121,7 @@ const ShelterBackofficePage = () => {
 
   return (
     <div className="backoffice-shelter-page-container">
-      <h1>Your Shelter</h1>
+      <h1>A Sua Associação</h1>
       {shelterData && (
         <Table
           key="shelter"
