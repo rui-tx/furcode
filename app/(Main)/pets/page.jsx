@@ -130,7 +130,7 @@ const Page = () => {
 
   return (
     <div className="container-pets">
-      <SideBarPets />
+      {/* <SideBarPets /> */}
       <div className="gallery-text-container">
         <GalleryUpperText />
         {error && <p className="error-message">{error}</p>}
