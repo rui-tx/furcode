@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <header className="backoffice-header">
       <div className="backoffice-header-logo">
-        <h1>Furcode CRM</h1>
+        <h1>PetHub CRM</h1>
       </div>
       <div className="backoffice-header-right">
         <span className="backoffice-header-user">Olá, {userName}</span>

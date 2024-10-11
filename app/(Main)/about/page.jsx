@@ -11,9 +11,9 @@ const Section = ({ title, children }) => (
 const AboutUsPage = () => {
   return (
     <div className="about-us-container">
-      <Section title="Sobre a Furcode">
+      <Section title="Sobre a PetHub">
         <p>
-          A Furcode é uma plataforma que oferece uma maneira simples e eficaz de
+          A PetHub é uma plataforma que oferece uma maneira simples e eficaz de
           adotar ou anunciar para adoção um animal que foi encontrado ou que
           está em risco de abandono. O nosso objetivo é ser o elo de ligação
           entre os animais que precisam de um lar e as pessoas dispostas a
@@ -25,7 +25,7 @@ const AboutUsPage = () => {
           ajudamos a conectar os animais disponíveis para adoção com quem os
           procura, promovendo assim a adoção responsável e o bem-estar animal.
           <br /><br />
-          Na Furcode, acreditamos que a adoção é mais do que apenas um ato de
+          Na PetHub, acreditamos que a adoção é mais do que apenas um ato de
           amor; é também uma forma de combater o abandono e criar um impacto
           positivo na vida de muitos animais. Todos os anos, muitos animais são
           deixados para trás, mas juntos podemos fazer a diferença, oferecendo
@@ -38,7 +38,7 @@ const AboutUsPage = () => {
           Somos a turma da Mindswap 7th Edition da Mindera Code Academy, e esta
           página faz parte do nosso projeto final, onde aplicamos todo o
           conhecimento adquirido durante o curso, tanto em backend como em
-          frontend. A Furcode representa o culminar do nosso esforço e
+          frontend. A PetHub representa o culminar do nosso esforço e
           aprendizagem, e foi desenvolvida com a missão de facilitar o processo
           de adoção e promover o bem-estar dos animais.
         </p>
@@ -52,13 +52,13 @@ const AboutUsPage = () => {
           conectar quem procura um novo membro para a sua família com os animais
           que esperam por um lar.
           <br /><br />
-          Além disso, na Furcode, oferecemos a possibilidade de apoiar
+          Além disso, na PetHub, oferecemos a possibilidade de apoiar
           financeiramente os abrigos e associações de proteção animal,
           permitindo que continuem o seu importante trabalho de cuidar e
           proteger os animais mais necessitados.
           <br /><br />
           Se queres fazer parte desta missão e ajudar-nos a proporcionar novas
-          oportunidades para os animais, junta-te a nós na Furcode e faz a
+          oportunidades para os animais, junta-te a nós na PetHub e faz a
           diferença!
         </p>
       </Section>

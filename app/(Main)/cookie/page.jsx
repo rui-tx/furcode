@@ -26,7 +26,7 @@ const CookiesPolicyPage = () => {
         <ul>
           <li>
             <strong>Cookies próprios:</strong> utilizados diretamente por nós, a
-            Furcode, no seu dispositivo.
+            PetHub, no seu dispositivo.
           </li>
           <li>
             <strong>Cookies de terceiros:</strong> utilizados por terceiros
@@ -39,7 +39,7 @@ const CookiesPolicyPage = () => {
         <p>
           Durante as visitas ao nosso site, os cookies são utilizados para
           melhorar a sua experiência de navegação e otimizar o desempenho da
-          Furcode. Estes cookies ajudam-nos a identificar as preferências de
+          PetHub. Estes cookies ajudam-nos a identificar as preferências de
           navegação, como o tipo de navegador utilizado (por exemplo, Google
           Chrome, Mozilla Firefox), a região geográfica do acesso e a forma como
           os utilizadores interagem com o nosso site.
@@ -47,7 +47,7 @@ const CookiesPolicyPage = () => {
       </Section>
 
       <Section title="Porque é que utilizamos cookies?">
-        <p>A Furcode utiliza cookies para:</p>
+        <p>A PetHub utiliza cookies para:</p>
         <br />
         <ul>
           <li>
@@ -69,7 +69,7 @@ const CookiesPolicyPage = () => {
         <p>
           Pode aceitar, recusar ou eliminar cookies a qualquer momento,
           configurando as opções do seu navegador. No entanto, ao desativar os
-          cookies, algumas funcionalidades do site Furcode podem não funcionar
+          cookies, algumas funcionalidades do site PetHub podem não funcionar
           corretamente ou a sua experiência de navegação pode ser afetada.
         </p>
       </Section>
@@ -78,7 +78,7 @@ const CookiesPolicyPage = () => {
         <ul>
           <li>
             <strong>Cookies Estritamente Necessários:</strong> Essenciais para o
-            funcionamento do site Furcode. Sem estes cookies, o site não
+            funcionamento do site PetHub. Sem estes cookies, o site não
             funcionaria corretamente.
           </li>
           <li>
@@ -88,7 +88,7 @@ const CookiesPolicyPage = () => {
           </li>
           <li>
             <strong>Cookies de Funcionalidade:</strong> Permitem melhorar a sua
-            experiência ao utilizar a Furcode, recordando as suas preferências
+            experiência ao utilizar a PetHub, recordando as suas preferências
             de navegação e configurações.
           </li>
         </ul>
@@ -96,7 +96,7 @@ const CookiesPolicyPage = () => {
 
       <Section title="Cookies de terceiros">
         <p>
-          A Furcode pode utilizar serviços externos para exibir conteúdos em
+          A PetHub pode utilizar serviços externos para exibir conteúdos em
           algumas páginas, como vídeos ou interações com redes sociais. Estes
           serviços podem armazenar os seus próprios cookies no seu dispositivo.
           Por exemplo:
@@ -122,13 +122,13 @@ const CookiesPolicyPage = () => {
         <p>
           Se tiver alguma dúvida sobre a nossa Política de Cookies ou desejar
           mais informações sobre o tratamento dos seus dados, entre em contacto
-          connosco através do email: furcode@minderacodeacademy.com.
+          connosco através do email: pethub@minderacodeacademy.com.
         </p>
       </Section>
 
       <Section title="Alterações à Política de Cookies">
         <p>
-          A Furcode reserva-se o direito de, a qualquer momento e sem aviso
+          A PetHub reserva-se o direito de, a qualquer momento e sem aviso
           prévio, alterar, adicionar ou atualizar esta Política de Cookies. Por
           isso, recomendamos que consulte esta página periodicamente para se
           manter informado sobre as nossas práticas.

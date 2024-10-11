@@ -136,7 +136,7 @@ const Page = () => {
           <div className="shelter-register-content">
             <div className="shelter-register-text">
               <p>
-                Junte-se à Furcode e faça parte de uma comunidade dedicada a
+                Junte-se à PetHub e faça parte de uma comunidade dedicada a
                 encontrar lares para os animais que mais precisam.
               </p>
               <br />

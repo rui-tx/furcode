@@ -58,13 +58,10 @@
 }
 
 .pricing-table .head {
-  border-bottom: 1px solid #eee;
   transition: all 0.5s ease;
 }
 
-.pricing-table:hover .head {
-  border-bottom: 1px solid #8e2de2;
-}
+
 
 .pricing-table .head .title {
   color: var(--accent);
