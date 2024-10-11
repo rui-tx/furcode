@@ -2,12 +2,12 @@
 
 .pet-table-container {
   width: 100%;
-  max-width: 1200px;
+  margin-left: 4%;
   margin: 2rem auto;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 6px var(--accent-shadow);
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .pet-table-header {
