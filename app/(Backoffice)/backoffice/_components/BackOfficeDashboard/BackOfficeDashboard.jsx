@@ -29,7 +29,7 @@ const BackofficeContent = () => {
         <div className="quick-actions">
           <h2>Ações Rápidas</h2>
           <div className="action-buttons">
-            <button>Adicionar Novo Animal</button>
+            <button>Adicionar Animal</button>
             <button>Processar Adoções</button>
             <button>Gerenciar Voluntários</button>
             <button>Visualizar Relatórios Animais</button>
