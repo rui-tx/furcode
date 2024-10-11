@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "./styles/index.css";
 import { useAuth } from "../../context/AuthContext";
 import ImageUpload from "@/app/_components/ImageUpload/ImageUpload"; // Corrigido o import do ImageUpload
-
+import CustomImageUpload from "../../_components/CustomImageUpload/CustomImageUpload";
 const Page = () => {
   const { updateUser } = useAuth();
   const [formData, setFormData] = useState({
@@ -272,15 +272,10 @@ const Page = () => {
                     value={formData.webPageUrl}
                   />
                 </div>
-                <div className="upload-image-container">
-                  <ImageUpload
-                    to="shelter"
-                    id={0}
-                    noUpload={true}
-                    setPetImage={setShelterImage}
-                    setPetImageExtension={setShelterImageExtension}
-                  />
-                </div>
+                <CustomImageUpload
+                  setShelterImage={setShelterImage}
+                  setShelterImageExtension={setShelterImageExtension}
+                />
                 <div className="shelter-register-container-button">
                   <button type="submit">Registar</button>
                 </div>
