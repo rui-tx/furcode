@@ -96,7 +96,7 @@ const EditProfileForm = () => {
         <div className="profile-picture">
           <img src={profilePicture} alt="Profile" />
           <label htmlFor="profile-pic-upload" className="file-label">
-            Change Picture
+            Alterar Imagem
           </label>
           <input
             type="file"
@@ -107,9 +107,9 @@ const EditProfileForm = () => {
           />
         </div>
         <div className="form-content">
-          <h1>Edit Your Profile</h1>
+          <h1>Edite seu Perfil</h1>
           <div className="form-group">
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="firstName">Nome</label>
             <input
               type="text"
               id="firstName"
@@ -120,7 +120,7 @@ const EditProfileForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="lastName">Apelido</label>
             <input
               type="text"
               id="lastName"
@@ -142,7 +142,7 @@ const EditProfileForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="address1">Address 1</label>
+            <label htmlFor="address1">Morada 1</label>
             <input
               type="text"
               id="address1"
@@ -153,7 +153,7 @@ const EditProfileForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="address2">Address 2</label>
+            <label htmlFor="address2">Morada 2</label>
             <input
               type="text"
               id="address2"
@@ -163,7 +163,7 @@ const EditProfileForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="postalCode">Postal Code</label>
+            <label htmlFor="postalCode">Código Postal</label>
             <input
               type="text"
               id="postalCode"
@@ -174,7 +174,7 @@ const EditProfileForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="cellPhone">Cell Phone</label>
+            <label htmlFor="cellPhone">Telemóvel</label>
             <input
               type="tel"
               id="cellPhone"
@@ -185,7 +185,7 @@ const EditProfileForm = () => {
             />
           </div>
           <button type="submit" className="submit-btn">
-            Save Changes
+            Salvar
           </button>
         </div>
       </form>

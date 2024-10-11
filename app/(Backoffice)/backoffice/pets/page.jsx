@@ -12,15 +12,15 @@ const Page = () => {
   const [petId, setPetId] = useState(0);
 
   const petsHeaders = [
-    { prettyLabel: "Pet ID", columnName: "id", type: "number" },
-    { prettyLabel: "Pet Name", columnName: "name", type: "string" },
-    { prettyLabel: "Age", columnName: "age", type: "number" },
-    { prettyLabel: "Color", columnName: "color", type: "string" },
-    { prettyLabel: "Adopted", columnName: "isAdopted", type: "bool" },
-    { prettyLabel: "Vaccinated", columnName: "isVaccinated", type: "bool" },
-    { prettyLabel: "Size", columnName: "size", type: "string" },
-    { prettyLabel: "Weight", columnName: "weight", type: "number" },
-    { prettyLabel: "Observations", columnName: "observations", type: "string" },
+    { prettyLabel: "ID Animal", columnName: "id", type: "number" },
+    { prettyLabel: "Nome", columnName: "name", type: "string" },
+    { prettyLabel: "Idade", columnName: "age", type: "number" },
+    { prettyLabel: "Cor", columnName: "color", type: "string" },
+    { prettyLabel: "Adotado", columnName: "isAdopted", type: "bool" },
+    { prettyLabel: "Vacinado", columnName: "isVaccinated", type: "bool" },
+    { prettyLabel: "Tamanho", columnName: "size", type: "string" },
+    { prettyLabel: "Peso", columnName: "weight", type: "number" },
+    { prettyLabel: "Observações", columnName: "observations", type: "string" },
   ];
 
   useEffect(() => {
@@ -132,7 +132,7 @@ const Page = () => {
       <div className="backoffice-buttons">
         <Link href="/backoffice/createpet" passHref>
           <button className="btn-add-pet">
-            <Plus size={16} /> Add Pet
+            <Plus size={16} /> Add Animal
           </button>
         </Link>
       </div>

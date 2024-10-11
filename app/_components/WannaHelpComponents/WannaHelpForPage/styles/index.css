@@ -1,5 +1,5 @@
 .wannahelp-container {
-  max-width: 1200px;
+  width: 80%;
   margin: 0 auto;
   padding: 20px;
   font-family: "Arial", sans-serif;
@@ -19,7 +19,6 @@
   font-size: 18px;
   width: 100%;
   height: 5vh;
-
 }
 
 .wannahelp-cards-options {

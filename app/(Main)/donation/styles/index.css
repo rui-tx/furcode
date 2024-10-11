@@ -33,7 +33,7 @@
 .total-value h1 {
   position: absolute;
   top: 15%;
-  color: var(--default-font-color);
+  color: #6a0dad;
   font-size: 3.5em;
 }
 

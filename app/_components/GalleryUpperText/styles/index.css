@@ -5,6 +5,8 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  border-radius: 20px;
+  padding: 2rem;
 }
 
 .adoption-banner::before {
@@ -41,7 +43,7 @@
   align-items: center;
   background-color: rgba(255, 255, 255, 0.2);
   padding: 10px 20px;
-  border-radius: 30px;
+  border-radius: var(--default-button-border-radius);
 }
 
 .heart-icon {

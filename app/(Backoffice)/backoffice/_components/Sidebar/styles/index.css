@@ -3,7 +3,7 @@
   height: 75vh;
   background-color: #f8f8f8;
   padding: 20px 0;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 0 5px var(--accent-shadow);
 }
 
 .backoffice-sidebar ul {
@@ -51,4 +51,25 @@
 
 .sidebar-item span {
   font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .backoffice-sidebar {
+
+    width: 80px;
+  }
+
+  .sidebar-item span {
+    display: none;
+  }
+
+  .sidebar-item {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .sidebar-item svg {
+    margin-right: 0;
+    font-size: 24px;
+  }
 }

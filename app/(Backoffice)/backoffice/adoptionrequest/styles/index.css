@@ -14,18 +14,25 @@
 }
 
 .backoffice-adoption-requests-container button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  padding: 7px 8px;
-  background-color: grey;
+  gap: 8px;
+  padding: 10px 15px;
+  background-color: #74bc76;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--default-button-border-radius);
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   transition: background-color 0.3s;
 }
 
 .backoffice-adoption-requests-container button:hover {
   text-decoration: underline;
+}
+
+.adoption-requests-container-title {
+  font-size: 2rem;
+  color: #ff4d4f;
+  margin-left: 70px;
 }

@@ -33,11 +33,6 @@ const WannaHelp = () => {
           description="Sua doação ajuda a fornecer comida, abrigo e cuidados médicos aos animais resgatados."
           image={donatepic.src}
         />
-        <WannaHelpOption
-          title="Apadrinhar"
-          description="Não pode adotar? Apadrinhe um animal e ajude com seus cuidados mensais!"
-          image={sponsorpic.src}
-        />
       </div>
     </div>
   );

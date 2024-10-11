@@ -13,11 +13,11 @@ const StaffPage = () => {
   const [selectedPerson, setSelectedPerson] = useState(null);
 
   const staffHeaders = [
-    { prettyLabel: "Staff ID", columnName: "id", type: "string" },
-    { prettyLabel: "First Name", columnName: "firstName", type: "string" },
-    { prettyLabel: "Last Name", columnName: "lastName", type: "string" },
+    { prettyLabel: "ID Pessoa", columnName: "id", type: "string" },
+    { prettyLabel: "Nome", columnName: "firstName", type: "string" },
+    { prettyLabel: "Apelido", columnName: "lastName", type: "string" },
     { prettyLabel: "Email", columnName: "email", type: "string" },
-    { prettyLabel: "Phone", columnName: "cellPhone", type: "string" },
+    { prettyLabel: "Telefone", columnName: "cellPhone", type: "string" },
   ];
 
   useEffect(() => {
@@ -100,15 +100,15 @@ const StaffPage = () => {
 
   return (
     <div className="staff-page-container">
-      <h1>Shelter Staff</h1>
-      <button onClick={() => setIsAddingPerson(true)}>Add Person</button>
+      <h1 className="staff-page-container-title">Staff da Associação</h1>
+      <button onClick={() => setIsAddingPerson(true)}>Adicionar Pessoa</button>
       {isAddingPerson && (
         <div>
           <PersonDropdown onSelectPerson={setSelectedPerson} />
           <button onClick={handleAddPerson} disabled={!selectedPerson}>
-            Add Selected Person
+            Selecionar Pessoa
           </button>
-          <button onClick={() => setIsAddingPerson(false)}>Cancel</button>
+          <button onClick={() => setIsAddingPerson(false)}>Cancelar</button>
         </div>
       )}
       <Table

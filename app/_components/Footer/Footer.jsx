@@ -18,12 +18,12 @@ const Footer = () => {
           <div className="footer-logo-and-icons">
             <div className="footer-logo">
               <div className="footer-image">
-                <Link href="/">
+                {/* <Link href="/">
                   <img
                     src="https://media.istockphoto.com/id/1179573533/vector/vector-group-of-pets-dog-cat-humming-bird-parrot-chameleon-butterfly-rabbit-isolated-on.jpg?s=612x612&w=0&k=20&c=SFDqjevwsQ00ZoZWFQRhscVxnrrkVDns0KjDH-hUynA="
                     alt="logo"
                   />
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
@@ -31,7 +31,9 @@ const Footer = () => {
             <p>
               Contacte-nos através:
               <br />
-              furcode@minderacodeacademy.com
+
+              pethub@minderacodeacademy.com
+
             </p>
             <ul>
               <li>
@@ -84,13 +86,7 @@ const Footer = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <Link href="/about">Sobre Furcode</Link>
-            </li>
-            <li>
-              <Link href="/shelterRegister">Registe a sua Associação</Link>
-            </li>
-            <li>
-              <Link href="/wannaHelp">Ajude a Ajudar</Link>
+              <Link href="/about">Sobre PetHub</Link>
             </li>
             <li>
               <Link href="/privacy">Política de Privacidade</Link>
@@ -105,8 +101,8 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-copyright">
-        &copy; {new Date().getFullYear()} Mindera Mindswap 7<sup>th</sup> Edition. All
-        Rights Reserved
+        &copy; {new Date().getFullYear()} Mindera Mindswap 7<sup>th</sup>{" "}
+        Edition. All Rights Reserved
       </div>
     </footer>
   );

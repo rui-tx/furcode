@@ -321,7 +321,6 @@ const Page = ({ params }) => {
           <button className="adopt-button" onClick={handleAdoptButton}>
             Adota-me!
           </button>
-          <button className="like-button">❤️</button>
         </div>
       </div>
 

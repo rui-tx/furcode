@@ -3,9 +3,13 @@ import { useAuth } from "../../context/AuthContext";
 import "./styles/index.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import logotipo from "../../_images/logotipo.png";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
+
+
+  
   // const [location, setLocation] = useState(() => {
   //   const storedLocation = localStorage.getItem("userLocation");
   //   return storedLocation ? JSON.parse(storedLocation) : null;
@@ -13,6 +17,17 @@ const Header = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+
+
+
+const ableToOpenBackOffice = () => {
+  if (user.role === "MANAGER") {
+    setAbleToBackOffice(true);
+  } else {
+    setAbleToBackOffice(false);
+  }
+};
   // useEffect(() => {
   //   if (!location && navigator.geolocation) {
   //     navigator.geolocation.getCurrentPosition(
@@ -36,10 +51,7 @@ const Header = () => {
         <div className="nav-logo">
           <div className="nav-image">
             <Link href="/">
-              <img
-                src="https://media.istockphoto.com/id/1179573533/vector/vector-group-of-pets-dog-cat-humming-bird-parrot-chameleon-butterfly-rabbit-isolated-on.jpg?s=612x612&w=0&k=20&c=SFDqjevwsQ00ZoZWFQRhscVxnrrkVDns0KjDH-hUynA="
-                alt="logo"
-              />
+              <img src={logotipo.src} className="logotipo-image" />
             </Link>
           </div>
         </div>
@@ -56,24 +68,23 @@ const Header = () => {
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <ul>
             <li>
-              <Link href="/">HOME</Link>
+              <Link href="/">INÍCIO</Link>
             </li>
             <li>
               <Link href="/pets">ANIMAIS</Link>
             </li>
-            <li>
-              <Link href="/shelter">ASSOCIAÇÕES</Link>
-            </li>
+
             <li>
               <Link href="/donation">DOAÇÕES</Link>
             </li>
             {isLoggedIn ? (
               <>
                 <li>
-                  <Link href="/backoffice">BackOffice</Link>
+                  <Link href="/shelter">ASSOCIAÇÕES</Link>
                 </li>
+                
                 <li>
-                  <Link href="/editProfile">EDITAR PERFIL</Link>
+                  <Link href="/editProfile">PERFIL</Link>
                 </li>
                 <li>
                   <Link href="/logout">SAIR</Link>
@@ -81,7 +92,7 @@ const Header = () => {
               </>
             ) : (
               <li>
-                <Link href="/login">LOGIN</Link>
+                <Link href="/login">ENTRAR</Link>
               </li>
             )}
           </ul>

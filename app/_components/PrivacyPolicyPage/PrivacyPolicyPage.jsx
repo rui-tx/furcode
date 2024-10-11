@@ -15,7 +15,7 @@ const PrivacyPolicyPage = () => {
 
       <Section title="Introdução">
         <p>
-          Na Furcode, valorizamos sua privacidade. Esta política descreve como
+          Na PetHub, valorizamos sua privacidade. Esta política descreve como
           coletamos, usamos e protegemos suas informações pessoais.
         </p>
       </Section>
@@ -54,7 +54,9 @@ const PrivacyPolicyPage = () => {
       <Section title="Contato">
         <p>
           Para questões sobre nossa política de privacidade, entre em contato
-          connosco em: <span> Furcode@minderacodeacademy.com</span>
+
+          connosco em: <span> pethub@minderacodeacademy.com</span>
+
         </p>
       </Section>
     </div>

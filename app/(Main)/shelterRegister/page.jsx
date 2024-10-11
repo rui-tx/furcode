@@ -2,8 +2,11 @@
 
 import React, { useState } from "react";
 import "./styles/index.css";
-
+import { useAuth } from "../../context/AuthContext";
+import ImageUpload from "@/app/_components/ImageUpload/ImageUpload"; // Corrigido o import do ImageUpload
+import CustomImageUpload from "../../_components/CustomImageUpload/CustomImageUpload";
 const Page = () => {
+  const { updateUser } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     vat: "",
@@ -22,6 +25,8 @@ const Page = () => {
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [shelterImage, setShelterImage] = useState(null);
+  const [shelterImageExtension, setShelterImageExtension] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,7 +35,6 @@ const Page = () => {
       [name]: value,
     }));
   };
-
   async function createShelter(shelterData) {
     const userData = JSON.parse(localStorage.getItem("user"));
     const userId = userData.id;
@@ -53,10 +57,32 @@ const Page = () => {
       }
 
       const result = await response.json();
-
-      // Update user data in localStorage with the new shelter ID
+      console.warn = () => {};
       userData.shelterId = result.id;
+      userData.role = "MANAGER";
       localStorage.setItem("user", JSON.stringify(userData));
+
+      updateUser({ shelterId: result.id, role: "MANAGER" });
+
+      if (shelterImage) {
+        const formData = new FormData();
+        formData.append("file", shelterImage);
+
+        const imageResponse = await fetch(
+          `/api/uploadImage?to=shelter&id=${result.id}&cover=true&extension=${shelterImageExtension}`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+          }
+        );
+
+        if (!imageResponse.ok) {
+          console.error("Failed to upload shelter image");
+        }
+      }
 
       return result;
     } catch (error) {
@@ -92,12 +118,13 @@ const Page = () => {
         instagramUrls: "",
         webPageUrls: "",
       });
+      setShelterImage(null);
+      setShelterImageExtension(null);
     } catch (error) {
       console.error("Failed to create shelter:", error.message);
       setErrorMessage(`Erro no registo: ${error.message}`);
     }
   };
-
   return (
     <div className="page-container">
       <div className="shelter-register-container">
@@ -109,7 +136,7 @@ const Page = () => {
           <div className="shelter-register-content">
             <div className="shelter-register-text">
               <p>
-                Junte-se à Furcode e faça parte de uma comunidade dedicada a
+                Junte-se à PetHub e faça parte de uma comunidade dedicada a
                 encontrar lares para os animais que mais precisam.
               </p>
               <br />
@@ -226,28 +253,29 @@ const Page = () => {
                   <input
                     type="text"
                     name="instagramUrl"
-                    placeholder="Instagram URL"
+                    placeholder="Instagram URL (opcional)"
                     onChange={handleChange}
                     value={formData.instagramUrl}
-                    required
                   />
                   <input
                     type="text"
                     name="facebookUrl"
-                    placeholder="facebook URL"
+                    placeholder="Facebook URL (opcional)"
                     onChange={handleChange}
                     value={formData.facebookUrl}
-                    required
                   />
                   <input
                     type="text"
                     name="webPageUrl"
-                    placeholder="Web Page URL"
+                    placeholder="Web Page URL (opcional)"
                     onChange={handleChange}
                     value={formData.webPageUrl}
-                    required
                   />
                 </div>
+                <CustomImageUpload
+                  setShelterImage={setShelterImage}
+                  setShelterImageExtension={setShelterImageExtension}
+                />
                 <div className="shelter-register-container-button">
                   <button type="submit">Registar</button>
                 </div>

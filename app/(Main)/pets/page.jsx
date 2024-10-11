@@ -130,7 +130,7 @@ const Page = () => {
 
   return (
     <div className="container-pets">
-      <SideBarPets />
+      {/* <SideBarPets /> */}
       <div className="gallery-text-container">
         <GalleryUpperText />
         {error && <p className="error-message">{error}</p>}
@@ -149,7 +149,6 @@ const Page = () => {
         </div>
         {hasMore && <div className="sentinel" style={{ height: "20px" }}></div>}
         {loading && <p>Loading more pets...</p>}
-        {!hasMore && <p>No more pets to load.</p>}
       </div>
     </div>
   );

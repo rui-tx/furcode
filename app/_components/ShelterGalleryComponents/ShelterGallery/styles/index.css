@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   flex: 1;
+  
 }
 .ShelterGallery-banner {
   width: 80%;
@@ -14,10 +15,11 @@
 .shelterGallery-cards {
   width: 80%;
   display: flex;
-  margin-top: 4%;
+  margin-top: 7%;
   flex-wrap: wrap;
   justify-content: space-evenly;
   flex: 1 0 auto;
+  margin-top: 105px;
 }
 
 .container-gallery-cards-shelter{
@@ -40,13 +42,19 @@
 .input-search-shelter{
   width: 80%;
   height: 30%;
-  border: 0.5px solid black;
+  border: 0.5px solid grey;
   background-color: white;
   color: var(--default-font-color);
   cursor: pointer;
   font-size: 1.2em;
   border-radius: 20px;
   padding: 20px;
+  margin-top: 70px;
+}
+
+.input-search-shelter:focus{
+  border: 1px solid var(--default-border-color);
+  outline: none;
 }
 
 .input-search-shelter::placeholder{
@@ -61,20 +69,20 @@
 
   .shelterGallery-search-bar {
     width: 100%;
-    margin-top: 15px;
+    margin-top: 25px;
     margin-bottom: 15px;
     position: relative;
   }
 
   .shelterGallery-cards {
     width: 100%;
-    margin-top: 15%;
+    margin-top: 19%;
   }
 }
 
 @media (max-width: 425px) {
   .shelterGallery-cards {
     width: 100%;
-    margin-top: 50%;
+    margin-top: 55%;
   }
 }

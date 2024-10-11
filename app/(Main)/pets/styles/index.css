@@ -6,9 +6,10 @@
 }
 
 .gallery-text-container {
-  width: 85%;
+  width: 80%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .banner-pets {
@@ -22,6 +23,9 @@
   width: 100%;
   min-height: calc(100vh - 10vh);
   background-color: rgb(255, 255, 255);
+  justify-content: center;
+  margin-top: 1%;
+  margin-bottom: 20px;
 }
 
 .pets-gallery {
@@ -30,7 +34,7 @@
   justify-content: space-evenly;
 }
 
-.sentinel{
+.sentinel {
   height: 20px;
   background-color: transparent;
 }

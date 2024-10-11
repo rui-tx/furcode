@@ -14,6 +14,16 @@ const Page = () => {
   const [headers, setHeaders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [ableToBackOffice, setAbleToBackOffice] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      console.log("User role:", user.role);
+      setAbleToBackOffice(user.role === "MANAGER");
+    } else {
+      setAbleToBackOffice(false);
+    }
+  }, [user]);
 
   useEffect(() => {
     setKey((prevKey) => prevKey + 1);
@@ -47,6 +57,10 @@ const Page = () => {
     setActiveTable(newTable);
   };
 
+  const handleToBackOffice = () => {
+    window.location.href = "/backoffice";
+  };
+
   const renderTable = () => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -71,14 +85,14 @@ const Page = () => {
   return (
     <div className="profile-page">
       <div className="profile-header">
-        <h1>Your Pawsome Profile</h1>
-        <p>Welcome, {user?.firstName}</p>
-        <p>Update your information and view your adoption journey</p>
+        <h1>O Teu Perfil Patudo</h1>
+        <p>Bem vindo(a), {user?.firstName}</p>
+        <p>Atualize as suas informações e confira a sua jornada de adoção.</p>
       </div>
       <div className="profile-content">
         <EditProfileForm />
         <div className="activity-container">
-          <h2>Your Activity</h2>
+          <h2>Atividade</h2>
           <div className="table-controls">
             <button
               onClick={() => handleTableChange("donations")}
@@ -86,7 +100,7 @@ const Page = () => {
                 activeTable === "donations" ? "active" : ""
               }`}
             >
-              Your Donations
+              Doações
             </button>
             <button
               onClick={() => handleTableChange("adoptedAnimals")}
@@ -94,8 +108,13 @@ const Page = () => {
                 activeTable === "adoptedAnimals" ? "active" : ""
               }`}
             >
-              Adopted Furry Friends
+              Aumigos Adotados
             </button>
+            {ableToBackOffice && (
+              <button className="table-control-btn" onClick={handleToBackOffice}>
+                BackOffice
+              </button>
+            )}
           </div>
           <div className="table-container">{renderTable()}</div>
         </div>

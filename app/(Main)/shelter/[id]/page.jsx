@@ -124,7 +124,7 @@ const Page = ({ params }) => {
               window.location.href = `mailto:${shelter.email}?subject=${subject}&body=${body}`;
             }}
           >
-            Entrar em Contato
+            Entre em Contato
           </button>
         </div>
       </div>

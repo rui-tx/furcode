@@ -63,17 +63,86 @@
   justify-content: space-around;
 }
 
-.action-buttons button {
+.action-buttons a {
   background-color: #e91e63;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: var(--default-button-border-radius);
   padding: 20px 25px;
   cursor: pointer;
   font-size: 16px;
+  text-align: center;
+  text-decoration: none;
   transition: background-color 0.3s;
+  display: inline-block;
 }
 
-.action-buttons button:hover {
+.action-buttons a:hover {
   background-color: #c2185b;
+}
+
+@media (max-width: 1024px) {
+  .stat-card {
+    width: 30%;
+    padding: 10px;
+    margin: 10px;
+    min-height: 150px;
+  }
+
+  .stat-card h3 {
+    font-size: 20px;
+  }
+
+  .stat-card p {
+    font-size: 20px;
+  }
+
+  .quick-actions {
+    padding: 15px;
+  }
+
+  .action-buttons a {
+    padding: 15px 20px;
+    font-size: 14px;
+  }
+
+  .backoffice-container {
+    padding-right: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .backoffice-container {
+    padding-right: 3%;
+  }
+}
+
+@media (max-width: 425px) {
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card {
+    width: 80%;
+    margin: 10px 0;
+  }
+
+  .quick-actions {
+    width: 80%;
+    height: auto;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .action-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .action-buttons a {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

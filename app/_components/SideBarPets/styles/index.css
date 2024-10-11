@@ -2,9 +2,10 @@
   width: 250px;
   background-color: #f8f4ff;
   padding: 20px;
-  border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: "Arial", sans-serif;
+  border-right: 1px solid var(--default-border-color);
+  border-top: 1px solid var(--default-border-color);
 }
 
 .sidebar-title {
@@ -37,7 +38,7 @@
 .filter-select:focus {
   outline: none;
   border-color: #8a6cbe;
-  box-shadow: 0 0 0 3px rgba(138, 108, 190, 0.25);
+  box-shadow: 0 0 0 3px var(--accent-shadow);
 }
 
 .filter-select:hover {

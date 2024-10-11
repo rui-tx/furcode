@@ -102,9 +102,9 @@ const AddPersonModal = ({ onClose, onAddPerson }) => {
             placeholder="Phone"
             required
           />
-          <button type="submit">Add Person</button>
+          <button type="submit">Adicionar Pessoa</button>
           <button type="button" onClick={onClose}>
-            Cancel
+            Cancelar
           </button>
         </form>
       </div>

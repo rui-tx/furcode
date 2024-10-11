@@ -16,24 +16,24 @@ const TermsAndConditionsPage = () => {
       <Section title="">
         <p>
           Estes Termos e Condições destinam-se a regulamentar o uso do site da
-          Furcode.
+          PetHub.
         </p>
         <br />
         <p>
           Qualquer informação a que o utilizador do site tenha acesso não deve
           ser utilizada para fins ilegais ou não autorizados. Este website é
-          propriedade da Furcode e gerido por ela. Os Termos e Condições são
+          propriedade da PetHub e gerido por ela. Os Termos e Condições são
           interpretados de acordo com a lei da União Europeia.
         </p>
         <br />
         <p>
           O utilizador concorda em não atribuir ou fazer qualquer uso comercial
           do conteúdo ou serviços do website sem o consentimento expresso da
-          Furcode.
+          PetHub.
         </p>
         <br />
         <p>
-          A navegação no site da Furcode pressupõe a leitura e aceitação das
+          A navegação no site da PetHub pressupõe a leitura e aceitação das
           condições apresentadas nestes Termos e Condições.
         </p>
         <br />
@@ -44,15 +44,18 @@ const TermsAndConditionsPage = () => {
         </p>
         <br />
         <p>
-          Os Termos e Condições estão publicados no site da Furcode para
+          Os Termos e Condições estão publicados no site da PetHub para
           garantir os princípios de informação, comunicação e transparência.
+
         </p>
         <br />
         <p>
           Quem aceder a este website, seja um indivíduo particular ou um
           representante de uma organização, navegar nas páginas ou aceitar estes
           Termos e Condições, é chamado de utilizador do website. O website está
-          alojado no endereço www.furcode.com.
+
+          alojado no endereço www.pethub.com.
+
         </p>
       </Section>
 
@@ -76,7 +79,7 @@ const TermsAndConditionsPage = () => {
         <p>
           <strong>d.</strong> Difamação ou tentativa de prejudicar a reputação,
           imagem, credibilidade, respeitabilidade e bom nome de qualquer titular
-          de dados pessoais ou da Furcode.
+          de dados pessoais ou da PetHub.
         </p>
         <br />
         <p>
@@ -96,21 +99,23 @@ const TermsAndConditionsPage = () => {
         <br />
         <p>
           <strong>g.</strong> Alterações ao website, a menos que autorizadas
-          pela Furcode.
+          pela PetHub.
         </p>
         <br />
         <p>
           <strong>h.</strong> Violação da legislação sobre direitos de autor,
-          imagem, marca ou direitos de propriedade intelectual, da Furcode, de
+          imagem, marca ou direitos de propriedade intelectual, da PetHub, de
           quaisquer terceiros ou de quaisquer titulares de dados pessoais.
         </p>
         <br />
         <p>
           Não é possível prevenir situações de ataque ou a invulnerabilidade do
           website a ataques, vírus ou outro software/código malicioso ou
-          intrusivo. Nesse sentido, a Furcode não se responsabiliza por
+
+          intrusivo. Nesse sentido, a PetHub não se responsabiliza por
           quaisquer danos que possam resultar para o utilizador em virtude de
           violações causadas por terceiros.
+
         </p>
         <br />
         <p>
@@ -129,14 +134,14 @@ const TermsAndConditionsPage = () => {
         </p>
         <br />
         <p>
-          <strong>b.</strong> A Furcode não se responsabiliza pela incapacidade
+          <strong>b.</strong> A PetHub não se responsabiliza pela incapacidade
           de uso, interrupção de negócios, ou por danos diretos ou indiretos,
           especiais, acidentais ou consequenciais de qualquer tipo por
           negligência.
         </p>
         <br />
         <p>
-          <strong>c.</strong> A Furcode não garante que o website atende aos
+          <strong>c.</strong> A PetHub não garante que o website atende aos
           requisitos do utilizador, que o website seja ininterrupto, ou que seja
           seguro em redes abertas, oportuno ou livre de erros, nem garante os
           resultados obtidos com o uso do website ou a precisão ou
@@ -172,7 +177,7 @@ const TermsAndConditionsPage = () => {
           <strong>a.</strong> Todo o conteúdo deste website, como fotografias,
           desenhos, gráficos, ícones, textos, software, nomes comerciais,
           marcas, logótipos ou quaisquer outros sinais distintivos suscetíveis
-          de uso industrial e comercial, são propriedade da Furcode ou de
+          de uso industrial e comercial, são propriedade da PetHub ou de
           terceiros que devidamente autorizaram a sua inclusão neste website e
           estão protegidos por Direitos de Autor e Direitos Conexos, e Direitos
           de Propriedade Industrial, de acordo com as leis da União Europeia,
@@ -189,19 +194,22 @@ const TermsAndConditionsPage = () => {
           e informações que acede através deste website apenas para as suas
           necessidades pessoais, sendo expressamente proibida a exploração
           comercial direta ou indireta dos mesmos, exceto com a autorização
-          prévia e por escrito da Furcode ou, dependendo dos casos, dos
+          prévia e por escrito da PetHub ou, dependendo dos casos, dos
           titulares de direitos de propriedade intelectual e industrial de
           terceiros.
+
         </p>
       </Section>
 
       <Section title="Disposições finais e contactos">
         <p>
           Para qualquer informação relacionada com os Termos e Condições de uso
-          do website da Furcode, podem ser utilizados os seguintes contactos:
+          do website da PetHub, podem ser utilizados os seguintes contactos:
         </p>
         <br />
-        <p>furcode@minderacodeacademy.com</p>
+
+        <p>pethub@minderacodeacademy.com</p>
+
       </Section>
     </div>
   );
