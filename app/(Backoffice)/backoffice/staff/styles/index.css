@@ -1,3 +1,9 @@
 .staff-page-container {
   width: 80%;
 }
+
+.staff-page-container-title{
+  font-size: 2rem;
+  color: #ff4d4f;
+  margin-left: 70px;
+}

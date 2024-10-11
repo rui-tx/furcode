@@ -211,9 +211,9 @@ const Table = ({
               )}
             </li>
           </ul>
-          <ul className="more-content">
+          {/* <ul className="more-content">
             <li></li>
-          </ul>
+          </ul> */}
         </div>
       ))}
     </div>

@@ -100,7 +100,7 @@ const StaffPage = () => {
 
   return (
     <div className="staff-page-container">
-      <h1>Staff da Associação</h1>
+      <h1 className="staff-page-container-title">Staff da Associação</h1>
       <button onClick={() => setIsAddingPerson(true)}>Adicionar Pessoa</button>
       {isAddingPerson && (
         <div>

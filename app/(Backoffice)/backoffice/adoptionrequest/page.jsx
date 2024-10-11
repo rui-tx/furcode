@@ -167,6 +167,7 @@ const AdoptionRequestsPage = () => {
 
   return (
     <div className="backoffice-adoption-requests-container">
+      <h1 className="adoption-requests-container-title">Adoções</h1>
       <Table
         key="adoptionRequests"
         headers={headers}

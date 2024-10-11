@@ -43,6 +43,7 @@ const Page = () => {
 
   return (
     <div className="backoffice-animal-reports-container">
+      <h1 className="animal-reports-container-title">Relatório Animal</h1>
       <Table
         key={1}
         headers={headers}

@@ -30,3 +30,9 @@
 .backoffice-adoption-requests-container button:hover {
   text-decoration: underline;
 }
+
+.adoption-requests-container-title {
+  font-size: 2rem;
+  color: #ff4d4f;
+  margin-left: 70px;
+}
