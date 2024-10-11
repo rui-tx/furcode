@@ -31,7 +31,9 @@ const Footer = () => {
             <p>
               Contacte-nos através:
               <br />
-              PetHub@minderacodeacademy.com
+
+              pethub@minderacodeacademy.com
+
             </p>
             <ul>
               <li>

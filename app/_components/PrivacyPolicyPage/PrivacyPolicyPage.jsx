@@ -54,7 +54,9 @@ const PrivacyPolicyPage = () => {
       <Section title="Contato">
         <p>
           Para questões sobre nossa política de privacidade, entre em contato
-          connosco em: <span> PetHub@minderacodeacademy.com</span>
+
+          connosco em: <span> pethub@minderacodeacademy.com</span>
+
         </p>
       </Section>
     </div>

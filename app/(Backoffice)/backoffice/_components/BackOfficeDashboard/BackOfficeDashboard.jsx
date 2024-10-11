@@ -1,10 +1,12 @@
 import React from "react";
 import "./styles/index.css";
+import Link from "next/link";
 
 const BackofficeContent = () => {
   return (
     <div className="backoffice-container">
       <div className="backoffice-container-table">
+
         <h1 className="dashboard-title">Bem vindo(a) ao PetHub CRM</h1>
 
         <div className="stats-container">
@@ -29,10 +31,19 @@ const BackofficeContent = () => {
         <div className="quick-actions">
           <h2>Ações Rápidas</h2>
           <div className="action-buttons">
-            <button>Adicionar Animal</button>
-            <button>Processar Adoções</button>
-            <button>Gerenciar Voluntários</button>
-            <button>Visualizar Relatórios Animais</button>
+
+            <Link href="/backoffice/pets" className="action-link">
+             Adicionar Animal
+            </Link>
+            <Link href="/backoffice/adoptionrequest" className="action-link">
+              Processar Adoções
+            </Link>
+            <Link href="/backoffice/staff" className="action-link">
+              Gerenciar Voluntários
+            </Link>
+            <Link href="/backoffice/animalReports" className="action-link">
+              Visualizar Relatórios Animais
+            </Link>
           </div>
         </div>
       </div>

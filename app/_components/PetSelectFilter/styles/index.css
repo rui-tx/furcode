@@ -20,7 +20,7 @@
 .cute-select-button:hover,
 .cute-select-button.open {
   background-color: #e1d2ff;
-  box-shadow: 0 4px 8px rgba(106, 76, 147, 0.2);
+  box-shadow: 0 4px 8px var(--accent-shadow);
 }
 
 .cute-select-arrow {
@@ -43,7 +43,7 @@
   margin-top: 5px;
   overflow: hidden;
   z-index: 1;
-  box-shadow: 0 4px 12px rgba(106, 76, 147, 0.15);
+  box-shadow: 0 4px 12px var(--accent-shadow);
 }
 
 .cute-select-option {

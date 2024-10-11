@@ -44,15 +44,18 @@ const TermsAndConditionsPage = () => {
         </p>
         <br />
         <p>
-          Os Termos e Condições estão publicados no site da PetHub para garantir
-          os princípios de informação, comunicação e transparência.
+          Os Termos e Condições estão publicados no site da PetHub para
+          garantir os princípios de informação, comunicação e transparência.
+
         </p>
         <br />
         <p>
           Quem aceder a este website, seja um indivíduo particular ou um
           representante de uma organização, navegar nas páginas ou aceitar estes
           Termos e Condições, é chamado de utilizador do website. O website está
-          alojado no endereço www.PetHub.com.
+
+          alojado no endereço www.pethub.com.
+
         </p>
       </Section>
 
@@ -108,9 +111,11 @@ const TermsAndConditionsPage = () => {
         <p>
           Não é possível prevenir situações de ataque ou a invulnerabilidade do
           website a ataques, vírus ou outro software/código malicioso ou
-          intrusivo. Nesse sentido, a PetHub não se responsabiliza por quaisquer
-          danos que possam resultar para o utilizador em virtude de violações
-          causadas por terceiros.
+
+          intrusivo. Nesse sentido, a PetHub não se responsabiliza por
+          quaisquer danos que possam resultar para o utilizador em virtude de
+          violações causadas por terceiros.
+
         </p>
         <br />
         <p>
@@ -189,8 +194,10 @@ const TermsAndConditionsPage = () => {
           e informações que acede através deste website apenas para as suas
           necessidades pessoais, sendo expressamente proibida a exploração
           comercial direta ou indireta dos mesmos, exceto com a autorização
-          prévia e por escrito da PetHub ou, dependendo dos casos, dos titulares
-          de direitos de propriedade intelectual e industrial de terceiros.
+          prévia e por escrito da PetHub ou, dependendo dos casos, dos
+          titulares de direitos de propriedade intelectual e industrial de
+          terceiros.
+
         </p>
       </Section>
 
@@ -200,7 +207,9 @@ const TermsAndConditionsPage = () => {
           do website da PetHub, podem ser utilizados os seguintes contactos:
         </p>
         <br />
-        <p>PetHub@minderacodeacademy.com</p>
+
+        <p>pethub@minderacodeacademy.com</p>
+
       </Section>
     </div>
   );

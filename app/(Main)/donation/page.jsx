@@ -68,7 +68,7 @@ const page = () => {
         </div>
       </div>
       <div className="container-testimonial">
-        <h2>Depoimentos</h2>
+        <h2>Testemunhos</h2>
         <DonationsCarousel />
       </div>
     </div>

@@ -5,14 +5,13 @@
   border-radius: 20px;
   overflow: hidden;
   margin: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--accent-shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .pet-card:hover {
   transform: translateY(-5px) scale(1);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px var(--accent-shadow);
 }
 
 .pet-card-container-photo {
