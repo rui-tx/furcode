@@ -32,46 +32,45 @@ const Page = () => {
       setErrorMessage("An unexpected error occurred");
     }
   };
-
   return (
     <div className="login-container">
+      <div className="paw-print-top"></div>
       <div className="container-login">
-        <div className="title-login">Login</div>
-        <form onSubmit={handleSubmit} className="container-form-buttom-input">
-          <div className="container-input">
+        <h1 className="title-login">Bem-Vindo ao PetHub</h1>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="input-group">
             <input
-              type="text"
+              type="email"
               placeholder="Email"
-              onChange={handleEmail}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
+            <div className="paw-print"></div>
+          </div>
+          <div className="input-group">
             <input
               type="password"
               placeholder="Password"
-              onChange={handlePassword}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
+            <div className="paw-print"></div>
           </div>
-          <div className="container-button">
-            <button type="submit">Login</button>
+          <div className="container-btn-login">
+            <button type="submit" className="login-button">
+              Entrar
+            </button>
           </div>
         </form>
-        {errorMessage && (
-          <div className="login-error-message">
-            <p>{errorMessage}</p>
-          </div>
-        )}
-        <div className="container-no-register">
-          <p>
-            Não possui conta? <a href="/register">Registar aqui</a>
-          </p>
-          <p>
-            Esqueceu sua senha? <a href="/recovery">Recuperar aqui</a>
-          </p>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <div className="links">
+          <a href="/register">Não tens conta? Regista aqui</a>
         </div>
       </div>
+      <div className="paw-print-bottom"></div>
     </div>
   );
 };
-
 export default Page;
