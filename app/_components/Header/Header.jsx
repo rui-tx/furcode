@@ -68,7 +68,7 @@ const ableToOpenBackOffice = () => {
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <ul>
             <li>
-              <Link href="/">HOME</Link>
+              <Link href="/">INÍCIO</Link>
             </li>
             <li>
               <Link href="/pets">ANIMAIS</Link>
@@ -84,7 +84,7 @@ const ableToOpenBackOffice = () => {
                 </li>
                 
                 <li>
-                  <Link href="/editProfile">EDITAR PERFIL</Link>
+                  <Link href="/editProfile">PERFIL</Link>
                 </li>
                 <li>
                   <Link href="/logout">SAIR</Link>
@@ -92,7 +92,7 @@ const ableToOpenBackOffice = () => {
               </>
             ) : (
               <li>
-                <Link href="/login">LOGIN</Link>
+                <Link href="/login">ENTRAR</Link>
               </li>
             )}
           </ul>
