@@ -7,7 +7,7 @@ import "./styles/index.css";
 import DonationsCarousel from "../../_components/DonationsCarousel/DonationsCarousel";
 
 
-const page = () => {
+const Page = () => {
 
   const donationSettings = [
     {
@@ -75,4 +75,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
