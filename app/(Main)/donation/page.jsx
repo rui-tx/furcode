@@ -5,10 +5,8 @@ import DonationCard from "../../_components/DonationCard/DonationCard";
 import TotalDonations from "../../_components/TotalDonations/TotalDonations";
 import "./styles/index.css";
 import DonationsCarousel from "../../_components/DonationsCarousel/DonationsCarousel";
-import { useAuth } from "../../context/AuthContext";
 
-const page = () => {
-  const { user } = useAuth();
+const Page = () => {
   const donationSettings = [
     {
       imageUrlDonation:
@@ -75,4 +73,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

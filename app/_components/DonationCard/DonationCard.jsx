@@ -5,18 +5,14 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 import ShelterSelectFilter from "../ShelterSelectFilter/ShelterSelectFilter";
-import { loadStripe } from "@stripe/stripe-js";
-import PaymentForm from "../PaymentForm/PaymentForm";
-import {
-  Elements,
-  PaymentElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
+// import PaymentForm from "../PaymentForm/PaymentForm";
+// import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+
 const DonationCard = ({ ...props }) => {
-  const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-  );
+  // const stripePromise = loadStripe(
+  //   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  // );
   const [clientSecret, setClientSecret] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
@@ -41,7 +37,6 @@ const DonationCard = ({ ...props }) => {
   } = props;
 
   useEffect(() => {
-    // This will only run on the client-side
     setUserId(localStorage.getItem("user"));
   }, []);
 
@@ -118,7 +113,7 @@ const DonationCard = ({ ...props }) => {
           Confirmar Doação
         </button>
       </form>
-      {clientSecret && (
+      {/* {clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <PaymentForm
             clientSecret={clientSecret}
@@ -129,7 +124,7 @@ const DonationCard = ({ ...props }) => {
             }}
           />
         </Elements>
-      )}
+      )} */}
     </div>
   );
 
