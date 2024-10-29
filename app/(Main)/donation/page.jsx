@@ -6,7 +6,9 @@ import TotalDonations from "../../_components/TotalDonations/TotalDonations";
 import "./styles/index.css";
 import DonationsCarousel from "../../_components/DonationsCarousel/DonationsCarousel";
 
+
 const Page = () => {
+
   const donationSettings = [
     {
       imageUrlDonation:
@@ -20,7 +22,7 @@ const Page = () => {
     {
       imageUrlDonation:
         "https://img.freepik.com/fotos-gratis/cachorro-de-raca-pura-sendo-fofo-em-um-estudio_23-2149016897.jpg?ga=GA1.2.1751672505.1727189796&semt=ais_hybrid",
-      imageAltDonation: "Image de um cão",
+      imageAltDonation: "Imagem de um cão",
       descriptionDonation:
         "Contribui para alimentos e cuidados de saúde básicos.",
       value: "10",
